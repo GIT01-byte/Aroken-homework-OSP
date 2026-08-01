@@ -40,11 +40,10 @@ function hazze_setup()
     add_theme_support('post-thumbnails');
 
     // This theme uses wp_nav_menu() in one location.
-    register_nav_menus(
-        array(
-            'menu-1' => esc_html__('Primary', 'hazze'),
-        )
-    );
+    register_nav_menus([
+        'header' => 'ШАПКА',
+        'footer' => 'ПОДВАЛ'
+    ]);
 
     /*
 		* Switch default core markup for search form, comment form, and comments
@@ -75,6 +74,7 @@ function hazze_scripts()
 {
     wp_enqueue_style('hazze-style', get_stylesheet_uri(), array(), _S_VERSION);
 
+    wp_enqueue_style('libre-franklin-font', 'https://fonts.googleapis.com/css?family=Libre+Franklin:400,500,600,700,800,900&display=swap', array(), _S_VERSION);
     wp_enqueue_style('bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css', array(), _S_VERSION);
     wp_enqueue_style('font-awesome', get_template_directory_uri() . '/css/font-awesome.min.css', array(), _S_VERSION);
     wp_enqueue_style('themify-icons', get_template_directory_uri() . '/css/themify-icons.css', array(), _S_VERSION);
@@ -88,10 +88,43 @@ function hazze_scripts()
     wp_enqueue_script('jquery');
 
     wp_enqueue_script('bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array(), _S_VERSION, true);
-    wp_enqueue_script('magnific-popup', get_template_directory_uri() . '/js/jquery.magnific-popup.min.js', array(), _S_VERSION, true);
+    wp_enqueue_script('magnific-popup', get_template_directory_uri() . '/js/jquery.magnific-popup.min.js', array('jquery'), _S_VERSION, true);
     wp_enqueue_script('mixitup', get_template_directory_uri() . '/js/mixitup.min.js', array(), _S_VERSION, true);
-    wp_enqueue_script('slicknav', get_template_directory_uri() . '/js/jquery.slicknav.js', array(), _S_VERSION, true);
+    wp_enqueue_script('slicknav', get_template_directory_uri() . '/js/jquery.slicknav.js', array('jquery'), _S_VERSION, true);
     wp_enqueue_script('owl-carousel', get_template_directory_uri() . '/js/owl.carousel.min.js', array(), _S_VERSION, true);
     wp_enqueue_script('hazze-script-main', get_template_directory_uri() . '/js/main.js', array(), _S_VERSION, true);
 }
 add_action('wp_enqueue_scripts', 'hazze_scripts');
+
+if (function_exists('acf_add_options_page')) {
+
+    acf_add_options_page(array(
+        'page_title'    => 'Основные настройки',
+        'menu_title'    => 'Настройки темы',
+        'menu_slug'     => 'theme-general-settings',
+        'capability'    => 'edit_posts',
+        'redirect'      => true
+    ));
+
+    acf_add_options_sub_page(array(
+        'page_title'    => 'Настройки шапки',
+        'menu_title'    => 'Header',
+        'parent_slug'   => 'theme-general-settings',
+    ));
+
+    acf_add_options_sub_page(array(
+        'page_title'    => 'Настройки подвала',
+        'menu_title'    => 'Footer',
+        'parent_slug'   => 'theme-general-settings',
+    ));
+}
+
+function custom_menu_link_class($atts, $item, $args)
+{
+    if ($args->theme_location == "header") {
+        $atts['class'] = 'nav__link';
+    }
+
+    return $atts;
+}
+add_filter("nav_menu_link_attributes", "custom_menu_link_class", 10, 3);
