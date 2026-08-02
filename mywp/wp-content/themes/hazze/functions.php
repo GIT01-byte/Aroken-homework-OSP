@@ -119,12 +119,6 @@ if (function_exists('acf_add_options_page')) {
     ));
 }
 
-function custom_menu_link_class($atts, $item, $args)
-{
-    if ($args->theme_location == "header") {
-        $atts['class'] = 'nav__link';
-    }
-
-    return $atts;
-}
-add_filter("nav_menu_link_attributes", "custom_menu_link_class", 10, 3);
+add_image_size("hazze-custom-lg", 785, 786, true);
+add_image_size("hazze-custom-md", 785, 393, true);
+add_image_size("hazze-custom-sm", 392.5, 393, true);

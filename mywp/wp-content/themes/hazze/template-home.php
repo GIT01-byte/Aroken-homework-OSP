@@ -8,18 +8,19 @@ get_header();
 <!-- Hero Section Begin -->
 <section
     class="hero-section set-bg"
-    data-setbg="<?php echo get_template_directory_uri() ?>/img/hero-bg.jpg">
+    data-setbg="<?php echo get_field("hero_background") ?>">
     <div class="container">
         <div class="row">
             <div class="col-lg-5">
                 <div class="hs-text">
-                    <span>Office Fashion</span>
-                    <h2>New Fashion</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua.</p>
+                    <span><?php echo get_field("hero_subtitle") ?></span>
+                    <h2><?php echo get_field("hero_title") ?></h2>
+                    <p><?php echo get_field("hero_description") ?></p>
                     <a
-                        href="#"
-                        class="primary-btn">Read More</a>
+                        href="<?php echo get_field("hero_btn")["url"] ?>"
+                        class="primary-btn">
+                        <?php echo get_field("hero_btn")["title"] ?>
+                    </a>
                 </div>
             </div>
         </div>
@@ -34,24 +35,22 @@ get_header();
             <div class="col-lg-6">
                 <div class="as-pic">
                     <img
-                        src="<?php echo get_template_directory_uri() ?>/img/about-us.jpg"
-                        alt="">
+                        src="<?php echo get_field("about_image")["url"] ?>"
+                        alt="<?php echo get_field("about_image")["alt"] ?>">
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="as-text">
                     <div class="section-title">
-                        <span>About us</span>
-                        <h2>About Story</h2>
+                        <span><?php echo get_field("about_subtitle") ?></span>
+                        <h2><?php echo get_field("about_title") ?></h2>
                     </div>
-                    <p class="f-para">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. </p>
-                    <p class="s-para">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur
-                        adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                    <p class="f-para"><?php echo get_field("about_description") ?></p>
                     <a
-                        href="#"
-                        class="primary-btn">Read More</a>
+                        href="<?php echo get_field("about_btn")["url"] ?>"
+                        class="primary-btn">
+                        <?php echo get_field("about_btn")["title"] ?>
+                    </a>
                 </div>
             </div>
         </div>
@@ -65,39 +64,34 @@ get_header();
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-title">
-                    <span>Our Services</span>
-                    <h2>Best Services Save The World</h2>
+                    <span><?php echo get_field("service_subtitle") ?></span>
+                    <h2><?php echo get_field("service_title") ?></h2>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-4 col-md-6">
-                <div class="service-item">
-                    <img
-                        src="<?php echo get_template_directory_uri() ?>/img/services/service-1.png"
-                        alt="">
-                    <h4>Modern Design</h4>
-                    <p>Brook embraces a modern look with various enhanced pre-defined page elements.</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="service-item">
-                    <img
-                        src="<?php echo get_template_directory_uri() ?>/img/services/service-2.png"
-                        alt="">
-                    <h4>Content</h4>
-                    <p>Brook embraces a modern look with various enhanced pre-defined page elements.</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="service-item">
-                    <img
-                        src="<?php echo get_template_directory_uri() ?>/img/services/service-3.png"
-                        alt="">
-                    <h4>Make Up</h4>
-                    <p>Brook embraces a modern look with various enhanced pre-defined page elements.</p>
-                </div>
-            </div>
+        <div class="row services-custom-row">
+            <?php
+            if (have_rows('services_repeater')) :
+                while (have_rows('services_repeater')) : the_row(); ?>
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="service-item">
+                            <img
+                                src="<?php the_sub_field('image'); ?>">
+                            <h4>
+                                <?php the_sub_field('title'); ?>
+                            </h4>
+                            <p>
+                                <?php the_sub_field('description'); ?>
+                            </p>
+                        </div>
+                    </div>
+
+            <?php
+                endwhile;
+            else :
+                echo "Ошибка. Поля не найдены";
+            endif ?>
         </div>
     </div>
 </section>
@@ -118,13 +112,13 @@ get_header();
             <div class="col-lg-6">
                 <div
                     class="portfolio-item set-bg large-item"
-                    data-setbg="<?php echo get_template_directory_uri() ?>/img/portfolio/portfolio-1.jpg">
+                    data-setbg="<?php echo get_field("portfolio_image1")["sizes"]['hazze-custom-lg'] ?>">
                     <div class="pi-hover">
                         <a
                             href="#"
                             class="chain-icon"><i class="fa fa-chain"></i></a>
                         <a
-                            href="<?php echo get_template_directory_uri() ?>/img/portfolio/portfolio-1.jpg"
+                            href="<?php echo get_field("portfolio_image1")["url"] ?>"
                             class="search-icon image-popup"><i class="fa fa-search"></i></a>
                     </div>
                 </div>
@@ -132,13 +126,13 @@ get_header();
             <div class="col-lg-6">
                 <div
                     class="portfolio-item set-bg"
-                    data-setbg="<?php echo get_template_directory_uri() ?>/img/portfolio/portfolio-2.jpg">
+                    data-setbg="<?php echo get_field("portfolio_image2")["sizes"]['hazze-custom-md']  ?>">
                     <div class="pi-hover">
                         <a
                             href="#"
                             class="chain-icon"><i class="fa fa-chain"></i></a>
                         <a
-                            href="<?php echo get_template_directory_uri() ?>/img/portfolio/portfolio-2.jpg"
+                            href="<?php echo get_field("portfolio_image2")["url"] ?>"
                             class="search-icon image-popup"><i class="fa fa-search"></i></a>
                     </div>
                 </div>
@@ -146,13 +140,13 @@ get_header();
                     <div class="col-md-6">
                         <div
                             class="portfolio-item set-bg"
-                            data-setbg="<?php echo get_template_directory_uri() ?>/img/portfolio/portfolio-3.jpg">
+                            data-setbg="<?php echo get_field("portfolio_image3")["sizes"]['hazze-custom-sm']  ?>">
                             <div class="pi-hover">
                                 <a
                                     href="#"
                                     class="chain-icon"><i class="fa fa-chain"></i></a>
                                 <a
-                                    href="<?php echo get_template_directory_uri() ?>/img/portfolio/portfolio-3.jpg"
+                                    href="<?php echo get_field("portfolio_image3")["url"] ?>"
                                     class="search-icon image-popup"><i class="fa fa-search"></i></a>
                             </div>
                         </div>
@@ -160,13 +154,13 @@ get_header();
                     <div class="col-md-6">
                         <div
                             class="portfolio-item set-bg"
-                            data-setbg="<?php echo get_template_directory_uri() ?>/img/portfolio/portfolio-4.jpg">
+                            data-setbg="<?php echo get_field("portfolio_image4")["sizes"]['hazze-custom-sm']  ?>">
                             <div class="pi-hover">
                                 <a
                                     href="#"
                                     class="chain-icon"><i class="fa fa-chain"></i></a>
                                 <a
-                                    href="<?php echo get_template_directory_uri() ?>/img/portfolio/portfolio-4.jpg"
+                                    href="<?php echo get_field("portfolio_image4")["url"] ?>"
                                     class="search-icon image-popup"><i class="fa fa-search"></i></a>
                             </div>
                         </div>
@@ -185,35 +179,37 @@ get_header();
             <div class="col-lg-6">
                 <div class="counter-text">
                     <div class="section-title">
-                        <span>Number Speaks</span>
-                        <h2>We have a lot of <br />experience</h2>
+                        <span><?php echo get_field("nspeaks_subtitle") ?></span>
+                        <h2><?php echo get_field("nspeaks_title") ?></h2>
                     </div>
                     <a
-                        href="#"
-                        class="primary-btn">Read More</a>
+                        href="<?php echo get_field("nspeaks_btn")['url'] ?>"
+                        class="primary-btn">
+                        <?php echo get_field("nspeaks_btn")['title'] ?>
+                    </a>
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="counter-item">
-                    <div class="ci-number count">
-                        2034
-                    </div>
-                    <div class="ci-text">
-                        <h4>Successful projects</h4>
-                        <p>Since its establishment in 2005, Fashion has been focusing on project management &
-                            implementation through cooperation.</p>
-                    </div>
-                </div>
-                <div class="counter-item">
-                    <div class="ci-number count">
-                        1054
-                    </div>
-                    <div class="ci-text">
-                        <h4>Events</h4>
-                        <p>Since its establishment in 2005, Fashion has been focusing on project management &
-                            implementation through cooperation.</p>
-                    </div>
-                </div>
+                <?php
+                if (have_rows('nspeaks_achievements_repeater')):
+                    while (have_rows('nspeaks_achievements_repeater')) : the_row(); ?>
+
+                        <div class="counter-item">
+                            <div class="ci-number count">
+                                <?php the_sub_field('number'); ?>
+                            </div>
+                            <div class="ci-text">
+                                <h4><?php the_sub_field('title'); ?></h4>
+                                <p><?php the_sub_field('description'); ?></p>
+                            </div>
+                        </div>
+
+                <?php
+                    endwhile;
+                else :
+                    echo "Ошибка. Поля не найдены";
+                endif;
+                ?>
             </div>
         </div>
     </div>
@@ -224,74 +220,40 @@ get_header();
 <section class="testimonial-section spad">
     <div class="container">
         <div class="row testimonial-slider owl-carousel">
-            <div class="col-lg-6">
-                <div class="testimonial-item">
-                    <div class="ti-pic">
-                        <img
-                            src="<?php echo get_template_directory_uri() ?>/img/testimonial/testimonial-1.jpg"
-                            alt="">
-                    </div>
-                    <div class="ti-text">
-                        <div class="ti-title">
-                            <h4>Travis Crawford</h4>
-                            <span>Designer</span>
+            <?php
+            if (have_rows('testimonial_designer_repeater')):
+                $i = 1;
+                while (have_rows('testimonial_designer_repeater')) : the_row();
+                    $isEven = false;
+                    if ($i % 2 === 0) $isEven = true;
+            ?>
+
+                    <div class="col-lg-6">
+                        <div class="testimonial-item"
+                            <?php if ($isEven) echo ' style="background: #e32879;"'; ?>">
+                            <div class="ti-pic">
+                                <img
+                                    src="<?php echo get_sub_field('image')['sizes']['thumbnail'] ?>"
+                                    alt="<?php echo get_sub_field('image')['alt'] ?>">
+                            </div>
+                            <div class="ti-text">
+                                <div class="ti-title">
+                                    <h4 <?php if ($isEven) echo ' style="color: #ffffff;"'; ?>><?php the_sub_field("title") ?></h4>
+                                    <span <?php if ($isEven) echo ' style="color: #ffffff;"'; ?>><?php the_sub_field("subtitle") ?></span>
+                                </div>
+                                <p <?php if ($isEven) echo ' style="color: #ffffff;"'; ?>><?php the_sub_field("description") ?></p>
+                            </div>
                         </div>
-                        <p>Adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore
-                            magnam aliquam quaerat voluptatem.</p>
                     </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="testimonial-item">
-                    <div class="ti-pic">
-                        <img
-                            src="<?php echo get_template_directory_uri() ?>/img/testimonial/testimonial-2.jpg"
-                            alt="">
-                    </div>
-                    <div class="ti-text">
-                        <div class="ti-title">
-                            <h4>Noah Padilla</h4>
-                            <span>Designer</span>
-                        </div>
-                        <p>Adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore
-                            magnam aliquam quaerat voluptatem.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="testimonial-item">
-                    <div class="ti-pic">
-                        <img
-                            src="<?php echo get_template_directory_uri() ?>/img/testimonial/testimonial-3.jpg"
-                            alt="">
-                    </div>
-                    <div class="ti-text">
-                        <div class="ti-title">
-                            <h4>Noah Padilla</h4>
-                            <span>Designer</span>
-                        </div>
-                        <p>Adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore
-                            magnam aliquam quaerat voluptatem.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="testimonial-item">
-                    <div class="ti-pic">
-                        <img
-                            src="<?php echo get_template_directory_uri() ?>/img/testimonial/testimonial-4.jpg"
-                            alt="">
-                    </div>
-                    <div class="ti-text">
-                        <div class="ti-title">
-                            <h4>Noah Padilla</h4>
-                            <span>Designer</span>
-                        </div>
-                        <p>Adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore
-                            magnam aliquam quaerat voluptatem.</p>
-                    </div>
-                </div>
-            </div>
+
+                    <?php $i++; ?>
+
+            <?php
+                endwhile;
+            else :
+                echo "Ошибка. Поля не найдены";
+            endif;
+            ?>
         </div>
     </div>
 </section>
