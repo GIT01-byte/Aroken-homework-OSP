@@ -127,5 +127,5 @@ add_shortcode('pink-banner', 'pink_banner_shortcode');
 
 function pink_banner_shortcode()
 {
-    require(get_template_directory() . './shortcodes/pink-banner.php');
+    require(get_template_directory() . '/shortcodes/pink-banner.php');
 }
