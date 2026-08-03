@@ -103,7 +103,7 @@ if (function_exists('acf_add_options_page')) {
         'menu_title'    => 'Настройки темы',
         'menu_slug'     => 'theme-general-settings',
         'capability'    => 'edit_posts',
-        'redirect'      => true
+        'redirect'      => false
     ));
 
     acf_add_options_sub_page(array(
@@ -122,3 +122,10 @@ if (function_exists('acf_add_options_page')) {
 add_image_size("hazze-custom-lg", 785, 786, true);
 add_image_size("hazze-custom-md", 785, 393, true);
 add_image_size("hazze-custom-sm", 392.5, 393, true);
+
+add_shortcode('pink-banner', 'pink_banner_shortcode');
+
+function pink_banner_shortcode()
+{
+    require(get_template_directory() . './shortcodes/pink-banner.php');
+}

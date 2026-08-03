@@ -257,10 +257,12 @@ get_header();
         </div>
     </div>
 </section>
+
+<?php echo do_shortcode("[pink-banner]") ?>
 <!-- Testimonial Section End -->
 
 <!-- Call To Action Section Begin -->
-<section
+<!-- <section
     class="callto-section set-bg"
     data-setbg="<?php echo get_template_directory_uri() ?>/img/ctc-bg.jpg">
     <div class="container">
@@ -278,7 +280,7 @@ get_header();
             </div>
         </div>
     </div>
-</section>
+</section> -->
 <!-- Call To Action Section End -->
 
 <!-- Member Section Begin -->
@@ -292,67 +294,56 @@ get_header();
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-4 col-md-6">
-                <div
-                    class="member-item set-bg"
-                    data-setbg="<?php echo get_template_directory_uri() ?>/img/member/member-1.jpg">
-                    <div class="mi-text">
-                        <p>Quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora
-                            incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
-                        <div class="mt-title">
-                            <h4>Jacob Gomez</h4>
-                            <span>Designer</span>
-                        </div>
-                        <div class="mt-social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-pinterest"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div
-                    class="member-item set-bg"
-                    data-setbg="<?php echo get_template_directory_uri() ?>/img/member/member-2.jpg">
-                    <div class="mi-text">
-                        <p>Quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora
-                            incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
-                        <div class="mt-title">
-                            <h4>Jacob Gomez</h4>
-                            <span>Designer</span>
-                        </div>
-                        <div class="mt-social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-pinterest"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div
-                    class="member-item set-bg"
-                    data-setbg="<?php echo get_template_directory_uri() ?>/img/member/member-3.jpg">
-                    <div class="mi-text">
-                        <p>Quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora
-                            incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
-                        <div class="mt-title">
-                            <h4>Jacob Gomez</h4>
-                            <span>Designer</span>
-                        </div>
-                        <div class="mt-social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-pinterest"></i></a>
+        <div class="row member-custom-row">
+            <?php
+            $args = array(
+                'posts_per_page' => get_field("our_team_count_employees"),
+                'post_type' => 'our-team',
+                'orderby' => 'date',
+                'order' => 'ASC'
+            );
+            $query = new WP_Query($args);
+            if ($query->have_posts()) {
+                while ($query->have_posts()) {
+                    $query->the_post();
+                    $is_accent = get_field("примение_акцентного_цвета") ?>
+
+                    <div class="col-lg-4 col-md-6 <?php if ($is_accent) echo "member-accent-card" ?>">
+                        <div
+                            class="member-item set-bg"
+                            data-setbg="<?php echo get_the_post_thumbnail_url(); ?>">
+                            <div class="mi-text">
+                                <?php the_content() ?>
+                                <div class="mt-title">
+                                    <h4><?php the_title() ?></h4>
+                                    <span><?php the_field("our_team_job") ?></span>
+                                </div>
+                                <div class="mt-social">
+                                    <?php
+                                    if (have_rows('our_team_socials_repeater')):
+                                        while (have_rows('our_team_socials_repeater')) : the_row(); ?>
+
+                                            <a
+                                                href="<?php the_sub_field('link'); ?>">
+                                                <i class="fa fa-<?php the_sub_field('social'); ?>"></i>
+                                            </a>
+
+                                    <?php
+                                        endwhile;
+                                    else :
+                                        echo "Ошибка. Поля не найдены";
+                                    endif;
+                                    ?>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+
+            <?php }
+            } else {
+                echo "Ошибка. Постов не найдено";
+            }
+            wp_reset_postdata(); ?>
         </div>
     </div>
 </section>
