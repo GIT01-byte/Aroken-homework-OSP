@@ -129,3 +129,13 @@ function pink_banner_shortcode()
 {
     require(get_template_directory() . '/shortcodes/pink-banner.php');
 }
+
+add_filter('excerpt_length', function () {
+    return 10;
+});
+add_filter('excerpt_more', 'read_more_excerpt_more');
+function read_more_excerpt_more($more)
+{
+    global $post;
+    return ' <a href="' . get_permalink($post) . '">Read&nbsp;more <span class="arrow">→</span></a>';
+}

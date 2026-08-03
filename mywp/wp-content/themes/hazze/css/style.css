@@ -817,6 +817,16 @@ ol {
 }
 
 /*---------------------
+  Blog
+-----------------------*/
+.blog-item .bi-text p a {
+    color: #e32879;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+
+/*---------------------
   Footer
 -----------------------*/
 
@@ -1091,6 +1101,10 @@ ol {
     color: #e32879;
     font-size: 14px;
     margin-right: 8px;
+}
+
+.blog-item .bi-text ul li.bt-comments {
+    margin-right: 0;
 }
 
 .blog-item .bi-text ul li i {
@@ -3765,6 +3779,166 @@ ol {
     color: #b3b3b3;
 }
 
+.comment-form input::-webkit-input-placeholder,
+.contact-form input::-webkit-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form input::-moz-placeholder,
+.contact-form input::-moz-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form input:-ms-input-placeholder,
+.contact-form input:-ms-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form input::-ms-input-placeholder,
+.contact-form input::-ms-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form input::-webkit-input-placeholder,
+.contact-form input::-webkit-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form input::-moz-placeholder,
+.contact-form input::-moz-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form input:-ms-input-placeholder,
+.contact-form input:-ms-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form input::-ms-input-placeholder,
+.contact-form input::-ms-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form input::-webkit-input-placeholder,
+.contact-form input::-webkit-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form input::-moz-placeholder,
+.contact-form input::-moz-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form input:-ms-input-placeholder,
+.contact-form input:-ms-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form input::-ms-input-placeholder,
+.contact-form input::-ms-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form input::-webkit-input-placeholder,
+.contact-form input::-webkit-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form input::-moz-placeholder,
+.contact-form input::-moz-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form input:-ms-input-placeholder,
+.contact-form input:-ms-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form input::-ms-input-placeholder,
+.contact-form input::-ms-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form input::-webkit-input-placeholder,
+.contact-form input::-webkit-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form input::-moz-placeholder,
+.contact-form input::-moz-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form input:-ms-input-placeholder,
+.contact-form input:-ms-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form input::-ms-input-placeholder,
+.contact-form input::-ms-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form input::-webkit-input-placeholder,
+.contact-form input::-webkit-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form input::-moz-placeholder,
+.contact-form input::-moz-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form input:-ms-input-placeholder,
+.contact-form input:-ms-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form input::-ms-input-placeholder,
+.contact-form input::-ms-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form input::-webkit-input-placeholder,
+.contact-form input::-webkit-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form input::-moz-placeholder,
+.contact-form input::-moz-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form input:-ms-input-placeholder,
+.contact-form input:-ms-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form input::-ms-input-placeholder,
+.contact-form input::-ms-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form input::-webkit-input-placeholder,
+.contact-form input::-webkit-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form input::-moz-placeholder,
+.contact-form input::-moz-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form input:-ms-input-placeholder,
+.contact-form input:-ms-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form input::-ms-input-placeholder,
+.contact-form input::-ms-input-placeholder {
+    color: #b3b3b3;
+}
+
 .comment-form input::placeholder,
 .contact-form input::placeholder {
     color: #b3b3b3;
@@ -3773,6 +3947,166 @@ ol {
 .comment-form input:focus,
 .contact-form input:focus {
     background: #ffffff;
+    color: #0d0a27;
+}
+
+.comment-form input:focus::-webkit-input-placeholder,
+.contact-form input:focus::-webkit-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form input:focus::-moz-placeholder,
+.contact-form input:focus::-moz-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form input:focus:-ms-input-placeholder,
+.contact-form input:focus:-ms-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form input:focus::-ms-input-placeholder,
+.contact-form input:focus::-ms-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form input:focus::-webkit-input-placeholder,
+.contact-form input:focus::-webkit-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form input:focus::-moz-placeholder,
+.contact-form input:focus::-moz-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form input:focus:-ms-input-placeholder,
+.contact-form input:focus:-ms-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form input:focus::-ms-input-placeholder,
+.contact-form input:focus::-ms-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form input:focus::-webkit-input-placeholder,
+.contact-form input:focus::-webkit-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form input:focus::-moz-placeholder,
+.contact-form input:focus::-moz-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form input:focus:-ms-input-placeholder,
+.contact-form input:focus:-ms-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form input:focus::-ms-input-placeholder,
+.contact-form input:focus::-ms-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form input:focus::-webkit-input-placeholder,
+.contact-form input:focus::-webkit-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form input:focus::-moz-placeholder,
+.contact-form input:focus::-moz-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form input:focus:-ms-input-placeholder,
+.contact-form input:focus:-ms-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form input:focus::-ms-input-placeholder,
+.contact-form input:focus::-ms-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form input:focus::-webkit-input-placeholder,
+.contact-form input:focus::-webkit-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form input:focus::-moz-placeholder,
+.contact-form input:focus::-moz-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form input:focus:-ms-input-placeholder,
+.contact-form input:focus:-ms-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form input:focus::-ms-input-placeholder,
+.contact-form input:focus::-ms-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form input:focus::-webkit-input-placeholder,
+.contact-form input:focus::-webkit-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form input:focus::-moz-placeholder,
+.contact-form input:focus::-moz-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form input:focus:-ms-input-placeholder,
+.contact-form input:focus:-ms-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form input:focus::-ms-input-placeholder,
+.contact-form input:focus::-ms-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form input:focus::-webkit-input-placeholder,
+.contact-form input:focus::-webkit-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form input:focus::-moz-placeholder,
+.contact-form input:focus::-moz-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form input:focus:-ms-input-placeholder,
+.contact-form input:focus:-ms-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form input:focus::-ms-input-placeholder,
+.contact-form input:focus::-ms-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form input:focus::-webkit-input-placeholder,
+.contact-form input:focus::-webkit-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form input:focus::-moz-placeholder,
+.contact-form input:focus::-moz-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form input:focus:-ms-input-placeholder,
+.contact-form input:focus:-ms-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form input:focus::-ms-input-placeholder,
+.contact-form input:focus::-ms-input-placeholder {
     color: #0d0a27;
 }
 
@@ -8556,6 +8890,166 @@ ol {
     color: #b3b3b3;
 }
 
+.comment-form textarea::-webkit-input-placeholder,
+.contact-form textarea::-webkit-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form textarea::-moz-placeholder,
+.contact-form textarea::-moz-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form textarea:-ms-input-placeholder,
+.contact-form textarea:-ms-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form textarea::-ms-input-placeholder,
+.contact-form textarea::-ms-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form textarea::-webkit-input-placeholder,
+.contact-form textarea::-webkit-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form textarea::-moz-placeholder,
+.contact-form textarea::-moz-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form textarea:-ms-input-placeholder,
+.contact-form textarea:-ms-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form textarea::-ms-input-placeholder,
+.contact-form textarea::-ms-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form textarea::-webkit-input-placeholder,
+.contact-form textarea::-webkit-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form textarea::-moz-placeholder,
+.contact-form textarea::-moz-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form textarea:-ms-input-placeholder,
+.contact-form textarea:-ms-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form textarea::-ms-input-placeholder,
+.contact-form textarea::-ms-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form textarea::-webkit-input-placeholder,
+.contact-form textarea::-webkit-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form textarea::-moz-placeholder,
+.contact-form textarea::-moz-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form textarea:-ms-input-placeholder,
+.contact-form textarea:-ms-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form textarea::-ms-input-placeholder,
+.contact-form textarea::-ms-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form textarea::-webkit-input-placeholder,
+.contact-form textarea::-webkit-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form textarea::-moz-placeholder,
+.contact-form textarea::-moz-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form textarea:-ms-input-placeholder,
+.contact-form textarea:-ms-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form textarea::-ms-input-placeholder,
+.contact-form textarea::-ms-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form textarea::-webkit-input-placeholder,
+.contact-form textarea::-webkit-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form textarea::-moz-placeholder,
+.contact-form textarea::-moz-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form textarea:-ms-input-placeholder,
+.contact-form textarea:-ms-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form textarea::-ms-input-placeholder,
+.contact-form textarea::-ms-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form textarea::-webkit-input-placeholder,
+.contact-form textarea::-webkit-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form textarea::-moz-placeholder,
+.contact-form textarea::-moz-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form textarea:-ms-input-placeholder,
+.contact-form textarea:-ms-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form textarea::-ms-input-placeholder,
+.contact-form textarea::-ms-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form textarea::-webkit-input-placeholder,
+.contact-form textarea::-webkit-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form textarea::-moz-placeholder,
+.contact-form textarea::-moz-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form textarea:-ms-input-placeholder,
+.contact-form textarea:-ms-input-placeholder {
+    color: #b3b3b3;
+}
+
+.comment-form textarea::-ms-input-placeholder,
+.contact-form textarea::-ms-input-placeholder {
+    color: #b3b3b3;
+}
+
 .comment-form textarea::placeholder,
 .contact-form textarea::placeholder {
     color: #b3b3b3;
@@ -8564,6 +9058,166 @@ ol {
 .comment-form textarea:focus,
 .contact-form textarea:focus {
     background: #ffffff;
+    color: #0d0a27;
+}
+
+.comment-form textarea:focus::-webkit-input-placeholder,
+.contact-form textarea:focus::-webkit-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form textarea:focus::-moz-placeholder,
+.contact-form textarea:focus::-moz-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form textarea:focus:-ms-input-placeholder,
+.contact-form textarea:focus:-ms-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form textarea:focus::-ms-input-placeholder,
+.contact-form textarea:focus::-ms-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form textarea:focus::-webkit-input-placeholder,
+.contact-form textarea:focus::-webkit-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form textarea:focus::-moz-placeholder,
+.contact-form textarea:focus::-moz-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form textarea:focus:-ms-input-placeholder,
+.contact-form textarea:focus:-ms-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form textarea:focus::-ms-input-placeholder,
+.contact-form textarea:focus::-ms-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form textarea:focus::-webkit-input-placeholder,
+.contact-form textarea:focus::-webkit-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form textarea:focus::-moz-placeholder,
+.contact-form textarea:focus::-moz-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form textarea:focus:-ms-input-placeholder,
+.contact-form textarea:focus:-ms-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form textarea:focus::-ms-input-placeholder,
+.contact-form textarea:focus::-ms-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form textarea:focus::-webkit-input-placeholder,
+.contact-form textarea:focus::-webkit-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form textarea:focus::-moz-placeholder,
+.contact-form textarea:focus::-moz-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form textarea:focus:-ms-input-placeholder,
+.contact-form textarea:focus:-ms-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form textarea:focus::-ms-input-placeholder,
+.contact-form textarea:focus::-ms-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form textarea:focus::-webkit-input-placeholder,
+.contact-form textarea:focus::-webkit-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form textarea:focus::-moz-placeholder,
+.contact-form textarea:focus::-moz-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form textarea:focus:-ms-input-placeholder,
+.contact-form textarea:focus:-ms-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form textarea:focus::-ms-input-placeholder,
+.contact-form textarea:focus::-ms-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form textarea:focus::-webkit-input-placeholder,
+.contact-form textarea:focus::-webkit-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form textarea:focus::-moz-placeholder,
+.contact-form textarea:focus::-moz-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form textarea:focus:-ms-input-placeholder,
+.contact-form textarea:focus:-ms-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form textarea:focus::-ms-input-placeholder,
+.contact-form textarea:focus::-ms-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form textarea:focus::-webkit-input-placeholder,
+.contact-form textarea:focus::-webkit-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form textarea:focus::-moz-placeholder,
+.contact-form textarea:focus::-moz-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form textarea:focus:-ms-input-placeholder,
+.contact-form textarea:focus:-ms-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form textarea:focus::-ms-input-placeholder,
+.contact-form textarea:focus::-ms-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form textarea:focus::-webkit-input-placeholder,
+.contact-form textarea:focus::-webkit-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form textarea:focus::-moz-placeholder,
+.contact-form textarea:focus::-moz-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form textarea:focus:-ms-input-placeholder,
+.contact-form textarea:focus:-ms-input-placeholder {
+    color: #0d0a27;
+}
+
+.comment-form textarea:focus::-ms-input-placeholder,
+.contact-form textarea:focus::-ms-input-placeholder {
     color: #0d0a27;
 }
 
