@@ -42,7 +42,7 @@ function hazze_setup()
     // This theme uses wp_nav_menu() in one location.
     register_nav_menus([
         'header' => 'ШАПКА',
-        'footer' => 'ПОДВАЛ'
+        'footer' => 'ПОДВАЛ',
     ]);
 
     /*
@@ -96,6 +96,7 @@ function hazze_scripts()
 }
 add_action('wp_enqueue_scripts', 'hazze_scripts');
 
+// Для меню настройки шапки и подвала сайта
 if (function_exists('acf_add_options_page')) {
 
     acf_add_options_page(array(
@@ -119,23 +120,46 @@ if (function_exists('acf_add_options_page')) {
     ));
 }
 
+//  Кастомные размеры изображений
 add_image_size("hazze-custom-lg", 785, 786, true);
 add_image_size("hazze-custom-md", 785, 393, true);
 add_image_size("hazze-custom-sm", 392.5, 393, true);
 
+// Шоркод розового баннера
 add_shortcode('pink-banner', 'pink_banner_shortcode');
-
 function pink_banner_shortcode()
 {
     require(get_template_directory() . '/shortcodes/pink-banner.php');
 }
 
+// Шорткод текущего года
+add_shortcode('current-year', 'current_year_shortcode');
+function current_year_shortcode()
+{
+    return date("Y");
+}
+
+// Фильтр acf поля 'footer_copyright' для применения на нем шорткодов
+add_filter('acf/format_value/name=footer_copyright', 'apply_shortcodes_to_copyright', 10, 3);
+function apply_shortcodes_to_copyright($value, $post_id, $field)
+{
+    if (! empty($value)) {
+        return do_shortcode($value);
+    }
+    return $value;
+}
+
+// Фильтр для кастомной длины сокращения текста 'the_excerpt'
 add_filter('excerpt_length', function () {
     return 10;
 });
+
+// Фильтр для кастомного сокращателя текста 'the_excerpt'
 add_filter('excerpt_more', 'read_more_excerpt_more');
 function read_more_excerpt_more($more)
 {
     global $post;
-    return ' <a href="' . get_permalink($post) . '">Read&nbsp;more <span class="arrow">→</span></a>';
+    return ' <a href="' . get_permalink($post) . '" style="color: #e32879; white-space: nowrap; display: inline-block;">Read&nbsp;more <span class="arrow">→</span></a>';
 }
+
+require 'breadcrumbs.php';

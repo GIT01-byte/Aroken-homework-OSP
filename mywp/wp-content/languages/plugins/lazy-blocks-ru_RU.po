@@ -1,0 +1,288 @@
+# Translation of Plugins - Custom Block Builder &#8211; Lazy Blocks - Stable (latest release) in Russian
+# This file is distributed under the same license as the Plugins - Custom Block Builder &#8211; Lazy Blocks - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2026-07-25 17:24:44+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : ((n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14)) ? 1 : 2);\n"
+"X-Generator: GlotPress/4.0.3\n"
+"Language: ru\n"
+"Project-Id-Version: Plugins - Custom Block Builder &#8211; Lazy Blocks - Stable (latest release)\n"
+
+#: classes/class-controls.php:46
+msgid "Deprecated"
+msgstr "Устарело"
+
+#: classes/class-admin.php:59 classes/class-admin.php:81
+msgid "Go Pro"
+msgstr "Go Pro"
+
+#: classes/class-templates.php:345
+msgid "Insert"
+msgstr "Вставить"
+
+#: classes/class-templates.php:343
+msgid "All"
+msgstr "Все"
+
+#: classes/class-templates.php:311 assets/admin/templates/index.js:178
+#: build/admin-templates.js:1
+msgid "Post Types"
+msgstr "Типы записей"
+
+#: classes/class-blocks.php:438
+#: assets/block-builder/boxes/controls/control.js:211
+msgid "Duplicate"
+msgstr "Дублировать"
+
+#. translators: %1$ - post title.
+#: classes/class-blocks.php:435
+msgid "Duplicate “%1$s”"
+msgstr "Дублировать “%1$s”"
+
+#: classes/class-blocks.php:230 assets/components/document-tabs/index.js:62
+#: assets/components/document-tabs/index.js:64 build/editor.js:1
+msgid "Block"
+msgstr "Блок"
+
+#: classes/class-blocks.php:228 classes/class-blocks.php:229
+msgid "Blocks"
+msgstr "Блоки"
+
+#: classes/class-admin.php:286
+msgid "and"
+msgstr "и"
+
+#. translators: %s - post title.
+#: classes/class-tools.php:708
+msgid "Added new block '%s'."
+msgstr "Добавлен новый блок '%s'."
+
+#. translators: %1$s - template file path.
+#: templates/template-not-found.php:19
+msgid "Template file <code>%1$s</code> not found."
+msgstr "Файл шаблона <code>%1$s</code> не найден."
+
+#: controls/select/index.php:23
+msgid "Select"
+msgstr "Выбрать"
+
+#: controls/classic_editor/index.php:23
+msgid "Classic Editor (WYSIWYG)"
+msgstr "Классический редактор (WYSIWYG)"
+
+#: controls/email/index.php:23
+msgid "Email"
+msgstr "E-mail"
+
+#: controls/toggle/index.php:23
+msgid "Toggle"
+msgstr "Переключатель"
+
+#: controls/file/index.php:23
+msgid "File"
+msgstr "Файл"
+
+#: controls/textarea/index.php:23
+msgid "Text Area"
+msgstr "Текстовое поле"
+
+#: controls/number/index.php:23
+msgid "Number"
+msgstr "Число"
+
+#: controls/radio/index.php:23
+msgid "Radio"
+msgstr "Переключатель"
+
+#: controls/color/index.php:30
+msgid "Color Picker"
+msgstr "Выбор цвета"
+
+#: controls/password/index.php:23
+msgid "Password"
+msgstr "Пароль"
+
+#: controls/text/index.php:23
+msgid "Text"
+msgstr "Текст"
+
+#: controls/code_editor/index.php:23
+#: assets/block-builder/boxes/code/component-react-ace/index.js:167
+msgid "Code Editor"
+msgstr "Редактор кода"
+
+#: controls/checkbox/index.php:23
+msgid "Checkbox"
+msgstr "Чекбокс"
+
+#: controls/range/index.php:23
+msgid "Range"
+msgstr "Диапазон"
+
+#: controls/image/index.php:23
+msgid "Image"
+msgstr "﻿Изображение"
+
+#: controls/repeater/index.php:23
+msgid "Repeater"
+msgstr "Повторитель"
+
+#: controls/inner_blocks/index.php:23
+msgid "Inner Blocks"
+msgstr "Внутренние блоки"
+
+#: controls/gallery/index.php:23
+msgid "Gallery"
+msgstr "Галлерея"
+
+#. translators: %s - number of templates.
+#: classes/class-tools.php:465
+msgid "Imported %s template"
+msgid_plural "Imported %s templates"
+msgstr[0] "Импортирован %s шаблон"
+msgstr[1] "Импортировано %s шаблона"
+msgstr[2] "Импортировано %s шаблонов"
+
+#. translators: %s - number of blocks.
+#: classes/class-tools.php:445
+msgid "Imported %s block"
+msgid_plural "Imported %s blocks"
+msgstr[0] "Импортирован %s блок"
+msgstr[1] "Импортировано %s блока"
+msgstr[2] "Импортировано %s блоков"
+
+#: classes/class-tools.php:406
+msgid "Import file empty"
+msgstr "Импортированный файл пустой"
+
+#: classes/class-tools.php:395
+msgid "Incorrect file type"
+msgstr "Неверный тип файла"
+
+#: classes/class-tools.php:379
+msgid "No file selected"
+msgstr "Файл не выбран"
+
+#: classes/class-tools.php:51 classes/class-tools.php:52
+#: classes/class-tools.php:67
+msgid "Export / Import"
+msgstr "Экспорт/Импорт"
+
+#: classes/class-controls.php:44
+msgid "Advanced"
+msgstr "Дополнительно"
+
+#: classes/class-controls.php:43
+msgid "Choice"
+msgstr "Выбор"
+
+#: classes/class-controls.php:42
+#: assets/block-builder/boxes/selected-control-settings/settings-rows/placement.js:72
+msgid "Content"
+msgstr "Содержимое"
+
+#: controls/date_time/index.php:23
+msgid "Date Time Picker"
+msgstr "Выбор даты и времени"
+
+#: classes/class-dummy.php:54
+msgid "Example Block"
+msgstr "Пример блока"
+
+#: classes/class-dummy.php:132
+msgid "Example block that helps you to get started with Lazy Blocks plugin"
+msgstr "Пример блока, который поможет вам начать работу с плагином Lazy Blocks"
+
+#. translators: %1$ - post title.
+#: classes/class-blocks.php:450
+msgid "Export “%1$s”"
+msgstr "Экспорт \"%1$s\""
+
+#: classes/class-controls.php:41
+#: assets/block-builder/boxes/wizard/templates.js:13
+msgid "Basic"
+msgstr "Основное"
+
+#: classes/class-tools.php:389
+msgid "Error uploading file. Please try again"
+msgstr "Ошибка при загрузке файла. Попробуйте еще раз"
+
+#. translators: %s - post type.
+#: classes/class-tools.php:662
+msgid "Template for these post types '%s' already exists."
+msgstr "Шаблон для этих типов записей '%s' уже существует."
+
+#: controls/rich_text/index.php:23
+msgid "Rich Text (WYSIWYG)"
+msgstr "Форматированный текст (WYSIWYG)"
+
+#: controls/url/index.php:23
+msgid "URL"
+msgstr "URL"
+
+#: classes/class-rest.php:144
+msgid "Sorry, you are not allowed to read Gutenberg blocks data."
+msgstr "Извините, вам не разрешено читать данные блоков Gutenberg."
+
+#: classes/class-rest.php:147 classes/class-rest.php:171
+msgid "Sorry, you are not allowed to read Gutenberg blocks data as this user."
+msgstr "Извините, вам не разрешено читать данные блоков Gutenberg от имени этого пользователя."
+
+#: classes/class-rest.php:119
+msgid "Sorry, you are not allowed to read Gutenberg blocks of this post."
+msgstr "Извините, вам не разрешено читать блоки Gutenberg в этой записи."
+
+#: classes/class-rest.php:122
+msgid "Sorry, you are not allowed to read Gutenberg blocks as this user."
+msgstr "Извините, вам не разрешено читать блоки Gutenberg от имени этого пользователя."
+
+#: classes/class-rest.php:243
+msgid "Invalid block."
+msgstr "Некорректный блок."
+
+#: classes/class-rest.php:251 classes/class-rest.php:389
+msgid "Render callback is not specified."
+msgstr "Обратный вызов рендеринга не указан."
+
+#: classes/class-admin.php:43 classes/class-admin.php:44
+msgid "Documentation"
+msgstr "Документация"
+
+#. Plugin Name of the plugin
+#: lazy-blocks.php classes/class-admin.php:252 classes/class-blocks.php:227
+#: classes/class-blocks.php:1577
+msgid "Lazy Blocks"
+msgstr "Lazy Blocks"
+
+#: classes/class-blocks.php:532 assets/block-builder/boxes/general/index.js:174
+msgid "Icon"
+msgstr "Значок"
+
+#: classes/class-blocks.php:535 assets/block-builder/boxes/general/index.js:89
+msgid "Category"
+msgstr "Категория"
+
+#: classes/class-controls.php:45
+#: assets/block-builder/boxes/supports/index.js:325
+msgid "Layout"
+msgstr "Макет"
+
+#: classes/class-blocks.php:536 assets/block-builder/boxes/general/index.js:208
+#: assets/block-builder/boxes/wizard/index.js:276
+msgid "Description"
+msgstr "Описание"
+
+#: classes/class-templates.php:168
+msgid "Templates"
+msgstr "Шаблоны"
+
+#: classes/class-templates.php:169
+msgid "Template"
+msgstr "Шаблон"
+
+#: classes/class-blocks.php:453 classes/class-blocks.php:488
+msgid "Export"
+msgstr "Экспорт"

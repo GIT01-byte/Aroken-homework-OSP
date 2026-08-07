@@ -1,0 +1,294 @@
+{
+    "key": "group_6a7320e934afd",
+    "title": "Подвал",
+    "fields": [
+        {
+            "key": "field_6a7321c8dcfbc",
+            "label": "Повторитель текста под лого",
+            "name": "footer_inform_repeater",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Добавить",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_6a7320eadcfbb",
+                    "label": "Первый текст, например address",
+                    "name": "first_text",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "Address",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_6a7321c8dcfbc"
+                },
+                {
+                    "key": "field_6a732225839ca",
+                    "label": "Второй текст (например адрес или телефон)",
+                    "name": "second_text",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_6a7321c8dcfbc"
+                },
+                {
+                    "key": "field_6a732249839cb",
+                    "label": "Второй текст ссылка?",
+                    "name": "is_second_text_link",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": "",
+                    "parent_repeater": "field_6a7321c8dcfbc"
+                },
+                {
+                    "key": "field_6a732284839cc",
+                    "label": "Ссылка",
+                    "name": "link",
+                    "aria-label": "",
+                    "type": "link",
+                    "instructions": "Если телефон, то ссылка должна быть такой: +799999999999 - то есть удаляем лишние символы, а также прописываем tel: перед номером",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6a732249839cb",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "parent_repeater": "field_6a7321c8dcfbc"
+                }
+            ]
+        },
+        {
+            "key": "field_6a732a1e2af5f",
+            "label": "Повторитель соц. ссылок",
+            "name": "footer_social_links_repeater",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Добавить",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_6a732b912cd2a",
+                    "label": "Выберите какая это соц. сеть",
+                    "name": "social",
+                    "aria-label": "",
+                    "type": "radio",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "facebook": "facebook",
+                        "twitter": "twitter",
+                        "instagram": "instagram",
+                        "pinterest": "pinterest"
+                    },
+                    "default_value": "",
+                    "return_format": "label",
+                    "allow_null": 0,
+                    "other_choice": 0,
+                    "layout": "vertical",
+                    "save_other_choice": 0,
+                    "parent_repeater": "field_6a732a1e2af5f"
+                },
+                {
+                    "key": "field_6a732bcb2cd2b",
+                    "label": "Ссылка",
+                    "name": "link",
+                    "aria-label": "",
+                    "type": "link",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "url",
+                    "parent_repeater": "field_6a732a1e2af5f"
+                }
+            ]
+        },
+        {
+            "key": "field_6a73325d79477",
+            "label": "Заголовок меню",
+            "name": "footer_menu_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_6a73451003762",
+            "label": "Заголовок галлереи",
+            "name": "footer_gallery_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_6a734290bc7e8",
+            "label": "Галлерея подвала",
+            "name": "footer_gallery",
+            "aria-label": "",
+            "type": "gallery",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min": "",
+            "max": "",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "insert": "append",
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_6a734670e96c4",
+            "label": "Авторские права",
+            "name": "footer_copyright",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "В этом поле вы можете редактировать текст копирайта в футере сайта.\r\n<br><br>\r\n<b>Особенности заполнения:<\/b>\r\n<ul>\r\n  <li>Поддерживаются стандартные HTML-теги (например, &lt;&gt;текст&lt;\/b&gt; для жирного шрифта или &lt;a href=\"#\"&gt;ссылка&lt;\/a&gt;).<\/li>\r\n  <li>Чтобы год обновлялся автоматически и вам не приходилось менять его каждый январь, используйте шорткод <b>[current-year]<\/b>.<\/li>\r\n<\/ul>\r\n<b>Пример заполнения:<\/b><br>\r\n<code>© [current-year] Все права защищены. Мой Сайт.<\/code>",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-footer"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1786053588
+}

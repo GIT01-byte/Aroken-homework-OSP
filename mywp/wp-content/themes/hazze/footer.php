@@ -5,39 +5,77 @@
             <div class="col-lg-3 col-md-6">
                 <div class="footer-option">
                     <div class="fo-logo">
-                        <a href="#">
+                        <a href="/">
                             <img
-                                src="<?php echo get_template_directory_uri() ?>/img/logo.png"
-                                alt="">
+                                src="<?php echo get_field('header_logo', 'option')['url'] ?>"
+                                alt="<?php echo get_field('header_logo', 'option')['alt'] ?>">
                         </a>
                     </div>
                     <ul>
-                        <li>Address: 60-49 Road 11378 New York</li>
-                        <li>Phone: +65 11.188.888</li>
-                        <li>Email: hello.colorlib@gmail.com</li>
+                        <?php
+                        if (have_rows('footer_inform_repeater', 'options')):
+                            while (have_rows('footer_inform_repeater', 'options')) : the_row(); ?>
+                                <?php if (!get_sub_field('is_second_text_link', 'options')) { ?>
+                                    <li>
+                                        <?php the_sub_field('first_text', 'options'); ?><?php the_sub_field('second_text', 'options'); ?>
+                                    </li>
+                                <?php } else { ?>
+
+                                    <li>
+                                        <?php the_sub_field('first_text', 'options'); ?>
+                                        <a href="<?php echo get_sub_field('link', 'options')['url']; ?>">
+                                            <?php echo get_sub_field('link', 'options')['title']; ?>
+                                        </a>
+
+                                    </li>
+
+                                <?php } ?>
+                        <?php
+                            endwhile;
+                        else :
+                            echo "Ошибка. Поля не найдены";
+                        endif;
+                        ?>
+
                     </ul>
                     <div class="fo-social">
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-instagram"></i></a>
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                        <a href="#"><i class="fa fa-pinterest"></i></a>
+                        <?php
+                        if (have_rows('footer_social_links_repeater', 'options')):
+                            while (have_rows('footer_social_links_repeater', 'options')) : the_row(); ?>
+
+                                <a
+                                    href="<?php the_sub_field('link', 'options'); ?>">
+                                    <i class="fa fa-<?php the_sub_field('social', 'options'); ?>"></i>
+                                </a>
+
+                        <?php
+                            endwhile;
+                        else :
+                            echo "Ошибка. Поля не найдены";
+                        endif;
+                        ?>
                     </div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="footer-widget fw-links">
-                    <h5>Useful Links</h5>
-                    <ul>
+                    <h5><?php echo get_field("footer_menu_title", 'options') ?></h5>
+                    <?php wp_nav_menu(array(
+                        'container'       => '',
+                        'depth'           => 0,
+                        'theme_location'  => 'footer',
+                    )); ?>
+                    <!-- <ul>
                         <li><a href="#">About Us</a></li>
                         <li><a href="#">Model</a></li>
                         <li><a href="#">Contact</a></li>
                         <li><a href="#">Serivius</a></li>
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="footer-widget">
-                    <h5>Join The Newsletter</h5>
+                    <!-- <h5>Join The Newsletter</h5>
                     <p>Get E-mail updates about our latest shop and special offers.</p>
                     <form
                         action="#"
@@ -46,46 +84,36 @@
                             type="text"
                             placeholder="Enter your mail">
                         <button type="submit">Subscribe</button>
-                    </form>
+                    </form> -->
+                    <?php echo do_shortcode('[contact-form-7 id="9c85498" title="Contact form 1" html_class="news-form"]') ?>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="footer-widget">
-                    <h5>Instagram</h5>
+                    <h5><?php echo get_field("footer_gallery_title", 'options') ?></h5>
                     <div class="insta-pic">
-                        <img
-                            src="<?php echo get_template_directory_uri() ?>/img/instagram/instagram-1.jpg"
-                            alt="">
-                        <img
-                            src="<?php echo get_template_directory_uri() ?>/img/instagram/instagram-2.jpg"
-                            alt="">
-                        <img
-                            src="<?php echo get_template_directory_uri() ?>/img/instagram/instagram-3.jpg"
-                            alt="">
-                        <img
-                            src="<?php echo get_template_directory_uri() ?>/img/instagram/instagram-4.jpg"
-                            alt="">
-                        <img
-                            src="<?php echo get_template_directory_uri() ?>/img/instagram/instagram-5.jpg"
-                            alt="">
-                        <img
-                            src="<?php echo get_template_directory_uri() ?>/img/instagram/instagram-6.jpg"
-                            alt="">
+                        <?php
+
+                        $images = get_field('footer_gallery', 'options');
+
+                        if ($images): ?>
+                            <?php foreach ($images as $image): ?>
+                                <img
+                                    src="<?php echo esc_url($image['sizes']['thumbnail']); ?>"
+                                    alt="<?php echo esc_attr($image['alt']); ?>">
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
         </div>
         <div class="copyright-text">
             <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                Copyright &copy;
-                <script>
-                    document.write(new Date().getFullYear());
-                </script> All rights reserved | This template is
-                made with <i
-                    class="ti-heart"
-                    aria-hidden="true"></i> by <a
-                    href="https://colorlib.com"
-                    target="_blank">Colorlib</a>
+
+                <?php
+                $acf_copyright = get_field("footer_copyright", 'options');
+                echo do_shortcode($acf_copyright);
+                ?>
                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             </p>
         </div>

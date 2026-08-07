@@ -24,7 +24,7 @@
             <div class="row">
                 <div class="col-lg-2 col-md-2">
                     <div class="logo">
-                        <a href="#">
+                        <a href="/">
                             <img src="<?php echo get_field('header_logo', 'option')['url'] ?>" alt="<?php echo get_field('header_logo', 'option')['alt'] ?>">
                         </a>
                     </div>

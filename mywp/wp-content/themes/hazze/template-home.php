@@ -103,8 +103,8 @@ get_header();
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-title">
-                    <span>Our Portfolio</span>
-                    <h2>Turn Your Dream Into Reality</h2>
+                    <span><?php echo get_field("portfolio_subtitle") ?></span>
+                    <h2><?php echo get_field("portfolio_title") ?></h2>
                 </div>
             </div>
         </div>
@@ -257,9 +257,11 @@ get_header();
         </div>
     </div>
 </section>
-
-<?php echo do_shortcode("[pink-banner]") ?>
 <!-- Testimonial Section End -->
+
+<!-- Call To Action Section Begin -->
+<?php echo do_shortcode("[pink-banner]") ?>
+<!-- Call To Action Section End -->
 
 <!-- Member Section Begin -->
 <section class="member-section spad">
@@ -267,15 +269,20 @@ get_header();
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-title">
-                    <span>Our Team</span>
-                    <h2>Top Designers</h2>
+                    <span><?php echo get_field("our_team_subtitle") ?></span>
+                    <h2><?php echo get_field("our_team_title") ?></h2>
                 </div>
             </div>
         </div>
         <div class="row member-custom-row">
             <?php
+            if (get_field("our_team_count_employees")) {
+                $postsAmount = get_field("our_team_count_employees");
+            } else {
+                $postsAmount = 6;
+            }
             $args = array(
-                'posts_per_page' => get_field("our_team_count_employees"),
+                'posts_per_page' => $postsAmount,
                 'post_type' => 'our-team',
                 'orderby' => 'date',
                 'order' => 'ASC'
