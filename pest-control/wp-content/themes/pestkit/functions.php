@@ -119,3 +119,46 @@ if (function_exists('acf_add_options_page')) {
         'parent_slug'   => 'theme-general-settings',
     ));
 }
+
+// Добавляем класс 'nav-item' к тегу <li>
+add_filter('nav_menu_css_class', 'bootstrap5_li_classes', 10, 4);
+function bootstrap5_li_classes($classes, $item, $args, $depth)
+{
+    if (isset($args->theme_location)) {
+        $classes[] = 'nav-item';
+        // Если есть дочерние элементы, добавляем класс dropdown
+        if (in_array('menu-item-has-children', $item->classes)) {
+            $classes[] = 'dropdown';
+        }
+    }
+    return $classes;
+}
+
+// Добавляем класс 'nav-link' к тегу <a>
+add_filter('nav_menu_link_attributes', 'bootstrap5_a_attributes', 10, 4);
+function bootstrap5_a_attributes($atts, $item, $args, $depth)
+{
+    if (isset($args->theme_location)) {
+        $atts['class'] = 'nav-link';
+
+        // Настройки для выпадающего меню в Bootstrap 5
+        if (in_array('menu-item-has-children', $item->classes)) {
+            $atts['class'] .= ' dropdown-toggle';
+            $atts['data-bs-toggle'] = 'dropdown';
+            $atts['aria-expanded'] = 'false';
+        }
+
+        // Класс для подпунктов (второй уровень вложенности)
+        if ($depth > 0) {
+            $atts['class'] = 'dropdown-item';
+        }
+    }
+    return $atts;
+}
+
+add_filter('nav_menu_submenu_css_class', 'bootstrap5_ul_subclasses', 10, 3);
+function bootstrap5_ul_subclasses($classes, $args, $depth)
+{
+    array_push($classes, "dropdown-menu", "bg-primary", "m-0");
+    return $classes;
+}
