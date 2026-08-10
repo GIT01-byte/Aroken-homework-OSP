@@ -1,5 +1,5 @@
 # BEGIN WpFastestCache
-# Modified Time: 05-08-26 14:27:58
+# Modified Time: 10-08-26 3:31:59
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /
