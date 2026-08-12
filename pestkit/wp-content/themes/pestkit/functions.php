@@ -201,3 +201,13 @@ function about_widget_shortcode()
 {
     require(get_template_directory() . '/shortcodes/about-widget.php');
 }
+
+// Шорткод формы для новостной рассылки
+add_shortcode('newsletter-form', 'newsletter_form_shortcode');
+function newsletter_form_shortcode()
+{
+    require(get_template_directory() . '/shortcodes/newsletter-form.php');
+}
+
+// Для отключения авто. тега p плагина Contact Fom 7
+add_filter('wpcf7_autop_or_not', '__return_false');
