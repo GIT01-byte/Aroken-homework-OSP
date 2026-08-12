@@ -2,19 +2,19 @@
     <div class="container text-center py-5">
         <div class="text-center mb-5 wow fadeInUp" data-wow-delay=".3s">
             <h5 class="mb-2 px-3 py-1 text-dark rounded-pill d-inline-block border border-2 border-primary">
-                <?php the_field("services_subtitle") ?>
+                <?php the_field("services_subtitle", "options") ?>
             </h5>
             <h1 class="display-5">
-                <?php the_field("services_title") ?>
+                <?php the_field("services_title", "options") ?>
             </h1>
         </div>
         <div class="row g-5">
             <?php
             if (have_rows('service_widget_repeater', "options")):
-                $delay = 3;
+                $delay = 0.3;
                 while (have_rows('service_widget_repeater', "options")) : the_row(); ?>
 
-                    <div class="col-xxl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".<?php echo $delay ?>s">
+                    <div class="col-xxl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="<?php echo $delay ?>s">
                         <div class="bg-light rounded p-5 services-item">
                             <div class="d-flex" style="align-items: center; justify-content: center;">
                                 <div class="mb-4 rounded-circle services-inner-icon">
@@ -35,7 +35,7 @@
                         </div>
                     </div>
 
-                    <?php $delay += 2; ?>
+                    <?php $delay += 0.2; ?>
 
             <?php
                 endwhile;

@@ -24,6 +24,7 @@ endif;
 ?>
 
 <?php echo get_sub_field("link") ?>
+<?php the_sub_field("title") ?>
 
 <?php
 // задаем нужные нам критерии выборки данных из БД

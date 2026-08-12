@@ -181,21 +181,21 @@ function bootstrap5_ul_subclasses($classes, $args, $depth)
     return $classes;
 }
 
-// Шоркод сервисных возможностей 
+// Шорткод сервисных возможностей 
 add_shortcode('service-capabilities', 'service_capabilities_shortcode');
 function service_capabilities_shortcode()
 {
     require(get_template_directory() . '/shortcodes/service-capabilities.php');
 }
 
-// Шоркод тарифных планов
+// Шорткод тарифных планов
 add_shortcode('pricing-plans', 'pricing_plans_shortcode');
 function pricing_plans_shortcode()
 {
     require(get_template_directory() . '/shortcodes/pricing-plans.php');
 }
 
-// Шоркод виджета "О компании"
+// Шорткод виджета "О компании"
 add_shortcode('about-widget', 'about_widget_shortcode');
 function about_widget_shortcode()
 {

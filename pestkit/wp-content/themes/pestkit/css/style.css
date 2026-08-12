@@ -587,7 +587,6 @@
 
 .pricing-label {
     border-bottom: 20px solid var(--bs-light);
-    border-radius: 0 0 300px 300px;
     transition: .5s;
 }
 
@@ -599,6 +598,17 @@
     border-color: rgba(255, 255, 255, .5);
 }
 
+@media (min-width: 768px) {
+    .pricing-label {
+        border-radius: 0 0 300px 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .pricing-label {
+        border-radius: 0 0 50px 50px;
+    }
+}
 
 /*** Pricing End ***/
 
