@@ -825,7 +825,15 @@
     background: #000000 !important;
 }
 
-.wpcf7-not-valid-tip {
+.ds-block-form .wpcf7-not-valid-tip {
+    text-align: left;
+    margin-top: 12px;
+    margin-left: 12px;
+}
+
+.pos-abs-form .wpcf7-not-valid-tip {
+    position: absolute;
+    top: 130%;
     margin-top: -10px;
     padding-left: 7px;
 }

@@ -97,29 +97,38 @@ function pestkit_scripts()
 }
 add_action('wp_enqueue_scripts', 'pestkit_scripts');
 
-// Для меню настройки шапки и подвала сайта
-if (function_exists('acf_add_options_page')) {
+/**
+ * Регистрация страниц настроек темы через хук acf/init.
+ */
+add_action('acf/init', 'pestkit_acf_op_init');
+function pestkit_acf_op_init()
+{
 
-    acf_add_options_page(array(
-        'page_title'    => 'Основные настройки',
-        'menu_title'    => 'Настройки темы',
-        'menu_slug'     => 'theme-general-settings',
-        'capability'    => 'edit_posts',
-        'redirect'      => false
-    ));
+    // Проверяем, активна ли функция в плагине ACF
+    if (function_exists('acf_add_options_page')) {
 
-    acf_add_options_sub_page(array(
-        'page_title'    => 'Настройки шапки',
-        'menu_title'    => 'Header',
-        'parent_slug'   => 'theme-general-settings',
-    ));
+        acf_add_options_page(array(
+            'page_title'    => 'Основные настройки',
+            'menu_title'    => 'Настройки темы',
+            'menu_slug'     => 'theme-general-settings',
+            'capability'    => 'edit_posts',
+            'redirect'      => false
+        ));
 
-    acf_add_options_sub_page(array(
-        'page_title'    => 'Настройки подвала',
-        'menu_title'    => 'Footer',
-        'parent_slug'   => 'theme-general-settings',
-    ));
+        acf_add_options_sub_page(array(
+            'page_title'    => 'Настройки шапки',
+            'menu_title'    => 'Header',
+            'parent_slug'   => 'theme-general-settings',
+        ));
+
+        acf_add_options_sub_page(array(
+            'page_title'    => 'Настройки подвала',
+            'menu_title'    => 'Footer',
+            'parent_slug'   => 'theme-general-settings',
+        ));
+    }
 }
+
 
 // Добавляем класс 'nav-item' к тегу <li> ТОЛЬКО ДЛЯ HEADER
 add_filter('nav_menu_css_class', 'bootstrap5_li_classes', 10, 4);

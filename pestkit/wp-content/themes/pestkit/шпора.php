@@ -3,16 +3,40 @@
 <?php echo get_field("nspeaks_btn")['title'] ?>
 <?php echo get_field("footer_menu_title", 'options') ?>
 
+
+
+
+
+
+
 <?php the_field("hero_link") ?>
 <?php the_field('logo_text_1', 'option'); ?>
+
+
+
+
+
+
+
+
+
 
 <img
     src="<?php echo get_field("about_image")["url"] ?>"
     alt="<?php echo get_field("about_image")["alt"] ?>">
 
+
+
+
+
+
+
+
+
+
 <?php
-if (have_rows('repeater_field_name')):
-    while (have_rows('repeater_field_name')) : the_row(); ?>
+if (have_rows('repeater_field_name', 'options')):
+    while (have_rows('repeater_field_name', 'options')) : the_row(); ?>
 
         <?php the_sub_field('sub_field_name'); ?>
 
@@ -23,37 +47,66 @@ else :
 endif;
 ?>
 
+
+
+
+
+
+
+
+
+
 <?php echo get_sub_field("link") ?>
 <?php the_sub_field("title") ?>
 
-<?php
-// задаем нужные нам критерии выборки данных из БД
-$args = array(
-    'posts_per_page' => 5,
-    'orderby' => 'comment_count'
-);
 
+
+
+
+
+
+
+
+
+
+
+<?php
+if (get_field("our_team_count_employees")) {
+    $postsAmount = get_field("our_team_count_employees");
+} else {
+    $postsAmount = 4;
+}
+$args = array(
+    'posts_per_page' => $postsAmount,
+    'post_type' => 'our-team',
+    'orderby' => 'date',
+    'order' => 'ASC'
+);
 $query = new WP_Query($args);
 
 // Цикл
 if ($query->have_posts()) {
-    echo '<ul>';
-    while ($query->have_posts()) {
-        $query->the_post();
-        echo '<li>' . esc_html(get_the_title()) . '</li>';
-    }
-    echo '</ul>';
-} else {
-    // Постов не найдено
-}
+    while ($query->have_posts()) { ?>
 
-// Возвращаем оригинальные данные поста. Сбрасываем $post.
+<?php }
+} else {
+    echo "Ошибка. Постов не найдено";
+}
 wp_reset_postdata(); ?>
 
+
+
+
+
+
+
+
+
+
+
+
 <?php
-
 $images = get_field('gallery');
-
 if ($images): ?>
     <ul>
         <?php foreach ($images as $image): ?>
@@ -66,6 +119,16 @@ if ($images): ?>
         <?php endforeach; ?>
     </ul>
 <?php endif; ?>
+
+
+
+
+
+
+
+
+
+
 
 <?php
 if (have_rows('our_team_socials_repeater')):

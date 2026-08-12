@@ -16,7 +16,7 @@
                         <?php echo get_field("news-form_title", "options") ?>
                     </h1>
                 </div>
-                <?php echo do_shortcode('[contact-form-7 id="4d26106" title="Newsletter Form"]') ?>
+                <?php echo do_shortcode('[contact-form-7 id="4d26106" title="Newsletter Form" html_class="pos-abs-form"]') ?>
             </div>
         </div>
     </div>
