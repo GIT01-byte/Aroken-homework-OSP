@@ -253,3 +253,28 @@ function pestkit_redirect_to_404_template()
         exit;
     }
 }
+
+/**
+ * Автоматическая подсветка пункта 404 и его родителя в меню
+ */
+add_filter('nav_menu_css_class', 'pestkit_fix_404_menu_classes', 10, 2);
+function pestkit_fix_404_menu_classes($classes, $item)
+{
+    // Проверяем, что сейчас открыта страница с ошибкой 404
+    if (is_404()) {
+
+        // 1. Ищем саму ссылку на страницу ошибки
+        if (strpos($item->url, '404-error') !== false) {
+            $classes[] = 'current-menu-item';
+            $classes[] = 'current_page_item';
+        }
+
+        // 2. Ищем родительский элемент (у выпадающих списков WordPress добавляет класс menu-item-has-children)
+        if (in_array('menu-item-has-children', $item->classes)) {
+            $classes[] = 'current-menu-ancestor';
+            $classes[] = 'current-menu-parent';
+            $classes[] = 'current_page_ancestor';
+        }
+    }
+    return $classes;
+}
