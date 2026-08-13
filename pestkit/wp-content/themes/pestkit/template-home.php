@@ -113,58 +113,52 @@ get_header();
 <div class="container-fluid py-5">
     <div class="container py-5">
         <div class="text-center mb-5 wow fadeInUp" data-wow-delay=".3s">
-            <h5 class="mb-2 px-3 py-1 text-dark rounded-pill d-inline-block border border-2 border-primary">Our Project</h5>
-            <h1 class="display-5">Our recently completed projects</h1>
+            <h5 class="mb-2 px-3 py-1 text-dark rounded-pill d-inline-block border border-2 border-primary">
+                <?php the_field("our_project_subtitle") ?>
+            </h5>
+            <h1 class="display-5">
+                <?php the_field("our_project_title") ?>
+            </h1>
         </div>
         <div class="row g-5">
-            <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".3s">
-                <div class="project-item">
-                    <div class="project-left bg-dark"></div>
-                    <div class="project-right bg-dark"></div>
-                    <img src="<?php echo get_template_directory_uri() ?>/img/project-1.jpg" class="img-fluid h-100" alt="img">
-                    <a href="" class="fs-4 fw-bold text-center">Whole Home Sanitizing</a>
-                </div>
-            </div>
-            <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".5s">
-                <div class="project-item">
-                    <div class="project-left bg-dark"></div>
-                    <div class="project-right bg-dark"></div>
-                    <img src="<?php echo get_template_directory_uri() ?>/img/project-2.jpg" class="img-fluid h-100" alt="img">
-                    <a href="" class="fs-4 fw-bold text-center">Education center Cleaning</a>
-                </div>
-            </div>
-            <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".7s">
-                <div class="project-item">
-                    <div class="project-left bg-dark"></div>
-                    <div class="project-right bg-dark"></div>
-                    <img src="<?php echo get_template_directory_uri() ?>/img/project-3.jpg" class="img-fluid h-100" alt="img">
-                    <a href="" class="fs-4 fw-bold text-center">Warehouse Cleaning</a>
-                </div>
-            </div>
-            <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".3s">
-                <div class="project-item">
-                    <div class="project-left bg-dark"></div>
-                    <div class="project-right bg-dark"></div>
-                    <img src="<?php echo get_template_directory_uri() ?>/img/project-4.jpg" class="img-fluid h-100" alt="img">
-                    <a href="" class="fs-4 fw-bold text-center">Hospital Cleaning</a>
-                </div>
-            </div>
-            <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".5s">
-                <div class="project-item">
-                    <div class="project-left bg-dark"></div>
-                    <div class="project-right bg-dark"></div>
-                    <img src="<?php echo get_template_directory_uri() ?>/img/project-5.jpg" class="img-fluid h-100" alt="img">
-                    <a href="" class="fs-4 fw-bold text-center">Factory Cleaning</a>
-                </div>
-            </div>
-            <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".7s">
-                <div class="project-item">
-                    <div class="project-left bg-dark"></div>
-                    <div class="project-right bg-dark"></div>
-                    <img src="<?php echo get_template_directory_uri() ?>/img/project-6.jpg" class="img-fluid h-100" alt="img">
-                    <a href="" class="fs-4 fw-bold text-center">Furniture Sanitizing</a>
-                </div>
-            </div>
+            <?php
+            if (get_field("our_project_count_project")) {
+                $postsAmount = get_field("our_project_count_project");
+            } else {
+                $postsAmount = 6;
+            }
+            $args = array(
+                'posts_per_page' => $postsAmount,
+                'post_type' => 'our-project',
+                'orderby' => 'date',
+                'order' => 'ASC'
+            );
+            $query = new WP_Query($args);
+
+            // Цикл
+            if ($query->have_posts()) {
+                $delay = 0.3;
+                while ($query->have_posts()) {
+                    $query->the_post() ?>
+
+                    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay="<?php echo $delay ?>s">
+                        <div class="project-item">
+                            <div class="project-left bg-dark"></div>
+                            <div class="project-right bg-dark"></div>
+                            <img src="<?php echo get_the_post_thumbnail_url() ?>" class="img-fluid h-100">
+                            <a href="<?php the_permalink() ?>" class="fs-4 fw-bold text-center">
+                                <?php the_title() ?>
+                            </a>
+                        </div>
+                    </div>
+
+                    <?php $delay += 0.2; ?>
+
+            <?php }
+            } else {
+                echo "Ошибка. Постов не найдено";
+            }
+            wp_reset_postdata(); ?>
         </div>
     </div>
 </div>

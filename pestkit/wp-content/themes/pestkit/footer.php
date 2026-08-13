@@ -12,8 +12,11 @@
                     <p class="mb-0">
                         <a
                             class=""
-                            href="<?php echo get_field('footer_about_copyright', 'option')['url']; ?>">
-                            <?php echo get_field('footer_about_copyright', 'option')['title']; ?>
+                            href="<?php echo get_field('footer_about_copyright_link', 'option'); ?>">
+                            <?php
+                            $acf_copyright = get_field("footer_about_copyright", 'options');
+                            echo do_shortcode($acf_copyright);
+                            ?>
                         </a>
                     </p>
                 </div>
@@ -79,7 +82,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4 text-center text-md-start mb-3 mb-md-0">
-                <a href="/" class="text-primary mb-0 display-6"><?php echo get_field('logo_text_1', 'option'); ?><span class="text-white"><?php echo get_field('logo_text_2', 'option'); ?></span><i class="fa <?php echo get_field('logo_icon', 'option'); ?> text-primary ms-2"></i></a>
+                <a
+                    href="<?php the_field('logo_home_link', 'option'); ?>"
+                    class="text-primary mb-0 display-6"><?php echo get_field('logo_text_1', 'option'); ?><span class="text-white"><?php echo get_field('logo_text_2', 'option'); ?></span><i class="<?php echo get_field('logo_icon', 'option'); ?> text-primary ms-2"></i></a>
             </div>
             <div class="col-md-4 copyright-btn text-center text-md-start mb-3 mb-md-0 flex-shrink-0">
                 <?php

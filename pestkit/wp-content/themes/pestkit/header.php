@@ -109,9 +109,9 @@
         <div class="container">
             <nav class="navbar navbar-dark navbar-expand-lg py-lg-0">
                 <a
-                    href="/"
+                    href="<?php the_field('logo_home_link', 'option'); ?>"
                     class="navbar-brand">
-                    <h1 class="text-primary mb-0 display-5"><?php echo get_field('logo_text_1', 'option'); ?><span class="text-white"><?php echo get_field('logo_text_2', 'option'); ?></span><i class="fa <?php echo get_field('logo_icon', 'option'); ?> text-primary ms-2"></i></h1>
+                    <h1 class="text-primary mb-0 display-5"><?php echo get_field('logo_text_1', 'option'); ?><span class="text-white"><?php echo get_field('logo_text_2', 'option'); ?></span><i class="<?php echo get_field('logo_icon', 'option'); ?> text-primary ms-2"></i></h1>
                 </a>
                 <button
                     class="navbar-toggler bg-primary"

@@ -220,3 +220,36 @@ function newsletter_form_shortcode()
 
 // Для отключения авто. тега p плагина Contact Fom 7
 add_filter('wpcf7_autop_or_not', '__return_false');
+
+// Шорткод текущего года
+add_shortcode('current-year', 'current_year_shortcode');
+function current_year_shortcode()
+{
+    return date("Y");
+}
+
+// Фильтр acf поля 'footer_about_copyright' для применения на нем шорткодов
+add_filter('acf/format_value/name=footer_about_copyright', 'apply_shortcodes_to_copyright', 10, 3);
+function apply_shortcodes_to_copyright($value, $post_id, $field)
+{
+    if (! empty($value)) {
+        return do_shortcode($value);
+    }
+    return $value;
+}
+
+/**
+ * Перенаправление статической страницы 404 на шаблон темы 404.php
+ */
+add_action('template_redirect', 'pestkit_redirect_to_404_template');
+function pestkit_redirect_to_404_template()
+{
+    // Проверяем, находится ли пользователь на странице с ярлыком '404-error'
+    if (is_page('404-error')) {
+        global $wp_query;
+        $wp_query->set_404(); // Принудительно выставляем статус 404
+        status_header(404);
+        include(get_query_template('404')); // Подгружаем наш файл 404.php
+        exit;
+    }
+}

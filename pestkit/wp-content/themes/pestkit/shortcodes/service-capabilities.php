@@ -18,7 +18,7 @@
                         <div class="bg-light rounded p-5 services-item">
                             <div class="d-flex" style="align-items: center; justify-content: center;">
                                 <div class="mb-4 rounded-circle services-inner-icon">
-                                    <i class="fa <?php echo get_sub_field("logo_icon") ?> fa-3x text-primary"></i>
+                                    <i class="<?php echo get_sub_field("logo_icon") ?> fa-3x text-primary"></i>
                                 </div>
                             </div>
                             <h4>

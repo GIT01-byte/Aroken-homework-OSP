@@ -1,0 +1,40 @@
+[13-Aug-2026 19:19:35 UTC] Automatic updates starting...
+[13-Aug-2026 19:19:36 UTC] Automatic updates complete.
+[13-Aug-2026 19:37:06 UTC] Automatic updates starting...
+[13-Aug-2026 19:37:06 UTC] Automatic updates complete.
+[13-Aug-2026 19:45:23 UTC] PHP Warning:  Trying to access array offset on value of type null in C:\OSPanel\domains\pestkit\wp-content\themes\pestkit\404.php on line 36
+[13-Aug-2026 19:45:23 UTC] PHP Stack trace:
+[13-Aug-2026 19:45:23 UTC] PHP   1. {main}() C:\OSPanel\domains\pestkit\index.php:0
+[13-Aug-2026 19:45:23 UTC] PHP   2. require() C:\OSPanel\domains\pestkit\index.php:17
+[13-Aug-2026 19:45:23 UTC] PHP   3. require_once() C:\OSPanel\domains\pestkit\wp-blog-header.php:19
+[13-Aug-2026 19:45:23 UTC] PHP   4. include() C:\OSPanel\domains\pestkit\wp-includes\template-loader.php:132
+[13-Aug-2026 19:45:23 UTC] PHP Warning:  Trying to access array offset on value of type null in C:\OSPanel\domains\pestkit\wp-content\themes\pestkit\404.php on line 37
+[13-Aug-2026 19:45:23 UTC] PHP Stack trace:
+[13-Aug-2026 19:45:23 UTC] PHP   1. {main}() C:\OSPanel\domains\pestkit\index.php:0
+[13-Aug-2026 19:45:23 UTC] PHP   2. require() C:\OSPanel\domains\pestkit\index.php:17
+[13-Aug-2026 19:45:23 UTC] PHP   3. require_once() C:\OSPanel\domains\pestkit\wp-blog-header.php:19
+[13-Aug-2026 19:45:23 UTC] PHP   4. include() C:\OSPanel\domains\pestkit\wp-includes\template-loader.php:132
+[13-Aug-2026 19:45:55 UTC] PHP Warning:  Trying to access array offset on value of type null in C:\OSPanel\domains\pestkit\wp-content\themes\pestkit\404.php on line 36
+[13-Aug-2026 19:45:55 UTC] PHP Stack trace:
+[13-Aug-2026 19:45:55 UTC] PHP   1. {main}() C:\OSPanel\domains\pestkit\index.php:0
+[13-Aug-2026 19:45:55 UTC] PHP   2. require() C:\OSPanel\domains\pestkit\index.php:17
+[13-Aug-2026 19:45:55 UTC] PHP   3. require_once() C:\OSPanel\domains\pestkit\wp-blog-header.php:19
+[13-Aug-2026 19:45:55 UTC] PHP   4. include() C:\OSPanel\domains\pestkit\wp-includes\template-loader.php:132
+[13-Aug-2026 19:45:55 UTC] PHP Warning:  Trying to access array offset on value of type null in C:\OSPanel\domains\pestkit\wp-content\themes\pestkit\404.php on line 37
+[13-Aug-2026 19:45:55 UTC] PHP Stack trace:
+[13-Aug-2026 19:45:55 UTC] PHP   1. {main}() C:\OSPanel\domains\pestkit\index.php:0
+[13-Aug-2026 19:45:55 UTC] PHP   2. require() C:\OSPanel\domains\pestkit\index.php:17
+[13-Aug-2026 19:45:55 UTC] PHP   3. require_once() C:\OSPanel\domains\pestkit\wp-blog-header.php:19
+[13-Aug-2026 19:45:55 UTC] PHP   4. include() C:\OSPanel\domains\pestkit\wp-includes\template-loader.php:132
+[13-Aug-2026 19:46:07 UTC] PHP Warning:  Trying to access array offset on value of type null in C:\OSPanel\domains\pestkit\wp-content\themes\pestkit\404.php on line 36
+[13-Aug-2026 19:46:07 UTC] PHP Stack trace:
+[13-Aug-2026 19:46:07 UTC] PHP   1. {main}() C:\OSPanel\domains\pestkit\index.php:0
+[13-Aug-2026 19:46:07 UTC] PHP   2. require() C:\OSPanel\domains\pestkit\index.php:17
+[13-Aug-2026 19:46:07 UTC] PHP   3. require_once() C:\OSPanel\domains\pestkit\wp-blog-header.php:19
+[13-Aug-2026 19:46:07 UTC] PHP   4. include() C:\OSPanel\domains\pestkit\wp-includes\template-loader.php:132
+[13-Aug-2026 19:46:07 UTC] PHP Warning:  Trying to access array offset on value of type null in C:\OSPanel\domains\pestkit\wp-content\themes\pestkit\404.php on line 37
+[13-Aug-2026 19:46:07 UTC] PHP Stack trace:
+[13-Aug-2026 19:46:07 UTC] PHP   1. {main}() C:\OSPanel\domains\pestkit\index.php:0
+[13-Aug-2026 19:46:07 UTC] PHP   2. require() C:\OSPanel\domains\pestkit\index.php:17
+[13-Aug-2026 19:46:07 UTC] PHP   3. require_once() C:\OSPanel\domains\pestkit\wp-blog-header.php:19
+[13-Aug-2026 19:46:07 UTC] PHP   4. include() C:\OSPanel\domains\pestkit\wp-includes\template-loader.php:132
