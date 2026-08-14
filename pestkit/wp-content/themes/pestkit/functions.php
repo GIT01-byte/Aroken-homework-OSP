@@ -287,54 +287,70 @@ function pestkit_fix_404_menu_classes($classes, $item)
 }
 
 /**
- * Гибридный подход для wpDiscuz: ограничение 1 отзыв только на странице Reviews
+ * AJAX Handler for processing custom feedback with placeholder text fallback
  */
-add_filter('wpdiscuz_comment_post_redirect', 'pestkit_hybrid_review_limit', 10, 2); // хук проверки перед отправкой
-add_filter('comments_open', 'pestkit_disable_form_for_existing_review', 10, 2);
+add_action('wp_ajax_submit_custom_feedback_ajax', 'pestkit_handle_custom_feedback_ajax');
+add_action('wp_ajax_nopriv_submit_custom_feedback_ajax', 'pestkit_handle_custom_feedback_ajax');
 
-function pestkit_disable_form_for_existing_review($open, $post_id)
+function pestkit_handle_custom_feedback_ajax()
 {
-    // Проверяем, что это страница 'reviews' и пользователь вошел на сайт
-    if (is_page('reviews') && is_user_logged_in()) {
-        global $current_user;
-        wp_get_current_user();
-
-        // Ищем, оставлял ли уже этот пользователь комментарий на ЭТОЙ странице
-        $user_comments = get_comments(array(
-            'user_id' => $current_user->ID,
-            'post_id' => $post_id,
-            'count'   => true
-        ));
-
-        // Если нашли хотя бы 1 комментарий, скрываем форму (но старые комменты и кнопка "Редактировать" останутся)
-        if ($user_comments > 0) {
-            // Чтобы пользователь не пугался, можно вернуть true, но скрыть саму форму через CSS,
-            // либо жестко закрыть обсуждения для него:
-            return false;
-        }
+    if (! isset($_POST['feedback_nonce']) || ! wp_verify_nonce($_POST['feedback_nonce'], 'feedback_nonce_action')) {
+        wp_send_json_error(array('message' => 'Security check failed. Please refresh the page.'));
+        wp_die();
     }
-    return $open;
-}
 
-/**
- * Добавляем класс-маркер к body, если отзыв уже оставлен
- */
-add_filter('body_class', 'pestkit_review_body_class');
-function pestkit_review_body_class($classes)
-{
-    if (is_page('reviews') && is_user_logged_in()) {
-        global $post, $current_user;
-        wp_get_current_user();
-
-        $has_comment = get_comments(array(
-            'user_id' => $current_user->ID,
-            'post_id' => $post->ID,
-            'count'   => true
-        ));
-
-        if ($has_comment > 0) {
-            $classes[] = 'user-already-reviewed';
-        }
+    if (! empty($_POST['honeypot_field'])) {
+        wp_send_json_success();
+        wp_die();
     }
-    return $classes;
+
+    $post_id = isset($_POST['post_id']) ? intval($_POST['post_id']) : 0;
+    $author  = isset($_POST['author']) ? sanitize_text_field($_POST['author']) : '';
+    $email   = isset($_POST['email']) ? sanitize_email($_POST['email']) : '';
+    $comment = isset($_POST['comment']) ? sanitize_textarea_field($_POST['comment']) : '';
+    $rating  = isset($_POST['rating']) ? intval($_POST['rating']) : 5;
+
+    // FIX: Removed empty($comment) condition, text field is no longer strictly required
+    if (empty($author) || empty($email) || !$post_id) {
+        wp_send_json_error(array('message' => 'Please fill in your Name and Email fields.'));
+        wp_die();
+    }
+
+    // FALLBACK PLACEHOLDER TEXT: If user left textarea empty, inject a nice default message
+    if (trim($comment) === '') {
+        $comment = "The user chose to leave a high rating without a text review.";
+    }
+
+    // Limit check by Email
+    $existing_reviews = get_comments(array(
+        'author_email' => $email,
+        'post_id'      => $post_id,
+        'status'       => 'all',
+        'count'        => true
+    ));
+
+    if ($existing_reviews > 0) {
+        wp_send_json_error(array('message' => 'A feedback from this email address has already been submitted for this page!'));
+        wp_die();
+    }
+
+    $comment_data = array(
+        'comment_post_ID'      => $post_id,
+        'comment_author'       => $author,
+        'comment_author_email' => $email,
+        'comment_content'      => $comment, // Saves either real text or our placeholder text
+        'comment_type'         => 'comment',
+        'comment_approved'     => 0,
+    );
+
+    $comment_id = wp_new_comment($comment_data);
+
+    if ($comment_id) {
+        update_comment_meta($comment_id, 'wpdiscuz_rating', $rating);
+        wp_send_json_success();
+    } else {
+        wp_send_json_error(array('message' => 'Failed to save feedback. Please try again later.'));
+    }
+
+    wp_die();
 }

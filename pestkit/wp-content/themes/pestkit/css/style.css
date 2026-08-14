@@ -902,8 +902,175 @@
     padding-left: 7px;
 }
 
+
+/* 1. Фикс попапа: теперь он перекрывает весь экран монитора ровно по центру */
+.feedback-global-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: rgba(0, 0, 0, 0.4) !important;
+    /* Легкое красивое затемнение сайта на бэкграунде */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 99999 !important;
+    /* Поверх абсолютно всех элементов сайта */
+    -webkit-animation: fadeInBg 0.3s ease;
+    animation: fadeInBg 0.3s ease;
+}
+
+.feedback-popup-modal {
+    max-width: 450px;
+    width: 90%;
+    background: #ffffff;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2) !important;
+    -webkit-animation: slideUpModal 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    animation: slideUpModal 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* 2. Подсказки об ошибках под полями в стиле Contact Form 7 */
+.error-text-under {
+    color: #dc3545;
+    font-size: 0.85rem;
+    margin-top: 5px;
+    display: none;
+    font-weight: 500;
+    text-align: left;
+}
+
+/* Красная рамка для незаполненного инпута */
+.form-control.is-invalid-field {
+    border-color: #dc3545 !important;
+    background-color: #fff8f8 !important;
+}
+
+/* Анимации появления */
+@-webkit-keyframes fadeInBg {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInBg {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes slideUpModal {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideUpModal {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.comment-submit-btn {
+    width: auto !important;
+    padding: 14px 40px !important;
+    margin: 0 auto;
+    /* Чтобы отцентрировать её */
+    display: inline-block;
+}
+
 /* ==========================================================================
-   АДАПТИВНАЯ СТИЛИЗАЦИЯ И ВЫРАВНИВАНИЕ СЛАЙДЕРА ОТЗЫВОВ (PESTKIT)
+   INTERACTIVE STAR RATING STYLES (PESTKIT - CROSSBROWSER)
    ========================================================================== */
+.star-rating-wrapper {
+    display: flex;
+    flex-direction: row-reverse;
+    /* Разворачивает порядок для hover-эффекта */
+    justify-content: flex-end;
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+    /* Фиксирует контейнер, предотвращая растягивание во весь экран */
+}
+
+.star-rating-wrapper input[type="radio"] {
+    position: absolute;
+    position: fixed;
+    /* Для старых iOS */
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Базовый стиль для звезд */
+.star-rating-wrapper label {
+    font-size: 1.5rem;
+    color: #E9ECEF;
+    /* Светло-серый для неактивных */
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+    margin: 0 5px 0 0;
+    /* Явное обнуление нижнего margin, который часто добавляет Bootstrap */
+    padding: 0;
+    background: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    /* Защита от случайного выделения текста при быстром клике */
+}
+
+/* Сброс отступа у последней звезды (которая из-за reverse визуально первая слева) */
+.star-rating-wrapper label:first-child {
+    margin-right: 0;
+}
+
+/* Эффект наведения и активное состояние (подсветка желтым) */
+.star-rating-wrapper label:hover,
+.star-rating-wrapper label:hover~label,
+.star-rating-wrapper input[type="radio"]:checked~label {
+    color: #FFEB3B !important;
+}
+
+/* Корректный сброс цвета для звезд справа от наведенной в активном состоянии */
+.star-rating-wrapper input[type="radio"]:checked~label:hover,
+.star-rating-wrapper input[type="radio"]:checked~label:hover~label,
+.star-rating-wrapper label:hover~input[type="radio"]:checked~label {
+    color: #FFEB3B !important;
+}
+
+/* Стилизация фокуса (для пользователей, управляющих сайтом с клавиатуры) */
+.star-rating-wrapper input[type="radio"]:focus-visible~label {
+    outline: 2px dashed #FFEB3B;
+    outline-offset: 4px;
+}
+
 
 /* Plugins Styles end */
