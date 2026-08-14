@@ -218,6 +218,13 @@ function newsletter_form_shortcode()
     require(get_template_directory() . '/shortcodes/newsletter-form.php');
 }
 
+// Шорткод формы для слайдера отзывов
+add_shortcode('testinomial-slider', 'testinomial_slider_shortcode');
+function testinomial_slider_shortcode()
+{
+    require(get_template_directory() . '/shortcodes/testinomial-slider.php');
+}
+
 // Для отключения авто. тега p плагина Contact Fom 7
 add_filter('wpcf7_autop_or_not', '__return_false');
 
@@ -274,6 +281,59 @@ function pestkit_fix_404_menu_classes($classes, $item)
             $classes[] = 'current-menu-ancestor';
             $classes[] = 'current-menu-parent';
             $classes[] = 'current_page_ancestor';
+        }
+    }
+    return $classes;
+}
+
+/**
+ * Гибридный подход для wpDiscuz: ограничение 1 отзыв только на странице Reviews
+ */
+add_filter('wpdiscuz_comment_post_redirect', 'pestkit_hybrid_review_limit', 10, 2); // хук проверки перед отправкой
+add_filter('comments_open', 'pestkit_disable_form_for_existing_review', 10, 2);
+
+function pestkit_disable_form_for_existing_review($open, $post_id)
+{
+    // Проверяем, что это страница 'reviews' и пользователь вошел на сайт
+    if (is_page('reviews') && is_user_logged_in()) {
+        global $current_user;
+        wp_get_current_user();
+
+        // Ищем, оставлял ли уже этот пользователь комментарий на ЭТОЙ странице
+        $user_comments = get_comments(array(
+            'user_id' => $current_user->ID,
+            'post_id' => $post_id,
+            'count'   => true
+        ));
+
+        // Если нашли хотя бы 1 комментарий, скрываем форму (но старые комменты и кнопка "Редактировать" останутся)
+        if ($user_comments > 0) {
+            // Чтобы пользователь не пугался, можно вернуть true, но скрыть саму форму через CSS,
+            // либо жестко закрыть обсуждения для него:
+            return false;
+        }
+    }
+    return $open;
+}
+
+/**
+ * Добавляем класс-маркер к body, если отзыв уже оставлен
+ */
+add_filter('body_class', 'pestkit_review_body_class');
+function pestkit_review_body_class($classes)
+{
+    if (is_page('reviews') && is_user_logged_in()) {
+        global $post, $current_user;
+        wp_get_current_user();
+
+        $has_comment = get_comments(array(
+            'user_id' => $current_user->ID,
+            'post_id' => $post->ID,
+            'count'   => true
+        ));
+
+        if ($has_comment > 0) {
+            $classes[] = 'user-already-reviewed';
         }
     }
     return $classes;

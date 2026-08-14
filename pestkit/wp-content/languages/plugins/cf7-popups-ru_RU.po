@@ -1,0 +1,65 @@
+# Translation of Plugins - Popups &#8211; Submission Messages For Contact Form 7 - Stable (latest release) in Russian
+# This file is distributed under the same license as the Plugins - Popups &#8211; Submission Messages For Contact Form 7 - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2023-05-29 11:31:33+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : ((n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14)) ? 1 : 2);\n"
+"X-Generator: GlotPress/4.0.3\n"
+"Language: ru\n"
+"Project-Id-Version: Plugins - Popups &#8211; Submission Messages For Contact Form 7 - Stable (latest release)\n"
+
+#. Plugin Name of the plugin
+#: cf7-popups.php
+msgid "Popups - Submission Messages For Contact Form 7"
+msgstr "Popups  - отправка сообщений для Contact Form 7"
+
+#: cf7-popups-class.php:104
+msgid "Thank you for your message. It has been sent."
+msgstr "Спасибо за ваше сообщение. Оно отправлено."
+
+#: cf7-popups-class.php:103
+msgid "Email Sent"
+msgstr "Электронное письмо отправлено"
+
+#: cf7-popups-class.php:102
+msgid "Failed to send email."
+msgstr "Не удалось отправить электронное письмо."
+
+#: cf7-popups-class.php:101
+msgid "Failed to send email because possible spam activity has been detected."
+msgstr "Не удалось отправить электронное письмо, так как обнаружена возможная спам-активность."
+
+#: cf7-popups-class.php:100
+msgid "Error"
+msgstr "Ошибка"
+
+#: cf7-popups-class.php:99
+msgid "One or more field validation error"
+msgstr "Одна или несколько ошибок проверки поля"
+
+#: cf7-popups-class.php:98
+msgid "Validation Error"
+msgstr "Ошибка валидации"
+
+#. Author URI of the plugin
+#: cf7-popups.php
+msgid "https://codeworkweb.com/"
+msgstr "https://codeworkweb.com/"
+
+#. Author of the plugin
+#: cf7-popups.php
+msgid "Code Work Web"
+msgstr "Code Work Web"
+
+#. Description of the plugin
+#: cf7-popups.php
+msgid "Useful plugin to display contact form 7 error messages, success messages in beautiful popups."
+msgstr "Полезный плагин для отображения contact form 7  сообщений об ошибках, сообщений об успешном завершении в красивых всплывающих окнах."
+
+#. Plugin URI of the plugin
+#: cf7-popups.php
+msgid "https://codeworkweb.com/plugins/cf7-popups/"
+msgstr "https://codeworkweb.com/plugins/cf7-popups/"
