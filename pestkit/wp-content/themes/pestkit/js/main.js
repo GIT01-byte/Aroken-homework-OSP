@@ -90,6 +90,7 @@
     },
   });
 })(jQuery);
+
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("custom-ajax-feedback-form");
   const popup = document.getElementById("feedback-global-popup");
@@ -99,6 +100,16 @@ document.addEventListener("DOMContentLoaded", function () {
   const popupIcon = document.getElementById("popup-icon");
   const popupTitle = document.getElementById("popup-title");
   const popupMessage = document.getElementById("popup-message");
+
+  // Безопасный дефолтный объект на случай, если wp_localize_script не сработал
+  const acf_fields = window.wp_feedback_options || {
+    error_required: "The field is required.",
+    error_email: "The e-mail address entered is invalid.",
+    error_rating: "Please select a rating star.",
+    popup_success_ttl: "Thank you for your feedback!",
+    popup_success_msg:
+      "Your opinion is very important to us. It will appear on the website after moderation.",
+  };
 
   if (form) {
     form.addEventListener("submit", function (e) {
@@ -119,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const authorInput = form.querySelector('input[name="author"]');
       if (!authorInput.value.trim()) {
         const errBox = document.getElementById("error-author");
-        errBox.innerText = "The field is required.";
+        errBox.innerText = acf_fields.error_required;
         errBox.style.display = "block";
         authorInput.classList.add("is-invalid-field");
         hasErrors = true;
@@ -130,13 +141,13 @@ document.addEventListener("DOMContentLoaded", function () {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailInput.value.trim()) {
         const errBox = document.getElementById("error-email");
-        errBox.innerText = "The field is required.";
+        errBox.innerText = acf_fields.error_required;
         errBox.style.display = "block";
         emailInput.classList.add("is-invalid-field");
         hasErrors = true;
       } else if (!emailRegex.test(emailInput.value.trim())) {
         const errBox = document.getElementById("error-email");
-        errBox.innerText = "The e-mail address entered is invalid.";
+        errBox.innerText = acf_fields.error_email;
         errBox.style.display = "block";
         emailInput.classList.add("is-invalid-field");
         hasErrors = true;
@@ -146,7 +157,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const ratingSelected = form.querySelector('input[name="rating"]:checked');
       if (!ratingSelected) {
         const errBox = document.getElementById("error-rating");
-        errBox.innerText = "Please select a rating star.";
+        errBox.innerText = acf_fields.error_rating;
         errBox.style.display = "block";
         hasErrors = true;
       }
@@ -168,12 +179,11 @@ document.addEventListener("DOMContentLoaded", function () {
           if (data.success) {
             form.reset(); // Очищаем поля формы
 
-            // Настраиваем попап на УСПЕХ
+            // Настраиваем попап на УСПЕХ с текстами из ACF
             popupIcon.className =
               "fa fa-check-circle display-4 text-primary mb-3";
-            popupTitle.innerText = "Thank you for your feedback!";
-            popupMessage.innerText =
-              "Your opinion is very important to us. It will appear on the website after moderation.";
+            popupTitle.innerText = acf_fields.popup_success_ttl;
+            popupMessage.innerText = acf_fields.popup_success_msg;
 
             // Навешиваем класс для вывода на весь экран
             popup.classList.add("feedback-global-overlay");

@@ -353,15 +353,16 @@ function pestkit_fix_404_menu_classes($classes, $item)
 
 
 /**
- * AJAX Handler for processing custom feedback with placeholder text fallback
+ * AJAX Handler for processing custom feedback with business logic ACF fields
  */
 add_action('wp_ajax_submit_custom_feedback_ajax', 'pestkit_handle_custom_feedback_ajax');
 add_action('wp_ajax_nopriv_submit_custom_feedback_ajax', 'pestkit_handle_custom_feedback_ajax');
 
 function pestkit_handle_custom_feedback_ajax()
 {
+    // Системная ошибка
     if (! isset($_POST['feedback_nonce']) || ! wp_verify_nonce($_POST['feedback_nonce'], 'feedback_nonce_action')) {
-        wp_send_json_error(array('message' => 'Security check failed. Please refresh the page.'));
+        wp_send_json_error(array('message' => __('Security check failed. Please refresh the page.', 'pestkit')));
         wp_die();
     }
 
@@ -376,18 +377,19 @@ function pestkit_handle_custom_feedback_ajax()
     $comment = isset($_POST['comment']) ? sanitize_textarea_field($_POST['comment']) : '';
     $rating  = isset($_POST['rating']) ? intval($_POST['rating']) : 5;
 
-    // FIX: Removed empty($comment) condition, text field is no longer strictly required
+    // Валидация заполнения
     if (empty($author) || empty($email) || !$post_id) {
-        wp_send_json_error(array('message' => 'Please fill in your Name and Email fields.'));
+        $error_required = get_field('feedback_error_required_fields', $post_id) ?: __('Please fill in your Name and Email fields.', 'pestkit');
+        wp_send_json_error(array('message' => $error_required));
         wp_die();
     }
 
-    // FALLBACK PLACEHOLDER TEXT: If user left textarea empty, inject a nice default message
+    // БИЗНЕС-ЛОГИКА (КОНТЕНТ): Если комментарий пустой, тянем заглушку из ACF текущей страницы
     if (trim($comment) === '') {
-        $comment = "The user chose to leave a high rating without a text review.";
+        $comment = get_field('feedback_empty_comment_fallback', $post_id) ?: __('The user chose to leave a high rating without a text review.', 'pestkit');
     }
 
-    // Limit check by Email
+    // Лимит по Email
     $existing_reviews = get_comments(array(
         'author_email' => $email,
         'post_id'      => $post_id,
@@ -395,8 +397,10 @@ function pestkit_handle_custom_feedback_ajax()
         'count'        => true
     ));
 
+    // БИЗНЕС-ЛОГИКА (ОГРАНИЧЕНИЕ): Текст ошибки дубликата тянем из ACF текущей страницы
     if ($existing_reviews > 0) {
-        wp_send_json_error(array('message' => 'A feedback from this email address has already been submitted for this page!'));
+        $error_duplicate = get_field('feedback_error_duplicate_email', $post_id) ?: __('A feedback from this email address has already been submitted for this page!', 'pestkit');
+        wp_send_json_error(array('message' => $error_duplicate));
         wp_die();
     }
 
@@ -404,7 +408,7 @@ function pestkit_handle_custom_feedback_ajax()
         'comment_post_ID'      => $post_id,
         'comment_author'       => $author,
         'comment_author_email' => $email,
-        'comment_content'      => $comment, // Saves either real text or our placeholder text
+        'comment_content'      => $comment,
         'comment_type'         => 'comment',
         'comment_approved'     => 0,
     );
@@ -415,8 +419,32 @@ function pestkit_handle_custom_feedback_ajax()
         update_comment_meta($comment_id, 'wpdiscuz_rating', $rating);
         wp_send_json_success();
     } else {
-        wp_send_json_error(array('message' => 'Failed to save feedback. Please try again later.'));
+        // Системный сбой базы данных (оставляем в коде)
+        wp_send_json_error(array('message' => __('Failed to save feedback. Please try again later.', 'pestkit')));
     }
 
     wp_die();
 }
+
+function pestkit_enqueue_feedback_scripts()
+{
+    // Проверяем, что мы находимся именно на странице с шаблоном Feedback
+    if (is_page_template('template-feedback.php')) {
+
+        wp_enqueue_script('pestkit-feedback', get_template_directory_uri() . 'js/main.js', array(), '1.0.0', true);
+
+        // Получаем ID текущей страницы, чтобы вытащить её ACF-поля
+        $page_id = get_the_ID();
+
+        $feedback_data = array(
+            'error_required'    => get_field('feedback_error_required', $page_id) ?: 'The field is required.',
+            'error_email'       => get_field('feedback_error_email', $page_id) ?: 'The e-mail address entered is invalid.',
+            'error_rating'      => get_field('feedback_error_rating', $page_id) ?: 'Please select a rating star.',
+            'popup_success_ttl' => get_field('feedback_popup_success_ttl', $page_id) ?: 'Thank you for your feedback!',
+            'popup_success_msg' => get_field('feedback_popup_success_msg', $page_id) ?: 'Your opinion is very important to us.',
+        );
+
+        wp_localize_script('pestkit-feedback', 'wp_feedback_options', $feedback_data);
+    }
+}
+add_action('wp_enqueue_scripts', 'pestkit_enqueue_feedback_scripts');
