@@ -2,6 +2,7 @@
 // Template name:  ШАБЛОН страницы Home
 get_header();
 ?>
+
 <!-- Carousel Start -->
 <div class="container-fluid carousel px-0 mb-5 pb-5">
     <div id="carouselId" class="carousel slide" data-bs-ride="carousel">

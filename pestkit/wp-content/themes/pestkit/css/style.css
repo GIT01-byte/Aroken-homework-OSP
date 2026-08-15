@@ -176,6 +176,14 @@
 /*** Navbar End ***/
 
 
+/*** Home Page Start */
+
+.home .page-header {
+    display: none;
+}
+
+/*** Home Page End */
+
 
 /*** Carousel Start ***/
 
@@ -258,8 +266,6 @@
 }
 
 .page-header {
-    background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url(../img/carousel-2.jpg) center center no-repeat;
-    background-size: cover;
     margin-bottom: 6rem;
 }
 

@@ -1,7 +1,8 @@
 <!-- Footer Start -->
 <div
     class="container-fluid footer py-5 wow fadeIn"
-    style="background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url(<?php echo get_field("footer_bg_image", "option") ?>) center center no-repeat; background-size: cover;"
+    style="background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url(<?php echo get_field("footer_bg_image", "option") ?>) 
+    center center no-repeat; background-size: cover;"
     data-wow-delay=".3s">
     <div class="container py-5">
         <div class="row g-4 footer-inner">
