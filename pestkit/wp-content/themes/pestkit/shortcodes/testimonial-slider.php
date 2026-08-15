@@ -1,8 +1,12 @@
 <div class="container-fluid testimonial py-5">
     <div class="container py-5">
         <div class="text-center mb-5 wow fadeInUp" data-wow-delay=".3s">
-            <h5 class="mb-2 px-3 py-1 text-dark rounded-pill d-inline-block border border-2 border-primary">Testimonial</h5>
-            <h1 class="display-5 w-50 mx-auto">What Clients Say About Our Services</h1>
+            <h5 class="mb-2 px-3 py-1 text-dark rounded-pill d-inline-block border border-2 border-primary">
+                <?php the_field("testimonial_subtitle", "options") ?>
+            </h5>
+            <h1 class="display-5 w-50 mx-auto">
+                <?php the_field("testimonial_title", "options") ?>
+            </h1>
         </div>
         <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay=".5s">
             <?php
@@ -92,4 +96,11 @@
             ?>
         </div>
     </div>
+</div>
+<div class="text-center mt-5 mb-4 wow fadeInUp" data-wow-delay=".3s">
+    <a
+        href="<?php echo get_field("testimonial_lint_to_leave_feedback", "options")["url"] ?>"
+        class="btn btn-primary border-0 rounded-pill px-5 py-3 text-uppercase fw-bold btn-leave-feedback">
+        <?php echo get_field("testimonial_lint_to_leave_feedback", "options")["title"] ?>
+    </a>
 </div>

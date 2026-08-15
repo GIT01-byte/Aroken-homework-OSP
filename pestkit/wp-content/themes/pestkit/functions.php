@@ -190,6 +190,7 @@ function bootstrap5_ul_subclasses($classes, $args, $depth)
     return $classes;
 }
 
+
 // Шорткод сервисных возможностей 
 add_shortcode('service-capabilities', 'service_capabilities_shortcode');
 function service_capabilities_shortcode()
@@ -219,14 +220,72 @@ function newsletter_form_shortcode()
 }
 
 // Шорткод формы для слайдера отзывов
-add_shortcode('testinomial-slider', 'testinomial_slider_shortcode');
-function testinomial_slider_shortcode()
+add_shortcode('testimonial-slider', 'testimonial_slider_shortcode');
+function testimonial_slider_shortcode()
 {
-    require(get_template_directory() . '/shortcodes/testinomial-slider.php');
+    require(get_template_directory() . '/shortcodes/testimonial-slider.php');
 }
 
-// Для отключения авто. тега p плагина Contact Fom 7
-add_filter('wpcf7_autop_or_not', '__return_false');
+// Шорткод виджета "Наши Проекты"
+add_shortcode('projects-widget', 'projects_widget_shortcode');
+function projects_widget_shortcode($atts)
+{
+    // Получаем значения из опций, если они пустые — ставим заглушки
+    $default_subtitle = get_field('our_projects_subtitle', 'options') ?: 'Our Project';
+    $default_title    = get_field('our_projects_title', 'options') ?: 'Our recently completed projects';
+    $default_count    = get_field('our_projects_projects_count', 'options') ?: 6;
+
+    $attributes = shortcode_atts(
+        [
+            'subtitle'      => $default_subtitle,
+            'title'         => $default_title,
+            'projects_count' => $default_count,
+        ],
+        $atts,
+        'projects-widget'
+    );
+
+    // Включаем буферизацию вывода
+    ob_start();
+
+    get_template_part("shortcodes/projects-widget", null, $attributes);
+
+    return ob_get_clean();
+}
+
+// Шорткод виджета "Наша Команда"
+add_shortcode('team-widget', 'team_widget_shortcode');
+function team_widget_shortcode($atts)
+{
+    // Получаем значения из опций, если они пустые — ставим заглушки
+    $default_subtitle = get_field('our_team_subtitle', 'options') ?: 'Our Team';
+    $default_title    = get_field('our_team_title', 'options') ?: 'Our Team Members';
+    $default_count    = get_field('our_team_count_employees', 'options') ?: 4;
+
+    $attributes = shortcode_atts(
+        [
+            'subtitle'      => $default_subtitle,
+            'title'         => $default_title,
+            'members_count' => $default_count,
+        ],
+        $atts,
+        'team-widget'
+    );
+
+    // Включаем буферизацию вывода
+    ob_start();
+
+    get_template_part("shortcodes/team-widget", null, $attributes);
+
+    return ob_get_clean();
+}
+
+// Шорткод виджета "Последние записи блога"
+add_shortcode('latest-blog-slider', 'latest_blog_slider_shortcode');
+function latest_blog_slider_shortcode()
+{
+    require(get_template_directory() . '/shortcodes/latest-blog-slider.php');
+}
 
 // Шорткод текущего года
 add_shortcode('current-year', 'current_year_shortcode');
@@ -234,6 +293,11 @@ function current_year_shortcode()
 {
     return date("Y");
 }
+
+
+// Для отключения авто. тега p плагина Contact Fom 7
+add_filter('wpcf7_autop_or_not', '__return_false');
+
 
 // Фильтр acf поля 'footer_about_copyright' для применения на нем шорткодов
 add_filter('acf/format_value/name=footer_about_copyright', 'apply_shortcodes_to_copyright', 10, 3);
@@ -244,6 +308,7 @@ function apply_shortcodes_to_copyright($value, $post_id, $field)
     }
     return $value;
 }
+
 
 /**
  * Перенаправление статической страницы 404 на шаблон темы 404.php
@@ -285,6 +350,7 @@ function pestkit_fix_404_menu_classes($classes, $item)
     }
     return $classes;
 }
+
 
 /**
  * AJAX Handler for processing custom feedback with placeholder text fallback
