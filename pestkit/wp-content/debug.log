@@ -138,3 +138,48 @@
 [15-Aug-2026 17:43:01 UTC] PHP   5. pestkit_handle_custom_feedback_ajax('') C:\OSPanel\domains\pestkit\wp-includes\class-wp-hook.php:341
 [15-Aug-2026 17:43:01 UTC] PHP   6. wp_new_comment($commentdata = ['comment_post_ID' => 268, 'comment_author' => '124124', 'comment_author_email' => 'gajsint41112412412@gmail.com', 'comment_content' => '123', 'comment_type' => 'comment', 'comment_approved' => 0], $wp_error = *uninitialized*) C:\OSPanel\domains\pestkit\wp-content\themes\pestkit\functions.php:416
 [15-Aug-2026 17:43:01 UTC] PHP   7. wp_filter_comment($commentdata = ['comment_post_ID' => 268, 'comment_author' => '124124', 'comment_author_email' => 'gajsint41112412412@gmail.com', 'comment_content' => '123', 'comment_type' => 'comment', 'comment_approved' => 0, 'comment_author_IP' => '127.0.0.1', 'comment_agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:153.0) Gecko/20100101 Firefox/153.0', 'comment_parent' => 0, 'comment_date' => '2026-08-15 20:43:01', 'comment_date_gmt' => '2026-08-15 17:43:01']) C:\OSPanel\domains\pestkit\wp-includes\comment.php:2388
+[16-Aug-2026 00:16:49 UTC] Automatic updates starting...
+[16-Aug-2026 00:16:50 UTC]   Automatic plugin updates starting...
+[16-Aug-2026 00:16:50 UTC]   Automatic plugin updates complete.
+[16-Aug-2026 00:16:50 UTC] Automatic updates complete.
+[16-Aug-2026 00:24:28 UTC] PHP Warning:  Undefined array key "comment_author_url" in C:\OSPanel\domains\pestkit\wp-includes\comment.php on line 1315
+[16-Aug-2026 00:24:28 UTC] PHP Stack trace:
+[16-Aug-2026 00:24:28 UTC] PHP   1. {main}() C:\OSPanel\domains\pestkit\wp-admin\admin-ajax.php:0
+[16-Aug-2026 00:24:28 UTC] PHP   2. do_action($hook_name = 'wp_ajax_submit_custom_feedback_ajax') C:\OSPanel\domains\pestkit\wp-admin\admin-ajax.php:192
+[16-Aug-2026 00:24:28 UTC] PHP   3. WP_Hook->do_action($args = [0 => '']) C:\OSPanel\domains\pestkit\wp-includes\plugin.php:522
+[16-Aug-2026 00:24:28 UTC] PHP   4. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\OSPanel\domains\pestkit\wp-includes\class-wp-hook.php:365
+[16-Aug-2026 00:24:28 UTC] PHP   5. pestkit_handle_custom_feedback_ajax('') C:\OSPanel\domains\pestkit\wp-includes\class-wp-hook.php:341
+[16-Aug-2026 00:24:28 UTC] PHP   6. wp_new_comment($commentdata = ['comment_post_ID' => 268, 'comment_author' => '12', 'comment_author_email' => '2@FSDACAQE.ASGD', 'comment_content' => 'The user chose to leave a high rating without a text review.', 'comment_type' => 'comment', 'comment_approved' => 0], $wp_error = *uninitialized*) C:\OSPanel\domains\pestkit\wp-content\themes\pestkit\functions.php:416
+[16-Aug-2026 00:24:28 UTC] PHP   7. wp_allow_comment($commentdata = ['comment_post_ID' => 268, 'comment_author' => '12', 'comment_author_email' => '2@FSDACAQE.ASGD', 'comment_content' => 'The user chose to leave a high rating without a text review.', 'comment_type' => 'comment', 'comment_approved' => 0, 'comment_author_IP' => '127.0.0.1', 'comment_agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:153.0) Gecko/20100101 Firefox/153.0', 'comment_parent' => 0, 'comment_date' => '2026-08-16 03:24:28', 'comment_date_gmt' => '2026-08-16 00:24:28'], $wp_error = FALSE) C:\OSPanel\domains\pestkit\wp-includes\comment.php:2382
+[16-Aug-2026 00:24:28 UTC] PHP   8. wp_check_comment_data($comment_data = ['comment_post_ID' => 268, 'comment_author' => '12', 'comment_author_email' => '2@FSDACAQE.ASGD', 'comment_content' => 'The user chose to leave a high rating without a text review.', 'comment_type' => 'comment', 'comment_approved' => 0, 'comment_author_IP' => '127.0.0.1', 'comment_agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:153.0) Gecko/20100101 Firefox/153.0', 'comment_parent' => 0, 'comment_date' => '2026-08-16 03:24:28', 'comment_date_gmt' => '2026-08-16 00:24:28']) C:\OSPanel\domains\pestkit\wp-includes\comment.php:816
+[16-Aug-2026 00:24:28 UTC] PHP Warning:  Undefined array key "comment_author_url" in C:\OSPanel\domains\pestkit\wp-includes\comment.php on line 1329
+[16-Aug-2026 00:24:28 UTC] PHP Stack trace:
+[16-Aug-2026 00:24:28 UTC] PHP   1. {main}() C:\OSPanel\domains\pestkit\wp-admin\admin-ajax.php:0
+[16-Aug-2026 00:24:28 UTC] PHP   2. do_action($hook_name = 'wp_ajax_submit_custom_feedback_ajax') C:\OSPanel\domains\pestkit\wp-admin\admin-ajax.php:192
+[16-Aug-2026 00:24:28 UTC] PHP   3. WP_Hook->do_action($args = [0 => '']) C:\OSPanel\domains\pestkit\wp-includes\plugin.php:522
+[16-Aug-2026 00:24:28 UTC] PHP   4. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\OSPanel\domains\pestkit\wp-includes\class-wp-hook.php:365
+[16-Aug-2026 00:24:28 UTC] PHP   5. pestkit_handle_custom_feedback_ajax('') C:\OSPanel\domains\pestkit\wp-includes\class-wp-hook.php:341
+[16-Aug-2026 00:24:28 UTC] PHP   6. wp_new_comment($commentdata = ['comment_post_ID' => 268, 'comment_author' => '12', 'comment_author_email' => '2@FSDACAQE.ASGD', 'comment_content' => 'The user chose to leave a high rating without a text review.', 'comment_type' => 'comment', 'comment_approved' => 0], $wp_error = *uninitialized*) C:\OSPanel\domains\pestkit\wp-content\themes\pestkit\functions.php:416
+[16-Aug-2026 00:24:28 UTC] PHP   7. wp_allow_comment($commentdata = ['comment_post_ID' => 268, 'comment_author' => '12', 'comment_author_email' => '2@FSDACAQE.ASGD', 'comment_content' => 'The user chose to leave a high rating without a text review.', 'comment_type' => 'comment', 'comment_approved' => 0, 'comment_author_IP' => '127.0.0.1', 'comment_agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:153.0) Gecko/20100101 Firefox/153.0', 'comment_parent' => 0, 'comment_date' => '2026-08-16 03:24:28', 'comment_date_gmt' => '2026-08-16 00:24:28'], $wp_error = FALSE) C:\OSPanel\domains\pestkit\wp-includes\comment.php:2382
+[16-Aug-2026 00:24:28 UTC] PHP   8. wp_check_comment_data($comment_data = ['comment_post_ID' => 268, 'comment_author' => '12', 'comment_author_email' => '2@FSDACAQE.ASGD', 'comment_content' => 'The user chose to leave a high rating without a text review.', 'comment_type' => 'comment', 'comment_approved' => 0, 'comment_author_IP' => '127.0.0.1', 'comment_agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:153.0) Gecko/20100101 Firefox/153.0', 'comment_parent' => 0, 'comment_date' => '2026-08-16 03:24:28', 'comment_date_gmt' => '2026-08-16 00:24:28']) C:\OSPanel\domains\pestkit\wp-includes\comment.php:816
+[16-Aug-2026 00:24:28 UTC] PHP Warning:  Undefined array key "comment_author_url" in C:\OSPanel\domains\pestkit\wp-includes\comment.php on line 2238
+[16-Aug-2026 00:24:28 UTC] PHP Stack trace:
+[16-Aug-2026 00:24:28 UTC] PHP   1. {main}() C:\OSPanel\domains\pestkit\wp-admin\admin-ajax.php:0
+[16-Aug-2026 00:24:28 UTC] PHP   2. do_action($hook_name = 'wp_ajax_submit_custom_feedback_ajax') C:\OSPanel\domains\pestkit\wp-admin\admin-ajax.php:192
+[16-Aug-2026 00:24:28 UTC] PHP   3. WP_Hook->do_action($args = [0 => '']) C:\OSPanel\domains\pestkit\wp-includes\plugin.php:522
+[16-Aug-2026 00:24:28 UTC] PHP   4. WP_Hook->apply_filters($value = '', $args = [0 => '']) C:\OSPanel\domains\pestkit\wp-includes\class-wp-hook.php:365
+[16-Aug-2026 00:24:28 UTC] PHP   5. pestkit_handle_custom_feedback_ajax('') C:\OSPanel\domains\pestkit\wp-includes\class-wp-hook.php:341
+[16-Aug-2026 00:24:28 UTC] PHP   6. wp_new_comment($commentdata = ['comment_post_ID' => 268, 'comment_author' => '12', 'comment_author_email' => '2@FSDACAQE.ASGD', 'comment_content' => 'The user chose to leave a high rating without a text review.', 'comment_type' => 'comment', 'comment_approved' => 0], $wp_error = *uninitialized*) C:\OSPanel\domains\pestkit\wp-content\themes\pestkit\functions.php:416
+[16-Aug-2026 00:24:28 UTC] PHP   7. wp_filter_comment($commentdata = ['comment_post_ID' => 268, 'comment_author' => '12', 'comment_author_email' => '2@FSDACAQE.ASGD', 'comment_content' => 'The user chose to leave a high rating without a text review.', 'comment_type' => 'comment', 'comment_approved' => 0, 'comment_author_IP' => '127.0.0.1', 'comment_agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:153.0) Gecko/20100101 Firefox/153.0', 'comment_parent' => 0, 'comment_date' => '2026-08-16 03:24:28', 'comment_date_gmt' => '2026-08-16 00:24:28']) C:\OSPanel\domains\pestkit\wp-includes\comment.php:2388
+[16-Aug-2026 00:30:00 UTC] PHP Fatal error:  Out of memory (allocated 39845888) (tried to allocate 65536 bytes) in C:\OSPanel\domains\pestkit\wp-content\plugins\wp-sheet-editor-premium\vendor\freemius\includes\class-freemius.php on line 22262
+[16-Aug-2026 00:30:00 UTC] PHP Stack trace:
+[16-Aug-2026 00:30:00 UTC] PHP   1. {main}() C:\OSPanel\domains\pestkit\index.php:0
+[16-Aug-2026 00:30:00 UTC] PHP   2. require() C:\OSPanel\domains\pestkit\index.php:17
+[16-Aug-2026 00:30:00 UTC] PHP   3. require_once() C:\OSPanel\domains\pestkit\wp-blog-header.php:13
+[16-Aug-2026 00:30:00 UTC] PHP   4. require_once() C:\OSPanel\domains\pestkit\wp-load.php:50
+[16-Aug-2026 00:30:00 UTC] PHP   5. require_once() C:\OSPanel\domains\pestkit\wp-config.php:106
+[16-Aug-2026 00:30:00 UTC] PHP   6. include_once() C:\OSPanel\domains\pestkit\wp-settings.php:589
+[16-Aug-2026 00:30:00 UTC] PHP   7. require_once() C:\OSPanel\domains\pestkit\wp-content\plugins\wp-sheet-editor-premium\wp-sheet-editor.php:36
+[16-Aug-2026 00:30:00 UTC] PHP   8. vgse_freemius() C:\OSPanel\domains\pestkit\wp-content\plugins\wp-sheet-editor-premium\inc\freemius-init.php:39
+[16-Aug-2026 00:30:00 UTC] PHP   9. require_once() C:\OSPanel\domains\pestkit\wp-content\plugins\wp-sheet-editor-premium\inc\freemius-init.php:10
+[16-Aug-2026 00:30:00 UTC] PHP  10. require_once() C:\OSPanel\domains\pestkit\wp-content\plugins\wp-sheet-editor-premium\vendor\freemius\start.php:586

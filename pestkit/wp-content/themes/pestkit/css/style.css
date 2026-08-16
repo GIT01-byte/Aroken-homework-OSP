@@ -916,13 +916,14 @@
     left: 0 !important;
     width: 100vw !important;
     height: 100vh !important;
-    background: rgba(0, 0, 0, 0.4) !important;
-    /* Легкое красивое затемнение сайта на бэкграунде */
+    background: rgba(0, 0, 0, 0.5) !important;
+    /* Чуть затемнил для лучшего контраста фокуса */
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     z-index: 99999 !important;
-    /* Поверх абсолютно всех элементов сайта */
+    cursor: pointer;
+    /* Показывает пользователю, что на область можно кликнуть для закрытия */
     -webkit-animation: fadeInBg 0.3s ease;
     animation: fadeInBg 0.3s ease;
 }
@@ -932,9 +933,12 @@
     width: 90%;
     background: #ffffff;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2) !important;
+    cursor: default;
+    /* Возвращает обычный курсор мыши внутри самой карточки, чтобы не путать юзера */
     -webkit-animation: slideUpModal 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
     animation: slideUpModal 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
+
 
 /* 2. Подсказки об ошибках под полями в стиле Contact Form 7 */
 .error-text-under {

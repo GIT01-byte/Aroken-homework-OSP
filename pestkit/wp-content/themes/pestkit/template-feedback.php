@@ -64,17 +64,20 @@ if (post_password_required()) return;
 
         <!-- УНИВЕРСАЛЬНЫЙ ГЛОБАЛЬНЫЙ ПОПАП (Изначально скрыт) -->
         <div id="feedback-global-popup" style="display: none;">
-            <div class="text-center p-5 rounded shadow bg-white border border-2 border-primary" style="max-width: 450px; width: 90%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); box-shadow: 0 15px 40px rgba(0,0,0,0.2) !important;">
-                <!-- Сюда JS будет вставлять иконку (зеленую галочку или красный крестик) -->
-                <i id="popup-icon" class="fa fa-check-circle display-4 text-primary mb-3"></i>
+            <!-- Убрано абсолютное позиционирование, добавлен класс feedback-popup-modal -->
+            <div class="feedback-popup-modal text-center p-5 rounded shadow bg-white border border-2 border-primary">
 
-                <!-- Сюда JS вставит динамический заголовок -->
+                <!-- Иконка (text-success для галочки выглядит нативнее) -->
+                <i id="popup-icon" class="fa fa-check-circle display-4 text-success mb-3"></i>
+
+                <!-- Динамический заголовок -->
                 <h4 id="popup-title" class="fw-bold text-dark mb-2">Thank you!</h4>
 
-                <!-- Сюда JS вставит текст ошибки или успеха из PHP -->
+                <!-- Текст ошибки или успеха -->
                 <p id="popup-message" class="text-muted mb-4">Message text...</p>
 
-                <button id="close-feedback-popup" class="btn btn-primary border-0 rounded-pill px-5 py-2 text-uppercase fw-bold text-dark" style="background-color: #FFEB3B !important;">Close</button>
+                <!-- Кнопка закрытия (Добавлен hover-эффект через стили по желанию) -->
+                <button id="close-feedback-popup" class="btn btn-primary border-0 rounded-pill px-5 py-2 text-uppercase fw-bold text-dark" style="background-color: #FFEB3B !important; cursor: pointer;">Close</button>
             </div>
         </div>
     </div>

@@ -111,11 +111,42 @@ document.addEventListener("DOMContentLoaded", function () {
       "Your opinion is very important to us. It will appear on the website after moderation.",
   };
 
+  // Функция закрытия попапа
+  function closePopup() {
+    popup.classList.remove("feedback-global-overlay");
+    popup.style.display = "none";
+  }
+
+  // Закрытие по кнопке "Close"
+  if (closeBtn) {
+    closeBtn.addEventListener("click", closePopup);
+  }
+
+  // Закрытие при клике на область вне попапа (на оверлей)
+  if (popup) {
+    popup.addEventListener("click", function (e) {
+      // Если кликнули именно по подложке, а не по внутреннему контенту
+      if (e.target === popup) {
+        closePopup();
+      }
+    });
+  }
+
+  // Закрытие при нажатии на клавишу Escape (Esc)
+  document.addEventListener("keydown", function (e) {
+    if (
+      e.key === "Escape" &&
+      popup.classList.contains("feedback-global-overlay")
+    ) {
+      closePopup();
+    }
+  });
+
   if (form) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
 
-      // 1. Сброс ошибок перед валидацией
+      // Сброс ошибок перед валидацией
       document.querySelectorAll(".error-text-under").forEach((el) => {
         el.style.display = "none";
         el.innerText = "";
@@ -126,7 +157,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       let hasErrors = false;
 
-      // 2. Валидация Name
+      // Валидация Name
       const authorInput = form.querySelector('input[name="author"]');
       if (!authorInput.value.trim()) {
         const errBox = document.getElementById("error-author");
@@ -136,7 +167,7 @@ document.addEventListener("DOMContentLoaded", function () {
         hasErrors = true;
       }
 
-      // 3. Валидация Email
+      // Валидация Email
       const emailInput = form.querySelector('input[name="email"]');
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailInput.value.trim()) {
@@ -153,7 +184,7 @@ document.addEventListener("DOMContentLoaded", function () {
         hasErrors = true;
       }
 
-      // 4. Валидация Rating
+      // Валидация Rating
       const ratingSelected = form.querySelector('input[name="rating"]:checked');
       if (!ratingSelected) {
         const errBox = document.getElementById("error-rating");
@@ -164,7 +195,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (hasErrors) return;
 
-      // 5. Отправка AJAX
+      // Отправка AJAX
       const formData = new FormData(form);
 
       fetch("/wp-admin/admin-ajax.php", {
@@ -179,16 +210,14 @@ document.addEventListener("DOMContentLoaded", function () {
           if (data.success) {
             form.reset(); // Очищаем поля формы
 
-            // Настраиваем попап на УСПЕХ с текстами из ACF
             popupIcon.className =
-              "fa fa-check-circle display-4 text-primary mb-3";
+              "fa fa-check-circle display-4 text-success mb-3";
             popupTitle.innerText = acf_fields.popup_success_ttl;
             popupMessage.innerText = acf_fields.popup_success_msg;
 
             // Навешиваем класс для вывода на весь экран
             popup.classList.add("feedback-global-overlay");
           } else {
-            // Настраиваем попап на ОБЩУЮ ОШИБКУ (включая дубликат Email из PHP)
             popupIcon.className =
               "fa fa-exclamation-circle display-4 text-danger mb-3";
             popupTitle.innerText = "Oops! Something went wrong";
@@ -196,14 +225,12 @@ document.addEventListener("DOMContentLoaded", function () {
               data.data.message ||
               "An error occurred while submitting your feedback.";
 
-            // Выводим попап с ошибкой
             popup.classList.add("feedback-global-overlay");
           }
         })
         .catch((error) => {
           console.error("Error:", error);
 
-          // Настраиваем попап на СБОЙ СЕТИ
           popupIcon.className = "fa fa-times-circle display-4 text-danger mb-3";
           popupTitle.innerText = "Submission Failed";
           popupMessage.innerText =
