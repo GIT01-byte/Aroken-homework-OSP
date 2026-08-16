@@ -1084,3 +1084,67 @@
 
 
 /* Plugins Styles end */
+
+/* Акцентно-черные теги */
+.tags a {
+    display: inline-block;
+    background-color: #0f172a;
+    /* Глубокий матовый черный цвет фона */
+    color: #ffffff !important;
+    /* Белый контрастный текст */
+    padding: 0.2rem 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    border-radius: 6px;
+    /* Легкое современное скругление вместо овалов */
+    text-decoration: none;
+    transition: all 0.25s ease-in-out;
+    border: 1px solid #0f172a;
+}
+
+/* Эффект при наведении (Инверсия или легкое осветление) */
+.tags a:hover {
+    background-color: transparent;
+    /* Прозрачный фон при наведении */
+    color: #0f172a !important;
+    /* Текст становится черным */
+    border-color: #0f172a;
+    /* Появляется четкая черная рамка */
+}
+
+/* Стилизация блока цитаты Gutenberg */
+blockquote.wp-block-quote,
+.article-body blockquote {
+    background-color: #0f172a !important;
+    /* Насыщенный матовый черный фон */
+    border-left: 5px solid #ffc107 !important;
+    /* Акцентная желтая линия слева */
+    padding: 1.5rem 2rem !important;
+    margin: 2.5rem 0 !important;
+    border-radius: 0 8px 8px 0;
+    /* Округление углов только справа */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+}
+
+/* Стилизация текста внутри цитаты */
+blockquote.wp-block-quote p,
+.article-body blockquote p {
+    color: #f8fafc !important;
+    /* Контрастный светло-серый/белый текст */
+    font-size: 1.2rem !important;
+    font-style: italic !important;
+    line-height: 1.7 !important;
+    margin-bottom: 0.5rem !important;
+}
+
+/* Стилизация автора цитаты (если есть тег <cite>) */
+blockquote.wp-block-quote cite,
+.article-body blockquote cite {
+    color: #94a3b8 !important;
+    /* Приглушенный цвет для подписи автора */
+    font-size: 0.95rem !important;
+    font-style: normal !important;
+    font-weight: 600;
+    display: block;
+}

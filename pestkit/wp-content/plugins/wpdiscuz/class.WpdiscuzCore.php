@@ -3,7 +3,7 @@
  * Plugin Name: wpDiscuz
  * Plugin URI: https://wpdiscuz.com/
  * Description: #1 WordPress Comment Plugin. Innovative, modern and feature-rich comment system to supercharge your website comment section.
- * Version: 7.6.63
+ * Version: 7.6.64
  * Author: gVectors Team
  * Author URI: https://gvectors.com/
  * Text Domain: wpdiscuz
@@ -1403,6 +1403,9 @@ class WpdiscuzCore implements WpDiscuzConstants {
             $this->wpdiscuzOptionsJs                      = $this->options->getOptionsForJs();
             $this->wpdiscuzOptionsJs["version"]           = $this->version;
             $this->wpdiscuzOptionsJs["wc_post_id"]        = $post->ID;
+            // Sites of a subdirectory network share an origin, so anything the
+            // browser stores per post has to be told them apart by blog id.
+            $this->wpdiscuzOptionsJs["wc_blog_id"]        = get_current_blog_id();
             $this->wpdiscuzOptionsJs["isCookiesEnabled"]  = has_action("set_comment_cookies");
             $this->wpdiscuzOptionsJs["loadLastCommentId"] = 0;
 
@@ -1487,7 +1490,7 @@ class WpdiscuzCore implements WpDiscuzConstants {
                     wp_register_script("quill", plugins_url("/assets/third-party/quill/quill$suf.js", __FILE__), ["wpdiscuz-cookie-js"], "1.3.6", true);
                     wp_enqueue_script("quill");
                     wp_add_inline_script("quill", $this->options->editorOptions(), "before");
-                    wp_register_script("wpd-editor", plugins_url("/assets/js/wpd-editor$suf.js", __FILE__), ["quill"], "1.3.6", true);
+                    wp_register_script("wpd-editor", plugins_url("/assets/js/wpd-editor$suf.js", __FILE__), ["quill"], $this->version, true);
                     wp_enqueue_script("wpd-editor");
                 }
                 wp_register_script("autogrowtextarea-js", plugins_url("/assets/third-party/autogrow/jquery.autogrowtextarea.min.js", __FILE__), ["jquery"], "1.3.6", true);
@@ -2523,7 +2526,7 @@ class WpdiscuzCore implements WpDiscuzConstants {
                         $email   = $currentUser->user_email;
                     } else {
                         $user_id = 0;
-                        $name    = urldecode(trim(sanitize_text_field($_POST["wpd_inline_name"])));
+                        $name    = urldecode(trim(sanitize_text_field(wp_unslash($_POST["wpd_inline_name"]))));
                         if (!empty($_POST["wpd_inline_email"]) && ($email = sanitize_email(trim($_POST["wpd_inline_email"])))) {
                             if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
                                 wp_send_json_error("wc_error_email_text");

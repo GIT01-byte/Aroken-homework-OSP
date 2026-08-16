@@ -955,7 +955,7 @@ class SocialLogin {
 
     public function yandexLoginCallBack() {
         $error        = Sanitizer::sanitize(INPUT_GET, "error", "FILTER_SANITIZE_STRING");
-        $errorDesc    = Sanitizer::sanitize(INPUT_GET, "error_description", "FILTER_SANITIZE_STRING");
+        $errorDesc    = wp_unslash(Sanitizer::sanitize(INPUT_GET, "error_description", "FILTER_SANITIZE_STRING"));
         $code         = Sanitizer::sanitize(INPUT_GET, "code", "FILTER_SANITIZE_STRING");
         $state        = Sanitizer::sanitize(INPUT_GET, "state", "FILTER_SANITIZE_STRING");
         $providerData = Utils::getProviderByState($state);
@@ -1044,7 +1044,7 @@ class SocialLogin {
 
     public function wechatLoginCallBack() {
         $error        = Sanitizer::sanitize(INPUT_GET, "errcode", "FILTER_SANITIZE_STRING");
-        $errorDesc    = Sanitizer::sanitize(INPUT_GET, "errmsg", "FILTER_SANITIZE_STRING");
+        $errorDesc    = wp_unslash(Sanitizer::sanitize(INPUT_GET, "errmsg", "FILTER_SANITIZE_STRING"));
         $code         = Sanitizer::sanitize(INPUT_GET, "code", "FILTER_SANITIZE_STRING");
         $state        = Sanitizer::sanitize(INPUT_GET, "state", "FILTER_SANITIZE_STRING");
         $providerData = Utils::getProviderByState($state);
@@ -1129,7 +1129,7 @@ class SocialLogin {
 
     public function qqLoginCallBack() {
         $error        = Sanitizer::sanitize(INPUT_GET, "error", "FILTER_SANITIZE_STRING");
-        $errorDesc    = Sanitizer::sanitize(INPUT_GET, "error_description", "FILTER_SANITIZE_STRING");
+        $errorDesc    = wp_unslash(Sanitizer::sanitize(INPUT_GET, "error_description", "FILTER_SANITIZE_STRING"));
         $code         = Sanitizer::sanitize(INPUT_GET, "code", "FILTER_SANITIZE_STRING");
         $state        = Sanitizer::sanitize(INPUT_GET, "state", "FILTER_SANITIZE_STRING");
         $providerData = Utils::getProviderByState($state);
@@ -1235,7 +1235,7 @@ class SocialLogin {
 
     public function weiboLoginCallBack() {
         $error        = Sanitizer::sanitize(INPUT_GET, "error", "FILTER_SANITIZE_STRING");
-        $errorDesc    = Sanitizer::sanitize(INPUT_GET, "error_description", "FILTER_SANITIZE_STRING");
+        $errorDesc    = wp_unslash(Sanitizer::sanitize(INPUT_GET, "error_description", "FILTER_SANITIZE_STRING"));
         $code         = Sanitizer::sanitize(INPUT_GET, "code", "FILTER_SANITIZE_STRING");
         $state        = Sanitizer::sanitize(INPUT_GET, "state", "FILTER_SANITIZE_STRING");
         $providerData = Utils::getProviderByState($state);
@@ -1324,7 +1324,7 @@ class SocialLogin {
 
     public function baiduLoginCallBack() {
         $error        = Sanitizer::sanitize(INPUT_GET, "error", "FILTER_SANITIZE_STRING");
-        $errorDesc    = Sanitizer::sanitize(INPUT_GET, "error_description", "FILTER_SANITIZE_STRING");
+        $errorDesc    = wp_unslash(Sanitizer::sanitize(INPUT_GET, "error_description", "FILTER_SANITIZE_STRING"));
         $code         = Sanitizer::sanitize(INPUT_GET, "code", "FILTER_SANITIZE_STRING");
         $state        = Sanitizer::sanitize(INPUT_GET, "state", "FILTER_SANITIZE_STRING");
         $providerData = Utils::getProviderByState($state);

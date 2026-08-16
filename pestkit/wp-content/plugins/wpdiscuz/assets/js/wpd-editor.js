@@ -206,6 +206,39 @@ class WpdEditor {
         }
     }
 
+    /**
+     * Returns an already created editor, or null when there is none. Unlike
+     * createEditor() this never brings an editor into existence, so it is safe
+     * to call on markup that is only being inspected or moved around.
+     */
+    getEditor(container) {
+        this.container = container;
+        return this._editors.has(this.uniqueid) ? this._editors.get(this.uniqueid) : null;
+    }
+
+    /**
+     * Forgets every editor whose container lives inside the given element.
+     * Must be called before comment markup is dropped from the document: the
+     * registry is keyed by unique id, so an instance left bound to a detached
+     * container makes createEditor() short circuit, and the next form opened
+     * for the same comment comes up with no editor in it at all.
+     */
+    removeEditorsIn(element) {
+        if (!element || typeof element.querySelectorAll !== 'function') {
+            return;
+        }
+        let containerId = /^wpd-editor-(edit_)?\d+_\d+$/,
+            containers = Array.from(element.querySelectorAll('[id^="wpd-editor-"]'));
+        if (element.id) {
+            containers.push(element);
+        }
+        containers.forEach((container) => {
+            if (containerId.test(container.id)) {
+                this.removeEditor('#' + container.id);
+            }
+        });
+    }
+
     _bindTextEditor(editor) {
         let textEditorID = `${this.textEditorPrefix}-${this.uniqueid}`,
             textEditorHtml = document.getElementById(textEditorID);

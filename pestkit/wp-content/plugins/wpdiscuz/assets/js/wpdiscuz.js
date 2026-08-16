@@ -705,6 +705,7 @@ jQuery(document).ready(function ($) {
                             $('.wpd-cookies-checkbox').prop('checked', false);
                         }
                         wcForm.get(0).reset();
+                        wpdClearDraft($('.wpdiscuz_unique_id', wcForm).val());
                         if (wpdiscuzLoadRichEditor) {
                             wpDiscuzEditor.createEditor('#wpd-editor-' + $('.wpdiscuz_unique_id', wcForm).val()).setContents([{insert: '\n'}]);
                         } else {
@@ -941,8 +942,10 @@ jQuery(document).ready(function ($) {
     });
 
     function wpdCancelOrSave(uniqueID, content) {
+        var editFormWrap = $('#wpd-comm-' + uniqueID + ' .wpdiscuz-edit-form-wrap');
         $('#wpd-comm-' + uniqueID + ' > .wpd-comment-wrap .wpd-comment-right .wpd_editable_comment').show();
-        $('#wpd-comm-' + uniqueID + ' .wpdiscuz-edit-form-wrap').replaceWith(content);
+        wpdReleaseEditors(editFormWrap);
+        editFormWrap.replaceWith(content);
         $('#wpd-comm-' + uniqueID + ' > .wpd-comment-wrap .wpd-comment-last-edited').show();
     }
 
@@ -1019,10 +1022,9 @@ jQuery(document).ready(function ($) {
                     if (r.success) {
                         wpdiscuzLoadCount++;
                         if (isFirstLoad) {
-                            $('.wpd-comment').remove();
+                            wpdRemoveComments($('.wpd-comment'));
                         }
-                        $('.wpdiscuz_single').remove();
-                        $('.wpdiscuz-comment-pagination').before(r.data.comment_list);
+                        wpdInsertLoadedComments(r.data.comment_list);
                         setLoadMoreVisibility(r, isFirstLoad && commentListLoadType !== 2);
                         isRun = false;
                         if (r.data.loadLastCommentId) {
@@ -1176,7 +1178,7 @@ jQuery(document).ready(function ($) {
                 .done(function (r) {
                     if (typeof r === 'object') {
                         if (r.success) {
-                            $('#wpdcom .wpd-comment').remove();
+                            wpdRemoveComments($('#wpdcom .wpd-comment'));
                             $('#wpdcom .wpd-thread-list').prepend(r.data.message);
                             setLoadMoreVisibility(r, false);
                             wpdiscuzLoadCount = 1;
@@ -1207,7 +1209,9 @@ jQuery(document).ready(function ($) {
                             if (r.success) {
                                 var scrollToSelector = '#comment-' + commentId;
                                 if ($('#comment-' + r.data.parentCommentID).length) {
-                                    $('#comment-' + r.data.parentCommentID).parents('[id^=wpd-comm-' + r.data.parentCommentID + ']').replaceWith(r.data.message);
+                                    var parentThread = $('#comment-' + r.data.parentCommentID).parents('[id^="wpd-comm-' + r.data.parentCommentID + '_"]');
+                                    wpdReleaseEditors(parentThread);
+                                    parentThread.replaceWith(r.data.message);
                                 } else {
                                     $('.wpd-thread-list').prepend(r.data.message);
                                 }
@@ -1342,10 +1346,12 @@ jQuery(document).ready(function ($) {
         if (wpdiscuzLoadRichEditor) {
             setTimeout(function () {
                 wpDiscuzEditor.createEditor('#wpd-editor-' + uniqueId).focus();
+                wpdRestoreDraft(uniqueId);
             }, enableDropAnimation);
         } else {
             setTimeout(function () {
                 $('#wc-textarea-' + uniqueId).trigger('focus');
+                wpdRestoreDraft(uniqueId);
             }, enableDropAnimation);
         }
         secondaryFormWrapper.slideToggle(enableDropAnimation, function () {
@@ -1356,6 +1362,457 @@ jQuery(document).ready(function ($) {
     function replaceUniqueId(uniqueId) {
         var secondaryForm = $('#wpdiscuz_hidden_secondary_form').html();
         return secondaryForm.replace(/wpdiscuzuniqueid/g, uniqueId);
+    }
+
+//============================== COMMENT DRAFTS ============================== //
+    /**
+     * Comment text is kept in session storage while it is being written, so
+     * that sorting, filtering, a reload or a stray back button do not throw it
+     * away. Session storage rather than local storage: a draft belongs to the
+     * tab it was written in and goes away with it, which keeps drafts off
+     * shared computers and keeps them from ever going stale.
+     *
+     * Text only. Names, e-mail addresses and the other author fields stay out
+     * of storage, and edit forms are left alone because their content belongs
+     * to a comment that is already published.
+     *
+     * Sites that would rather not store anything can set storeCommentDrafts to
+     * 0 through the wpdiscuz_js_options filter.
+     */
+    var wpdDraftsEnabled = (function () {
+        if (typeof wpdiscuzAjaxObj.storeCommentDrafts !== 'undefined' && !parseInt(wpdiscuzAjaxObj.storeCommentDrafts, 10)) {
+            return false;
+        }
+        try {
+            // Storage can exist and still throw, as in Safari's private mode.
+            window.sessionStorage.setItem('wpd-draft-probe', '1');
+            window.sessionStorage.removeItem('wpd-draft-probe');
+            return true;
+        } catch (e) {
+            return false;
+        }
+    })();
+
+    var wpdDraftTimers = {};
+
+    function wpdDraftKey(uniqueId) {
+        var blogId = parseInt(wpdiscuzAjaxObj.wc_blog_id, 10) || 1;
+        return 'wpd-draft-' + blogId + '-' + wpdiscuzPostId + '-' + uniqueId;
+    }
+
+    /**
+     * Unique id of the form a field belongs to, or an empty string for the edit
+     * forms and anything else that is not a comment form.
+     */
+    function wpdDraftUniqueId(field) {
+        var form = field.closest('.wpd-form'),
+            uniqueId = $('.wpdiscuz_unique_id', form).val();
+        return uniqueId && uniqueId.indexOf('edit_') !== 0 ? uniqueId : '';
+    }
+
+    /**
+     * The text a form currently holds, or null when that form is no longer on
+     * the page. The two have to stay apart: an empty form means the draft is
+     * finished with and can go, whereas a form that is gone says nothing about
+     * what the visitor wanted and must not be read as an instruction to throw
+     * anything away.
+     */
+    function wpdReadFormText(uniqueId) {
+        if (wpdiscuzLoadRichEditor) {
+            var editor = wpDiscuzEditor.getEditor('#wpd-editor-' + uniqueId);
+            if (!editor || !document.body.contains(editor.root)) {
+                return null;
+            }
+            // Read the markup, not the editor's model. This runs on the input
+            // event, and the model is only brought up to date when the editor's
+            // own observer next runs, so asking it here can answer for the
+            // keystroke before last, or for none at all on the first one.
+            var root = $(editor.root);
+            return $.trim(root.text()).length || $('img', root).length ? editor.root.innerHTML : '';
+        }
+        var textarea = $('#wc-textarea-' + uniqueId);
+        return textarea.length ? $.trim(textarea.val() || '') : null;
+    }
+
+    function wpdWriteDraft(uniqueId, text) {
+        if (!wpdDraftsEnabled || !uniqueId) {
+            return;
+        }
+        try {
+            if (text) {
+                window.sessionStorage.setItem(wpdDraftKey(uniqueId), text);
+            } else {
+                window.sessionStorage.removeItem(wpdDraftKey(uniqueId));
+            }
+        } catch (e) {
+            // Out of quota or storage denied mid-session. The draft simply is
+            // not kept; nothing on the page depends on it having worked.
+        }
+    }
+
+    /**
+     * Writes out what was captured while the visitor was typing. The text is
+     * taken at keystroke time rather than read back when the timer fires, so a
+     * form that disappears inside the debounce window, to a sort or a filter,
+     * cannot cost the visitor the keystrokes the timer was holding.
+     */
+    function wpdFlushDraft(uniqueId) {
+        var pending = wpdDraftTimers[uniqueId];
+        if (!pending) {
+            return;
+        }
+        clearTimeout(pending.timer);
+        delete wpdDraftTimers[uniqueId];
+        wpdWriteDraft(uniqueId, pending.text);
+    }
+
+    function wpdDropPendingDraft(uniqueId) {
+        if (wpdDraftTimers[uniqueId]) {
+            clearTimeout(wpdDraftTimers[uniqueId].timer);
+            delete wpdDraftTimers[uniqueId];
+        }
+    }
+
+    function wpdClearDraft(uniqueId) {
+        if (!wpdDraftsEnabled || !uniqueId) {
+            return;
+        }
+        wpdDropPendingDraft(uniqueId);
+        wpdWriteDraft(uniqueId, '');
+    }
+
+    /**
+     * Puts a stored draft back into a form that has just been opened. A form
+     * the visitor has already typed into is never overwritten.
+     */
+    function wpdRestoreDraft(uniqueId) {
+        if (!wpdDraftsEnabled || !uniqueId || wpdReadFormText(uniqueId)) {
+            return;
+        }
+        var draft;
+        try {
+            draft = window.sessionStorage.getItem(wpdDraftKey(uniqueId));
+        } catch (e) {
+            return;
+        }
+        if (!draft) {
+            return;
+        }
+        var editor = wpdiscuzLoadRichEditor ? wpDiscuzEditor.getEditor('#wpd-editor-' + uniqueId) : null;
+        if (editor) {
+            editor.clipboard.dangerouslyPasteHTML(0, draft);
+            editor.update();
+            editor.setSelection(editor.getLength(), 0);
+        } else {
+            var textarea = $('#wc-textarea-' + uniqueId);
+            if (!textarea.length) {
+                return;
+            }
+            textarea.val(draft);
+            setTextareaCharCount(textarea);
+        }
+        $(document.body).trigger('wpdiscuz_draft_restored', [uniqueId, draft]);
+    }
+
+    if (wpdDraftsEnabled) {
+        $('body').on('input', '#wpdcom .ql-editor, #wpdcom textarea.wc_comment', function () {
+            var uniqueId = wpdDraftUniqueId($(this)),
+                text;
+            if (!uniqueId) {
+                return;
+            }
+            text = wpdReadFormText(uniqueId);
+            if (text === null) {
+                return;
+            }
+            wpdDropPendingDraft(uniqueId);
+            wpdDraftTimers[uniqueId] = {
+                text: text,
+                timer: setTimeout(function () {
+                    wpdFlushDraft(uniqueId);
+                }, 400)
+            };
+        });
+
+        // Write out whatever the debounce has not got to yet.
+        window.addEventListener('beforeunload', function () {
+            for (var uniqueId in wpdDraftTimers) {
+                if (wpdDraftTimers.hasOwnProperty(uniqueId)) {
+                    wpdFlushDraft(uniqueId);
+                }
+            }
+        });
+
+        // The main form is on the page from the start, so it is filled here
+        // rather than when a form is opened. Reply forms are filled by
+        // cloneSecondaryForm().
+        if ($('#wpd-editor-0_0, #wc-textarea-0_0').length) {
+            wpdRestoreDraft('0_0');
+        }
+    }
+//============================== /COMMENT DRAFTS ============================== //
+
+    /**
+     * Drops the rich editor instances living inside the given nodes, right
+     * before those nodes leave the document. wpDiscuzEditor keeps its editors
+     * in a registry keyed by comment unique id, so an instance left pointing at
+     * removed markup makes the next form opened for that comment come up empty.
+     */
+    function wpdReleaseEditors($nodes) {
+        if (!wpdiscuzLoadRichEditor || !$nodes || !$nodes.length) {
+            return;
+        }
+        $nodes.each(function () {
+            wpDiscuzEditor.removeEditorsIn(this);
+        });
+    }
+
+    /**
+     * Removes comment markup from the list without leaving stale editors behind.
+     */
+    function wpdRemoveComments($nodes) {
+        wpdReleaseEditors($nodes);
+        $nodes.remove();
+    }
+
+    /**
+     * Returns the nodes matching the selector inside the given set, the set
+     * itself included when it matches.
+     */
+    function wpdFindIn($nodes, selector) {
+        return $nodes.filter(selector).add($nodes.find(selector));
+    }
+
+    /**
+     * Appends a freshly loaded batch to the list, reconciling it with the
+     * threads pinned to the top of the list for a #comment-N link or for the
+     * single/hottest comment options.
+     *
+     * A pinned thread is rendered outside the pagination order, so its root
+     * eventually arrives again inside a normal batch and one of the two copies
+     * has to go. Until that happens the pinned copy has to stay: dropping it on
+     * every batch made the comment the visitor followed a link to disappear
+     * from the page, and took any reply or edit form they had already typed
+     * into along with it.
+     */
+    function wpdInsertLoadedComments(commentList) {
+        var pinnedThreads = $('.wpd-thread-list').children('.wpdiscuz_single').get();
+        $('.wpdiscuz-comment-pagination').before(commentList);
+        for (var i = 0; i < pinnedThreads.length; i++) {
+            wpdMergePinnedThread(pinnedThreads[i]);
+        }
+    }
+
+    /**
+     * Decides what happens to one pinned thread now that a new batch is in the
+     * list. Three outcomes:
+     *  - the batch does not carry this thread, so it is left alone;
+     *  - the batch carries it and every form holding unsaved text has somewhere
+     *    to land, so the forms move over and the pinned copy goes;
+     *  - the batch carries it but some form holding unsaved text has nowhere to
+     *    land, because the comment it belongs to was trashed or unapproved in
+     *    the meantime. The pinned copy is kept and the batch's copy dropped
+     *    instead, so that nothing is lost and the thread is still shown once.
+     */
+    function wpdMergePinnedThread(pinnedThread) {
+        var loadedThread = $('[id="' + pinnedThread.id + '"]').not(pinnedThread);
+        if (!loadedThread.length) {
+            return;
+        }
+        var openForms = wpdCollectOpenForms(pinnedThread, loadedThread);
+        if (wpdHasHomelessContent(openForms)) {
+            wpdRemoveComments(loadedThread);
+            return;
+        }
+        var movedForm = openForms.length ? openForms[0].form.get(0) : null,
+            anchor = movedForm ? movedForm : pinnedThread,
+            position = wpdSnapshotPosition(anchor),
+            focus = wpdSaveFormFocus(openForms);
+        wpdCarryHighlight(pinnedThread, loadedThread);
+        for (var i = 0; i < openForms.length; i++) {
+            wpdMoveOpenForm(openForms[i]);
+        }
+        wpdRemoveComments($(pinnedThread));
+        wpdKeepScrollPosition(movedForm ? movedForm : loadedThread.get(0), position);
+        wpdRestoreFormFocus(focus);
+    }
+
+    /**
+     * Finds the reply and edit forms open inside a pinned thread, each with the
+     * place it would move to in the copy that arrived with the new batch.
+     */
+    function wpdCollectOpenForms(pinnedThread, loadedThread) {
+        var openForms = [];
+        // The <form> inside a reply wrapper repeats the wrapper class, so the
+        // wrapper is matched by its id to keep the two from being torn apart.
+        $('[id^="wpd-secondary-form-wrapper-"], .wpdiscuz-edit-form-wrap', pinnedThread).each(function () {
+            var form = $(this),
+                isEdit = form.hasClass('wpdiscuz-edit-form-wrap'),
+                uniqueId = getUniqueID(form, 0),
+                host = wpdFindIn(loadedThread, '[id="wpd-comm-' + uniqueId + '"]'),
+                commentText = host.children('.wpd-comment-wrap').find('.wpd-comment-right .wpd-comment-text').first(),
+                formAnchor = host.children('[id="wpdiscuz_form_anchor-' + uniqueId + '"]');
+            openForms.push({
+                uniqueId: uniqueId,
+                form: form,
+                host: host,
+                isEdit: isEdit,
+                target: isEdit ? commentText : formAnchor,
+                hasContent: wpdFormHasContent(form)
+            });
+        });
+        return openForms;
+    }
+
+    /**
+     * Tells whether any form holds text that has nowhere to go.
+     */
+    function wpdHasHomelessContent(openForms) {
+        for (var i = 0; i < openForms.length; i++) {
+            if (openForms[i].hasContent && !openForms[i].target.length) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Tells whether a form holds work the visitor would notice losing. Add-ons
+     * that put content of their own in the form, such as uploads, stickers or
+     * recordings, can report it by setting state.hasContent to true on the
+     * wpdiscuz_form_has_content event.
+     *
+     * Add-ons can only ever add to what is found here, never take away: a
+     * handler that answered "no" for a form the visitor had typed into would
+     * hand back exactly the data loss this is here to prevent. The flag latches
+     * for the same reason, so that an add-on which has nothing to report cannot
+     * put out the one raised by an add-on that has.
+     */
+    function wpdFormHasContent(form) {
+        var editor = $('.ql-editor', form),
+            hasContent,
+            flagged = false,
+            state = {};
+        if (editor.length) {
+            hasContent = $.trim(editor.text()).length > 0 || $('img', editor).length > 0;
+        } else {
+            hasContent = $.trim($('.wc_comment', form).val() || '').length > 0;
+        }
+        Object.defineProperty(state, 'hasContent', {
+            enumerable: true,
+            get: function () {
+                return flagged;
+            },
+            set: function (value) {
+                flagged = flagged || value === true;
+            }
+        });
+        $(document.body).trigger('wpdiscuz_form_has_content', [form, state, hasContent]);
+        return hasContent || flagged;
+    }
+
+    /**
+     * Moves one open form onto the comment that replaces its current host. The
+     * form node itself travels, so the rich editor instance bound to it, the
+     * author fields, the custom fields and anything an add-on put inside all
+     * come along untouched.
+     */
+    function wpdMoveOpenForm(openForm) {
+        if (!openForm.target.length) {
+            return;
+        }
+        if (openForm.isEdit) {
+            openForm.target.replaceWith(openForm.form);
+            openForm.host.children('.wpd-comment-wrap').find('.wpd-comment-right .wpd_editable_comment').hide();
+            openForm.host.children('.wpd-comment-wrap').find('.wpd-comment-last-edited').hide();
+        } else {
+            openForm.target.before(openForm.form);
+            openForm.host.children('.wpd-comment-wrap').find('.wpd-reply-button').addClass('wpdiscuz-clonned');
+        }
+    }
+
+    /**
+     * Keeps the "this is the comment you followed a link to" highlight on the
+     * copy that survives, so the visitor does not lose their place.
+     */
+    function wpdCarryHighlight(pinnedThread, loadedThread) {
+        $(pinnedThread).find('.wpd-new-loaded-comment').addBack('.wpd-new-loaded-comment').each(function () {
+            wpdFindIn(loadedThread, '[id="' + this.id + '"]').addClass('wpd-new-loaded-comment');
+        });
+    }
+
+    /**
+     * Records where the caret is before the forms are moved. Moving a rich
+     * editor or a textarea in the document blurs it and drops the selection,
+     * which is very noticeable when infinite scroll pulls in a batch while the
+     * visitor is still typing.
+     */
+    function wpdSaveFormFocus(openForms) {
+        for (var i = 0; i < openForms.length; i++) {
+            var form = openForms[i].form.get(0),
+                active = document.activeElement,
+                editorId,
+                editor;
+            if (!active || (active !== form && !$.contains(form, active))) {
+                continue;
+            }
+            editorId = openForms[i].isEdit ? '#wpd-editor-edit_' + openForms[i].uniqueId : '#wpd-editor-' + openForms[i].uniqueId;
+            editor = wpdiscuzLoadRichEditor ? wpDiscuzEditor.getEditor(editorId) : null;
+            if (editor) {
+                return {editor: editor, range: editor.getSelection()};
+            }
+            return {
+                element: active,
+                start: typeof active.selectionStart === 'number' ? active.selectionStart : null,
+                end: active.selectionEnd
+            };
+        }
+        return null;
+    }
+
+    function wpdRestoreFormFocus(focus) {
+        if (!focus) {
+            return;
+        }
+        if (focus.editor) {
+            focus.editor.focus();
+            if (focus.range) {
+                focus.editor.setSelection(focus.range.index, focus.range.length);
+            }
+        } else if (focus.element) {
+            focus.element.focus();
+            if (focus.start !== null) {
+                focus.element.setSelectionRange(focus.start, focus.end);
+            }
+        }
+    }
+
+    function wpdSnapshotPosition(element) {
+        var rect = element.getBoundingClientRect();
+        return {
+            top: rect.top,
+            visible: rect.top < $(window).height() && rect.bottom > 0
+        };
+    }
+
+    /**
+     * Holds a thread the visitor is looking at still in the viewport. Without
+     * this the page jumps by however far the thread travelled from the top of
+     * the list down to its real place in the batch. Threads that were off
+     * screen are left alone, otherwise clicking load more at the bottom of the
+     * page would drag the visitor along with them.
+     */
+    function wpdKeepScrollPosition(element, position) {
+        if (!element || !position.visible) {
+            return;
+        }
+        var delta = element.getBoundingClientRect().top - position.top;
+        if (!delta) {
+            return;
+        }
+        unsetHtmlAndBodyScrollBehaviors();
+        window.scrollBy(0, delta);
+        restoreHtmlAndBodyScrollBehaviors();
     }
 
     function getUniqueID(field, isMain) {
@@ -1507,7 +1964,9 @@ jQuery(document).ready(function ($) {
                 btn.addClass('wpd_not_clicked');
                 if (typeof r === 'object') {
                     if (r.success) {
-                        $('#wpd-comm-' + uniqueId).replaceWith(r.data.comment_list);
+                        var thread = $('#wpd-comm-' + uniqueId);
+                        wpdReleaseEditors(thread);
+                        thread.replaceWith(r.data.comment_list);
                         $('#wpd-comm-' + uniqueId + ' .wpd-toggle .fas').removeClass('fa-chevron-down').addClass('fa-chevron-up');
                         $('#wpd-comm-' + uniqueId + ' .wpd-toggle .wpd-view-replies .wpd-view-replies-text').text(wpdiscuzAjaxObj.wc_hide_replies_text);
                         $('#wpd-comm-' + uniqueId + ' .wpd-toggle').attr('wpd-tooltip', wpdiscuzAjaxObj.wc_hide_replies_text);
@@ -1614,7 +2073,7 @@ jQuery(document).ready(function ($) {
         getAjaxObj(isNativeAjaxEnabled, false, data).done(function (r) {
             if (typeof r === 'object' && r.success) {
                 $('.wpd-load-comments').remove();
-                $('.wpd-comment').remove();
+                wpdRemoveComments($('.wpd-comment'));
                 $('.wpd-thread-list').prepend(r.data.comment_list);
                 setLoadMoreVisibility(r);
                 loadLastCommentId = r.data.loadLastCommentId;
@@ -1948,7 +2407,9 @@ jQuery(document).ready(function ($) {
             if (!addingComment) {
                 if (typeof r === 'object') {
                     r.commentIDsToRemove.forEach(function (id) {
-                        $('[id^=wpd-comm-' + id + ']').remove();
+                        // The trailing separator matters: without it comment 12
+                        // also matches the wrappers of 120, 121 and so on.
+                        wpdRemoveComments($('[id^="wpd-comm-' + id + '_"]'));
                     });
                     if (r.ids.length) {
                         if (commentListUpdateType) {

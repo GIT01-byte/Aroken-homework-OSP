@@ -1202,7 +1202,10 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
         if (!current_user_can("manage_options")) {
             wp_send_json_error("Permission denied");
         }
-        $search = WpdiscuzHelper::sanitize(INPUT_POST, "s", "FILTER_SANITIZE_STRING");
+        // The value is only matched against setting labels with stripos(), it never
+        // reaches a metadata function, so the slashes WordPress adds must be removed
+        // here or a search like "it's" matches nothing.
+        $search = wp_unslash(WpdiscuzHelper::sanitize(INPUT_POST, "s", "FILTER_SANITIZE_STRING"));
         if ($search) {
             $optionsObject = $this->options;
             $settings      = $this->options->settingsArray();

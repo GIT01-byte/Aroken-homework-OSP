@@ -3,7 +3,7 @@ Contributors: gVectors Team
 Tags: comments, wordpress comments, ajax comments, live comments, comment form, comment voting, disqus alternative, social comments, frontend comments, comment system
 Requires at least: 6.0
 Tested up to: 7.0
-Stable tag: 7.6.63
+Stable tag: 7.6.64
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -201,6 +201,14 @@ No. wpDiscuz does not remove or modify existing WordPress comments when uninstal
 **IMPORTANT!**
 
 Please remember to delete all caches and purge CDN after the update.
+
+= Comments - wpDiscuz v7.6.64 - 07.08.2026 =
+
+* Improved: Allowed file types and thumbnail sizes are now validated against the known allowed lists when the Content settings are saved, so only values offered by the settings form itself can be stored.
+* Improved: Imported options files are now validated before being stored. File types are checked against the mime types WordPress allows to be uploaded, so an edited options file cannot introduce an executable file type. File types provided by add-ons are preserved even when the add-on is not active at the moment of the import.
+* Fixed: Searching the settings page for a term containing an apostrophe returned no results.
+* Improved: The request sanitizing helpers now return the supplied default value when a request parameter is an array or an object instead of the expected string.
+* Removed: An unused method on the add-ons page which read a request parameter without checking that it was set.
 
 = Comments - wpDiscuz v7.6.63 - 07.08.2026 =
 

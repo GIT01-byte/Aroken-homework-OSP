@@ -461,20 +461,6 @@ class WpdiscuzAddons implements WpDiscuzConstants {
         return $hash;
     }
 
-    public function tipDisplayed() {
-        $tipTtile = substr(strip_tags($_GET["tip"]), 0, 100);
-        $lastHash = get_option("wpdiscuz-tip-note-dismissed");
-        if ($lastHash) {
-            $lastHashArray = explode(",", $lastHash);
-        } else {
-            $lastHashArray = [];
-        }
-        $lastHashArray[] = $tipTtile;
-        $hash            = implode(",", $lastHashArray);
-
-        return $hash;
-    }
-
     /* Check addons licenses */
 
     public function addonsCheck() {

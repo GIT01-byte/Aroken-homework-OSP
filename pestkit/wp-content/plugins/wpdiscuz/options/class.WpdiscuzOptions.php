@@ -1591,12 +1591,12 @@ class WpdiscuzOptions implements WpDiscuzConstants {
                 $this->content["wmuIsEnabled"]            = isset($_POST[self::TAB_CONTENT]["wmuIsEnabled"]) ? absint($_POST[self::TAB_CONTENT]["wmuIsEnabled"]) : 0;
                 $this->content["wmuIsGuestAllowed"]       = isset($_POST[self::TAB_CONTENT]["wmuIsGuestAllowed"]) ? absint($_POST[self::TAB_CONTENT]["wmuIsGuestAllowed"]) : 0;
                 $this->content["wmuIsLightbox"]           = isset($_POST[self::TAB_CONTENT]["wmuIsLightbox"]) ? absint($_POST[self::TAB_CONTENT]["wmuIsLightbox"]) : 0;
-                $this->content["wmuMimeTypes"]            = isset($_POST[self::TAB_CONTENT]["wmuMimeTypes"]) ? $_POST[self::TAB_CONTENT]["wmuMimeTypes"] : [];
+                $this->content["wmuMimeTypes"]            = isset($_POST[self::TAB_CONTENT]["wmuMimeTypes"]) ? $this->sanitizeWmuMimeTypes($_POST[self::TAB_CONTENT]["wmuMimeTypes"]) : [];
                 $this->content["wmuMaxFileSize"]          = isset($_POST[self::TAB_CONTENT]["wmuMaxFileSize"]) ? absint($_POST[self::TAB_CONTENT]["wmuMaxFileSize"]) : $this->wmuUploadMaxFileSize / (1024 * 1024);
                 $this->content["wmuIsShowFilesDashboard"] = isset($_POST[self::TAB_CONTENT]["wmuIsShowFilesDashboard"]) ? absint($_POST[self::TAB_CONTENT]["wmuIsShowFilesDashboard"]) : 0;
                 $this->content["wmuSingleImageWidth"]     = isset($_POST[self::TAB_CONTENT]["wmuSingleImageWidth"]) && ($v = trim(sanitize_text_field($_POST[self::TAB_CONTENT]["wmuSingleImageWidth"]))) && ($v === "auto" || ($v = absint($v))) ? $v : 320;
                 $this->content["wmuSingleImageHeight"]    = isset($_POST[self::TAB_CONTENT]["wmuSingleImageHeight"]) && ($v = trim(sanitize_text_field($_POST[self::TAB_CONTENT]["wmuSingleImageHeight"]))) && ($v === "auto" || ($v = absint($v))) ? $v : 200;
-                $this->content["wmuThumbnailSizes"]       = isset($_POST[self::TAB_CONTENT]["wmuThumbnailSizes"]) && is_array($_POST[self::TAB_CONTENT]["wmuThumbnailSizes"]) && ($sizes = array_filter($_POST[self::TAB_CONTENT]["wmuThumbnailSizes"])) ? $sizes : [];
+                $this->content["wmuThumbnailSizes"]       = isset($_POST[self::TAB_CONTENT]["wmuThumbnailSizes"]) ? $this->sanitizeWmuThumbnailSizes($_POST[self::TAB_CONTENT]["wmuThumbnailSizes"]) : [];
                 $this->content["wmuIsThumbnailsViaCron"]  = isset($_POST[self::TAB_CONTENT]["wmuIsThumbnailsViaCron"]) ? absint($_POST[self::TAB_CONTENT]["wmuIsThumbnailsViaCron"]) : 0;
             } else if (self::TAB_LIVE === $_POST["wpd_tab"]) {
                 $this->live["userInteractionCheck"]        = isset($_POST[self::TAB_LIVE]["userInteractionCheck"]) ? absint($_POST[self::TAB_LIVE]["userInteractionCheck"]) : 0;
@@ -2026,7 +2026,14 @@ class WpdiscuzOptions implements WpDiscuzConstants {
                         if ($data = file_get_contents($file["tmp_name"])) {
                             $options = json_decode($data, true);
                             if ($options && is_array($options)) {
-                                update_option(self::OPTION_SLUG_OPTIONS, $this->replaceOldOptions($options, false));
+                                $newOptions = $this->replaceOldOptions($options, false);
+                                if (isset($newOptions[self::TAB_CONTENT]["wmuMimeTypes"])) {
+                                    $newOptions[self::TAB_CONTENT]["wmuMimeTypes"] = $this->sanitizeImportedWmuMimeTypes($newOptions[self::TAB_CONTENT]["wmuMimeTypes"]);
+                                }
+                                if (isset($newOptions[self::TAB_CONTENT]["wmuThumbnailSizes"])) {
+                                    $newOptions[self::TAB_CONTENT]["wmuThumbnailSizes"] = $this->sanitizeImportedWmuThumbnailSizes($newOptions[self::TAB_CONTENT]["wmuThumbnailSizes"]);
+                                }
+                                update_option(self::OPTION_SLUG_OPTIONS, $newOptions);
                                 add_settings_error("wpdiscuz", "settings_updated", esc_html__("Options Imported Successfully!", "wpdiscuz"), "updated");
                             } else {
                                 add_settings_error("wpdiscuz", "settings_error", esc_html__("Error occured! File content is empty or data is not valid!", "wpdiscuz"), "error");
@@ -2202,6 +2209,89 @@ class WpdiscuzOptions implements WpDiscuzConstants {
 
     public function getDefaultThumbnailSizes() {
         return ["thumbnail", "medium", "medium_large", "large"];
+    }
+
+    /**
+     * Keeps only the extension => mime pairs that exist in the allowed file type list.
+     * Both the key and the stored value are taken from getDefaultFileTypes(), the
+     * incoming value is used only to detect that the option was checked.
+     */
+    private function sanitizeWmuMimeTypes($mimeTypes) {
+        $sanitized = [];
+        if (is_array($mimeTypes)) {
+            foreach ($this->getDefaultFileTypes() as $ext => $mime) {
+                if (isset($mimeTypes[$ext])) {
+                    $sanitized[$ext] = $mime;
+                }
+            }
+        }
+        return $sanitized;
+    }
+
+    /**
+     * Keeps only the image sizes currently registered in WordPress. The comparison is
+     * strict, so nested arrays or non string values can never match.
+     */
+    private function sanitizeWmuThumbnailSizes($sizes) {
+        $sanitized = [];
+        if (is_array($sizes)) {
+            foreach (get_intermediate_image_sizes() as $imageSize) {
+                if (in_array($imageSize, $sizes, true)) {
+                    $sanitized[] = $imageSize;
+                }
+            }
+        }
+        return $sanitized;
+    }
+
+    /**
+     * Imported options can carry file types added by an addon or by a filter which is not
+     * active on the target site yet, so getDefaultFileTypes() would silently drop them.
+     * The WordPress upload boundary is used instead - the extension must be uploadable in
+     * WordPress and every mime value is normalized.
+     */
+    private function sanitizeImportedWmuMimeTypes($mimeTypes) {
+        $sanitized = [];
+        if (is_array($mimeTypes)) {
+            $allowedExts = [];
+            foreach (get_allowed_mime_types() as $exts => $mime) {
+                foreach (explode("|", $exts) as $ext) {
+                    $allowedExts[$ext] = true;
+                }
+            }
+            foreach ($mimeTypes as $ext => $mime) {
+                if (!isset($allowedExts[(string)$ext]) || !is_string($mime)) {
+                    continue;
+                }
+                $mimes = [];
+                foreach (explode("|", $mime) as $singleMime) {
+                    if ($singleMime = sanitize_mime_type($singleMime)) {
+                        $mimes[] = $singleMime;
+                    }
+                }
+                if ($mimes) {
+                    $sanitized[(string)$ext] = implode("|", $mimes);
+                }
+            }
+        }
+        return $sanitized;
+    }
+
+    /**
+     * Imported image sizes are validated against the registered ones at render time, in
+     * WpdiscuzHelperUpload::getImageSizes(), so a size belonging to a theme which is not
+     * active yet is kept here and only the value type is enforced.
+     */
+    private function sanitizeImportedWmuThumbnailSizes($sizes) {
+        $sanitized = [];
+        if (is_array($sizes)) {
+            foreach ($sizes as $size) {
+                if (is_string($size) && ($size = sanitize_text_field($size))) {
+                    $sanitized[] = $size;
+                }
+            }
+        }
+        return $sanitized;
     }
 
     public function dashboard() {

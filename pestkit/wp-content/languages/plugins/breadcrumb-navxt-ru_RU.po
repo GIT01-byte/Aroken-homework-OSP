@@ -1,0 +1,889 @@
+# Translation of Plugins - Breadcrumb NavXT - Stable (latest release) in Russian
+# This file is distributed under the same license as the Plugins - Breadcrumb NavXT - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2026-08-12 08:43:24+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : ((n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14)) ? 1 : 2);\n"
+"X-Generator: GlotPress/4.0.3\n"
+"Language: ru\n"
+"Project-Id-Version: Plugins - Breadcrumb NavXT - Stable (latest release)\n"
+
+#: includes/blocks/build/breadcrumb-trail/block.json
+msgctxt "block keyword"
+msgid "breadcrumb trail"
+msgstr "путь навигационной цепочки"
+
+#: includes/blocks/build/breadcrumb-trail/block.json
+msgctxt "block keyword"
+msgid "navigation"
+msgstr "навигация"
+
+#: includes/blocks/build/breadcrumb-trail/block.json
+msgctxt "block keyword"
+msgid "breadcrumbs"
+msgstr "навигационные цепочки"
+
+#: includes/blocks/build/breadcrumb-trail/block.json
+msgctxt "block description"
+msgid "Displays a breadcrumb trail"
+msgstr "Отображает путь навигационной цепочки"
+
+#: includes/blocks/build/breadcrumb-trail/block.json
+msgctxt "block title"
+msgid "Breadcrumb Trail"
+msgstr "Путь навигационной цепочки"
+
+#: class.bcn_widget.php:128 includes/blocks/build/breadcrumb-trail/index.js:1
+msgid "Schema.org BreadcrumbList (RDFa) with WAI-ARIA"
+msgstr "Schema.org BreadcrumbList (RDFa) with WAI-ARIA"
+
+#: class.bcn_admin.php:432
+msgid "Value has been set via network wide setting."
+msgstr "Значение было установлено настройкой, влияющей на всю сеть."
+
+#. translators: %1$s: Export of the taxonomy object of the unexpected custom
+#. taxonomy
+#: class.bcn_admin.php:362
+msgid "Error: WP_Taxonomies global contains non WP_Taxonomy object. Debug information: %1$s"
+msgstr "Ошибка: глобальные WP_Taxonomies содержат объект, отличный от WP_Taxonomy. Отладочная информация: %1$s"
+
+#. translators: %1$s: Export of the post_type object of the unexpected CPT
+#: class.bcn_admin.php:333
+msgid "Error: WP_Post_Types global contains non WP_Post_Type object. Debug information: %1$s"
+msgstr "Ошибка: глобальные WP_Post_Types содержат объект, отличный от WP_Post_Type. Отладочная информация: %1$s"
+
+#: includes/adminKit/class-mtekk_adminkit.php:785
+msgid "No settings were imported. Settings from uploaded file matched existing settings."
+msgstr "Настройки не были импортированы. Настройки из загруженного файла совпали с существующими настройками."
+
+#: class.bcn_breadcrumb_trail.php:577
+msgid "$term global is not of type WP_Term"
+msgstr "$term global не имеет типа WP_Term"
+
+#. translators: %1$s: Taxonomy label, %2$s: Taxonomy name
+#: class.bcn_admin.php:375
+msgid "Warning: The taxonomy %1$s (%2$s) was registered after the Breadcrumb NavXT default settings. It will not show up in the settings."
+msgstr "Предупреждение: таксономия %1$s (%2$s) была зарегистрирована после установки настроек по умолчанию Breadcrumb NavXT. Она не будет отображаться в настройках."
+
+#. translators: %1$s: Post type singular name, %2$s: Post type name
+#: class.bcn_admin.php:346
+msgid "Warning: The post type %1$s (%2$s) was registered after the Breadcrumb NavXT default settings. It will not show up in the settings."
+msgstr "Предупреждение: Тип записи %1$s (%2$s) был зарегистрирован после настроек по умолчанию Breadcrumb NavXT. Он не будет отображаться в настройках."
+
+#. translators: %1$s: Name of the deprecated template tag found, %2$s:
+#. Recommended replacement tag for the deprecated tag, %3$s: The setting name
+#. where the deprecated tag was found
+#: class.bcn_admin.php:312
+msgid "Error: The deprecated template tag %1$s found in setting %3$s. Please use %2$s instead."
+msgstr "Ошибка: Обнаружена устаревшая метка шаблона %1$s в настройке %3$s. Пожалуйста, используйте вместо нее %2$s."
+
+#. translators: %1$s: HTML opening tag for link to article, %2$s: HTML closing
+#. tag for link to article
+#: class.bcn_admin.php:284
+msgid "Error: The deprecated setting \"Title Length\" (see Miscellaneous &gt; Deprecated) has no effect in this version Breadcrumb NavXT. Please %1$suse CSS instead%2$s."
+msgstr "Ошибка: Устаревшая настройка \"Длина заголовка\" (см. Разное &gt; Устаревшие) не имеет эффекта в этой версии Breadcrumb NavXT. Пожалуйста, %1$sиспользуйте CSS вместо этого%2$s."
+
+#: class.bcn_admin.php:167
+msgid "Translate"
+msgstr "Перевести"
+
+#: class.bcn_admin.php:165
+msgid "Donate"
+msgstr "Пожертвовать"
+
+#: class.bcn_admin.php:160
+msgid "Report a Bug"
+msgstr "Сообщить об ошибке"
+
+#: class.bcn_admin.php:159
+msgid "Check out the documentation for more indepth technical information."
+msgstr "Ознакомьтесь с документацией для получения более подробной технической информации."
+
+#: class.bcn_admin.php:158
+msgid "Online Documentation"
+msgstr "Онлайн документация"
+
+#: class.bcn_admin.php:157
+msgid "There are several guides, tutorials, and how tos available on the author's website."
+msgstr "На сайте автора есть несколько руководств, учебников и методических пособий."
+
+#: class.bcn_admin.php:156
+msgid "Tutorials and How Tos"
+msgstr "Учебники и рекомендации"
+
+#. translators: %u: Number of unknown legacy settings found, %s: comma
+#. separated list of the setting names
+#: class.bcn_admin.php:110
+msgid "Found %1$u unknown legacy settings: %2$s"
+msgstr "Найдено %1$u неизвестных унаследованных настроек: %2$s"
+
+#: breadcrumb-navxt.php:572
+msgid "Maximum Title Length"
+msgstr "Макс. размер заголовка"
+
+#: breadcrumb-navxt.php:566
+msgid "Limit Title Length"
+msgstr "Ограничение размера заголовка"
+
+#: breadcrumb-navxt.php:350
+msgid "Breadcrumb Separator (Higher Dimension)"
+msgstr "Сепаратор хлебных крошек (высшее измерение)"
+
+#: includes/adminKit/class-mtekk_adminkit.php:1148
+msgid "Import settings"
+msgstr "Импорт настроек"
+
+#: class.bcn_breadcrumb_trail.php:153
+msgid "Go to the %title% category archives."
+msgstr "Перейти к архиву рубрики %title%."
+
+#: breadcrumb-navxt.php:541 class.bcn_breadcrumb_trail.php:142
+msgid "Go to the first page of posts by %title%."
+msgstr "Перейти к первой странице записей по %title%."
+
+#. translators: %s: The post author name the current archive is for
+#. translators: %1$s: The post author name the current archive is for
+#: breadcrumb-navxt.php:540 breadcrumb-navxt.php:547
+#: class.bcn_breadcrumb_trail.php:141 class.bcn_breadcrumb_trail.php:146
+msgid "Articles by: %1$s"
+msgstr "Статьи по: %1$s"
+
+#: breadcrumb-navxt.php:530 class.bcn_breadcrumb_trail.php:134
+#: class.bcn_breadcrumb_trail.php:157
+msgid "Go to the %title% archives."
+msgstr "Перейти к архивам для  %title%."
+
+#: class.bcn_breadcrumb_trail.php:129
+msgid "Go to the %title% tag archives."
+msgstr "Перейти к архивам для метки %title%."
+
+#. translators: %title%: The searched phrase
+#: breadcrumb-navxt.php:520 class.bcn_breadcrumb_trail.php:122
+msgid "Go to the first page of search results for %title%."
+msgstr "Перейти к первой странице результатов поиска для %title%."
+
+#: class.bcn_breadcrumb.php:87
+msgid "Go to %title%."
+msgstr "Перейти к %title%."
+
+#. translators: %s: Singular name for the CPT
+#: class.bcn_admin.php:632
+msgid "Use the parent of the %s as the primary hierarchy, falling back to the hierarchy selected below when the parent hierarchy is exhausted."
+msgstr "Использовать родительскую %s как первичную иерархию, использовать иерархию ниже как запасной вариант при израсходовании родительской иерархии. "
+
+#. translators: %s: The singular name of the post type
+#: breadcrumb-navxt.php:437
+msgid "%s Hierarchy Use Parent First"
+msgstr "%s иерархия, сначала родитель"
+
+#. translators: %1$s: HTML opening tag for link to the support forums, %2$s:
+#. HTML closing tag for link to support forums
+#: includes/adminKit/class-mtekk_adminkit.php:701
+msgid "Go to the %s support forum."
+msgstr "Перейти на форум поддержки %s."
+
+#: class.bcn_widget.php:129 includes/blocks/build/breadcrumb-trail/index.js:1
+msgid "Schema.org BreadcrumbList (microdata)"
+msgstr "Schema.org список хлебных крошек (microdata)"
+
+#: class.bcn_widget.php:127 includes/blocks/build/breadcrumb-trail/index.js:1
+msgid "Schema.org BreadcrumbList (RDFa)"
+msgstr "Schema.org список хлебных крошек (RDFa)"
+
+#: class.bcn_rest_controller.php:112
+msgid "The ID of the author to retrieve the breadcrumb trail for."
+msgstr "ID автора для получения окончания хлебных крошек."
+
+#: class.bcn_rest_controller.php:98
+msgid "The taxonomy of the term to retrieve the breadcrumb trail for."
+msgstr "Таксономия элемента для получения окончания хлебных крошек."
+
+#: class.bcn_rest_controller.php:92
+msgid "The ID of the term to retrieve the breadcrumb trail for."
+msgstr "ID элемента для получения окончания хлебных крошек."
+
+#: class.bcn_rest_controller.php:78
+msgid "The ID of the post (any type) to retrieve the breadcrumb trail for."
+msgstr "ID записи (любого типа) для получения окончания хлебных крошек."
+
+#: breadcrumb-navxt.php:552 class.bcn_admin.php:755
+msgid "Author Root Page"
+msgstr "Корневая страница автора"
+
+#: class.bcn_breadcrumb.php:240
+msgid "bcn_breadcrumb::type must be an array"
+msgstr "bcn_breadcrumb::type должен быть массивом"
+
+#: includes/adminKit/class-mtekk_adminkit_message.php:44
+msgid "$uid must not be null if message is dismissible"
+msgstr "$id не должен быть пустым, если сообщение может быть закрыто"
+
+#: includes/adminKit/class-mtekk_adminkit.php:1074
+msgid "adminKit::message is deprecated, use new adminkit_messages instead."
+msgstr "adminKit::message устарел, вместо этого используйте новый adminkit_messages."
+
+#: class.bcn_widget.php:142
+msgid "Ignore breadcrumb cache"
+msgstr "Игнорировать кеш хлебных крошек"
+
+#. translators: %s: The singular name of the post type
+#: breadcrumb-navxt.php:419 breadcrumb-navxt.php:486
+msgid "%s Hierarchy Referer Influence"
+msgstr "Влияние реферера иерархии %s"
+
+#: class.bcn_admin.php:638
+msgid "Allow the referring page to influence the taxonomy selected for the hierarchy."
+msgstr "Разрешить ссылающейся странице влиять на таксономию, выбранную для иерархии."
+
+#: includes/adminKit/class-mtekk_adminkit.php:408
+msgid "One or more of your plugin settings are invalid."
+msgstr "Одна или более настроек для плагина неверны."
+
+#: includes/adminKit/class-mtekk_adminkit.php:391
+msgid "Attempt back migration now."
+msgstr "Попробовать миграцию сейчас."
+
+#: includes/adminKit/class-mtekk_adminkit.php:390
+msgid "Your settings are for a newer version of this plugin."
+msgstr "Ваши настройки сделаны для более новой версии этого плагина."
+
+#: includes/adminKit/class-mtekk_adminkit.php:380
+msgid "Your settings are for an older version of this plugin and need to be migrated."
+msgstr "Ваши настройки сделаны для старой версии этого плагина и должны обновлены."
+
+#: class.bcn_breadcrumb_trail.php:678
+msgctxt "year archive breadcrumb date format"
+msgid "Y"
+msgstr "Y"
+
+#: class.bcn_breadcrumb_trail.php:646
+msgctxt "month archive breadcrumb date format"
+msgid "F"
+msgstr "F"
+
+#: class.bcn_breadcrumb_trail.php:614
+msgctxt "day archive breadcrumb date format"
+msgid "d"
+msgstr "d"
+
+#: breadcrumb-navxt.php:360
+msgctxt "Paged as in when on an archive or post that is split into multiple pages"
+msgid "Paged Template"
+msgstr "Страничный шаблон"
+
+#: class.bcn_admin.php:473
+msgid "Place the page number breadcrumb in the trail."
+msgstr "Поместите навигационную цепочку номера страницы в след."
+
+#: breadcrumb-navxt.php:364
+msgctxt "Paged as in when on an archive or post that is split into multiple pages"
+msgid "Paged Breadcrumb"
+msgstr "Постраничная навигационная цепочка"
+
+#: class.bcn_admin.php:168
+msgid "Is your language not available? Visit the Breadcrumb NavXT translation project on WordPress.org to start translating."
+msgstr "Ваш язык недоступен? Посетите проект перевода Breadcrumb NavXT на WordPress.org, чтобы начать перевод."
+
+#. Author URI of the plugin
+#: breadcrumb-navxt.php
+msgid "http://mtekk.us/"
+msgstr "http://mtekk.us/"
+
+#. Author of the plugin
+#: breadcrumb-navxt.php
+msgid "John Havlik"
+msgstr "John Havlik"
+
+#. Description of the plugin
+#: breadcrumb-navxt.php
+msgid "Adds a breadcrumb navigation showing the visitor&#39;s path to their current location. For details on how to use this plugin visit <a href=\"http://mtekk.us/code/breadcrumb-navxt/\">Breadcrumb NavXT</a>."
+msgstr "Добавить \"хлебные крошки\", показывающие посетителям путь до их текущего положения на сайте. Подробнее об установке и настройке плагина вы можете узнать на сайте <a href=\"http://mtekk.us/code/breadcrumb-navxt/\">Breadcrumb NavXT</a>."
+
+#. Plugin URI of the plugin
+#: breadcrumb-navxt.php
+msgid "http://mtekk.us/code/breadcrumb-navxt/"
+msgstr "http://mtekk.us/code/breadcrumb-navxt/"
+
+#. Plugin Name of the plugin
+#: breadcrumb-navxt.php
+msgid "Breadcrumb NavXT"
+msgstr "Breadcrumb NavXT"
+
+#: includes/adminKit/class-mtekk_adminkit.php:1155
+msgid "Select a JSON or XML settings file to upload and import settings from."
+msgstr "Выберите JSON или XML-файл настроек для импорта."
+
+#: includes/adminKit/class-mtekk_adminkit.php:1152
+msgid "Settings File"
+msgstr "Файл настроек"
+
+#: includes/adminKit/class-mtekk_adminkit.php:1149
+msgid "Import settings from a JSON or XML file, export the current settings to a JSON file, or reset to the default settings."
+msgstr "Импорт настроек из JSON или XML, экспорт настроек в JSON-файл, или сброс настроек к исходным значениям."
+
+#: includes/adminKit/class-mtekk_adminkit.php:1021
+msgid "Default settings successfully installed."
+msgstr "Дефолтные настройки были удачно установлены."
+
+#: includes/adminKit/class-mtekk_adminkit.php:1014
+msgid "Settings successfully migrated."
+msgstr "Настройки удачно обновлены."
+
+#: includes/adminKit/class-mtekk_adminkit.php:973
+msgid "Undo the last undo operation."
+msgstr "Отменить отмену последней операции."
+
+#: includes/adminKit/class-mtekk_adminkit.php:972
+msgid "Settings successfully undid the last operation."
+msgstr "Последняя операция была удачно отменена."
+
+#: includes/adminKit/class-mtekk_adminkit.php:951
+msgid "Undo the options reset."
+msgstr "Отменить сброс настроек."
+
+#: includes/adminKit/class-mtekk_adminkit.php:950
+msgid "Settings successfully reset to the default values."
+msgstr "Настройки удачно сброшены на дефолтные значения."
+
+#: includes/adminKit/class-mtekk_adminkit.php:799
+#: includes/adminKit/class-mtekk_adminkit.php:927
+msgid "Importing settings from file failed."
+msgstr "Импортируемые настройки испорчены."
+
+#: includes/adminKit/class-mtekk_adminkit.php:781
+#: includes/adminKit/class-mtekk_adminkit.php:922
+msgid "Undo the options import."
+msgstr "Отменить импорт настроек."
+
+#: includes/adminKit/class-mtekk_adminkit.php:780
+#: includes/adminKit/class-mtekk_adminkit.php:921
+msgid "Settings successfully imported from the uploaded file."
+msgstr "Настройки удачно импортированы из загруженного файла."
+
+#. translators: %1$s: HTML opening tag for link to the support forums, %2$s:
+#. HTML closing tag for link to support forums
+#: includes/adminKit/class-mtekk_adminkit.php:701
+msgid "Please include this message in your %1$sbug report%2$s."
+msgstr "Включить это сообщение в отчет об ошибке %1$s%2$s."
+
+#: includes/adminKit/class-mtekk_adminkit.php:695
+msgid "The following settings were not saved:"
+msgstr "Следующие настройки не были сохранены:"
+
+#: includes/adminKit/class-mtekk_adminkit.php:693
+msgid "Some settings were not saved."
+msgstr "Некоторые настройки не были сохранены."
+
+#: includes/adminKit/class-mtekk_adminkit.php:688
+msgid "Settings were not saved."
+msgstr "Настройки не были сохранены."
+
+#: includes/adminKit/class-mtekk_adminkit.php:684
+msgid "Settings did not change, nothing to save."
+msgstr "Настройки не изменились, нечего сохранять."
+
+#: includes/adminKit/class-mtekk_adminkit.php:680
+#: includes/adminKit/class-mtekk_adminkit.php:694
+#: includes/adminKit/class-mtekk_adminkit.php:781
+#: includes/adminKit/class-mtekk_adminkit.php:922
+#: includes/adminKit/class-mtekk_adminkit.php:951
+#: includes/adminKit/class-mtekk_adminkit.php:973
+msgid "Undo"
+msgstr "Отменить"
+
+#: includes/adminKit/class-mtekk_adminkit.php:680
+#: includes/adminKit/class-mtekk_adminkit.php:694
+msgid "Undo the options save."
+msgstr "Отменить сохранение настроек."
+
+#: includes/adminKit/class-mtekk_adminkit.php:679
+msgid "Settings successfully saved."
+msgstr "Настройки удачно сохранены."
+
+#: includes/adminKit/class-mtekk_adminkit.php:409
+msgid "Fix now."
+msgstr "Исправить сейчас."
+
+#: includes/adminKit/class-mtekk_adminkit.php:409
+msgid "Attempt to fix settings now."
+msgstr "Попытаться исправить настройки сейчас."
+
+#: includes/adminKit/class-mtekk_adminkit.php:400
+msgid "Complete now."
+msgstr "Сделать сейчас."
+
+#: includes/adminKit/class-mtekk_adminkit.php:400
+msgid "Load default settings now."
+msgstr "Загрузить дефолтные настройки."
+
+#: includes/adminKit/class-mtekk_adminkit.php:399
+msgid "Your plugin install is incomplete."
+msgstr "Установка плагина некорректна."
+
+#: includes/adminKit/class-mtekk_adminkit.php:381
+msgid "Migrate now."
+msgstr "Обновить сейчас."
+
+#: includes/adminKit/class-mtekk_adminkit.php:381
+#: includes/adminKit/class-mtekk_adminkit.php:391
+msgid "Migrate the settings now."
+msgstr "Обновить настройки сейчас."
+
+#: includes/adminKit/class-mtekk_adminkit.php:303
+msgid "Settings"
+msgstr "Настройки"
+
+#: class.bcn_widget.php:140
+msgid "Hide the trail on the front page"
+msgstr "Не показывать виджет на главной"
+
+#: class.bcn_widget.php:138 includes/blocks/build/breadcrumb-trail/index.js:1
+msgid "Reverse the order of the trail"
+msgstr "Обратная сортировка пути"
+
+#: class.bcn_widget.php:136 includes/blocks/build/breadcrumb-trail/index.js:1
+msgid "Link the breadcrumbs"
+msgstr "Путь в виде ссылок"
+
+#: class.bcn_widget.php:130
+msgid "Plain"
+msgstr "Простой"
+
+#: class.bcn_widget.php:126
+msgid "List"
+msgstr "Список"
+
+#: class.bcn_widget.php:124
+msgid "Output trail as:"
+msgstr "Выводить путь как:"
+
+#: class.bcn_widget.php:120
+msgid "Text to show before the trail:"
+msgstr "Текст, выводимый перед путем:"
+
+#: class.bcn_widget.php:116
+msgid "Title:"
+msgstr "Заголовок:"
+
+#: class.bcn_widget.php:30
+msgid "Adds a breadcrumb trail to your sidebar"
+msgstr "\"Хлебные крошки\" в вашем сайдбаре."
+
+#: class.bcn_network_admin.php:45
+msgid "Breadcrumb NavXT Network Settings"
+msgstr "Сетевые настройки"
+
+#: class.bcn_network_admin.php:179 class.bcn_network_admin.php:183
+msgid "Warning: Individual site settings may override any settings set in this page."
+msgstr "Внимание: настройки индивидуального сайта могут переопределить любую настройку на этой странице."
+
+#: class.bcn_network_admin.php:171 class.bcn_network_admin.php:189
+msgid "Warning: Individual site settings will override any settings set in this page."
+msgstr "Внимание: настройки индивидуального сайта перезапишут любую настройку, указанную на этой странице."
+
+#: class.bcn_breadcrumb_trail.php:522
+msgid "$post global is not of type WP_Post"
+msgstr "$post не тип WP_Post"
+
+#. translators: %s: The searched phrase
+#. translators: %1$s: The searched phrase
+#: breadcrumb-navxt.php:519 breadcrumb-navxt.php:526
+#: class.bcn_breadcrumb_trail.php:120 class.bcn_breadcrumb_trail.php:126
+msgid "Search results for &#39;%1$s&#39;"
+msgstr "Результаты поиска для запроса: &#39;%1$s&#39;"
+
+#: breadcrumb-navxt.php:513 class.bcn_breadcrumb_trail.php:115
+msgid "404"
+msgstr "404. Страница не найдена"
+
+#. translators: %htitle%: The page title which may contain HTML
+#. translators: %htitle%: The page title which may contain HTML, in this case
+#. it should be a number as it is when on a paginated archive
+#: breadcrumb-navxt.php:359 class.bcn_breadcrumb_trail.php:78
+msgid "Page %htitle%"
+msgstr "Страница %htitle%"
+
+#: class.bcn_admin.php:819
+msgid "Save Changes"
+msgstr "Сохранить изменения"
+
+#: class.bcn_admin.php:811
+msgid "The template for 404 breadcrumbs."
+msgstr "Шаблон текста в пути для 404 страницы."
+
+#: breadcrumb-navxt.php:510
+msgid "404 Template"
+msgstr "Шаблон текста для 404 страницы"
+
+#: breadcrumb-navxt.php:514
+msgid "404 Title"
+msgstr "Страница 404 (не найдено)"
+
+#: class.bcn_admin.php:800
+msgid "The anchor template for search breadcrumbs, used only when the search results span several pages and the breadcrumb is not linked."
+msgstr "Шаблон ссылки на страницу с результатами поиска (когда страница с результатами поиска разделена постраничной навигацией и когда ссылка на страницу с результатами поиска некликабельна)."
+
+#: breadcrumb-navxt.php:527
+msgid "Search Template (Unlinked)"
+msgstr "Шаблон ссылки на страницу с результатами поиска (некликабельная)"
+
+#: class.bcn_admin.php:794
+msgid "The anchor template for search breadcrumbs, used only when the search results span several pages."
+msgstr "Шаблон ссылки на страницу с результатами поиска (используется только, когда страница с результатами поиска разделена постраничной навигацией)."
+
+#: breadcrumb-navxt.php:521
+msgid "Search Template"
+msgstr "Шаблон ссылки на страницу с результатами поиска"
+
+#: class.bcn_admin.php:788
+msgid "The template for date breadcrumbs, used only when the breadcrumb is not linked."
+msgstr "Шаблон ссылки на архив по дате (когда ссылка на архив по дате некликабельна)."
+
+#: breadcrumb-navxt.php:535
+msgid "Date Template (Unlinked)"
+msgstr "Шаблон ссылки на архив по дате (некликабельная)"
+
+#: class.bcn_admin.php:782
+msgid "The template for date breadcrumbs."
+msgstr "Шаблон ссылки на архив по дате."
+
+#: breadcrumb-navxt.php:531
+msgid "Date Template"
+msgstr "Шаблон ссылки на архив по дате"
+
+#: class.bcn_admin.php:749
+msgid "display_name uses the name specified in \"Display name publicly as\" under the user profile the others correspond to options in the user profile."
+msgstr "display_name отображает имя автора так, как указано у него в профиле в опции  \"Отображать как\"."
+
+#: breadcrumb-navxt.php:556
+msgid "Author Display Format"
+msgstr "Формат имени автора"
+
+#: class.bcn_admin.php:743
+msgid "The template for author breadcrumbs, used only when the breadcrumb is not linked."
+msgstr "Шаблон ссылки на автора (когда ссылка на автора некликабельна)."
+
+#: breadcrumb-navxt.php:548
+msgid "Author Template (Unlinked)"
+msgstr "Шаблон ссылки на автора (некликабельная)"
+
+#: class.bcn_admin.php:737
+msgid "The template for author breadcrumbs."
+msgstr "Шаблон ссылки на автора."
+
+#: breadcrumb-navxt.php:542
+msgid "Author Template"
+msgstr "Шаблон ссылки на автора"
+
+#: class.bcn_admin.php:730
+msgid "Author Archives"
+msgstr "Архивы по автору"
+
+#: class.bcn_admin.php:729 class.bcn_admin.php:775
+msgid "Miscellaneous"
+msgstr "Другое"
+
+#: class.bcn_admin.php:729
+msgid "The settings for author and date archives, searches, and 404 pages are located under this tab."
+msgstr "Настройки архивов по автору, дате, поиску и 404 ошибки."
+
+#: class.bcn_admin.php:693
+msgid "Taxonomies"
+msgstr "Таксономии"
+
+#: class.bcn_admin.php:693
+msgid "The settings for all taxonomies (including Categories, Tags, and custom taxonomies) are located under this tab."
+msgstr "Настройки таксономий (рубрики, метки и произвольные таксономии)."
+
+#: class.bcn_admin.php:672
+msgid "The hierarchy which the breadcrumb trail will show."
+msgstr "Путь будет строиться по выбранной иерархии."
+
+#. translators: %s: Singular name for the CPT
+#: class.bcn_admin.php:646
+msgid "%s Hierarchy"
+msgstr "%s иерархия"
+
+#. translators: %s: Singular name for the CPT
+#: class.bcn_admin.php:625
+msgid "Show the hierarchy (specified below) leading to a %s in the breadcrumb trail."
+msgstr "Показать иерархию (определенную ниже), указывающую на %s в хлебных крошках."
+
+#. translators: %s: The singular name of the post type
+#: breadcrumb-navxt.php:481
+msgid "%s Hierarchy Display"
+msgstr "%s вывод иерархии"
+
+#. translators: %s: Post type singlar name
+#: class.bcn_admin.php:609
+msgid "Show the breadcrumb for the %s post type archives in the breadcrumb trail."
+msgstr "Показывать путь для %s архивов типов записей."
+
+#. translators: %s: The singular name of the post type
+#: breadcrumb-navxt.php:414
+msgid "%s Archive Display"
+msgstr "%s Архив"
+
+#: class.bcn_admin.php:592 class.bcn_admin.php:762
+msgid "&mdash; Select &mdash;"
+msgstr "&mdash; Выбор &mdash;"
+
+#. translators: %s: The singular name of the post type
+#. translators: %s: Singular name for the CPT
+#: breadcrumb-navxt.php:400 class.bcn_admin.php:584
+msgid "%s Root Page"
+msgstr "%s Главная страница"
+
+#. translators: %s: Singular name for the CPT
+#. translators: %s: Taxonomy name
+#: class.bcn_admin.php:576 class.bcn_admin.php:720
+msgid "The template for %s breadcrumbs, used only when the breadcrumb is not linked."
+msgstr "Шаблон для %s пути (когда %1$s путь некликабелен)."
+
+#. translators: %s: The singular name of the post type
+#. translators: %s: The singular name of the taxonomy
+#: breadcrumb-navxt.php:382 breadcrumb-navxt.php:504
+msgid "%s Template (Unlinked)"
+msgstr "%s Шаблон  (некликабельная)"
+
+#. translators: %s: Singular name for the CPT
+#. translators: %s: Taxonomy name
+#: class.bcn_admin.php:569 class.bcn_admin.php:713
+msgid "The template for %s breadcrumbs."
+msgstr "Шаблон для %s пути."
+
+#. translators: %s: The singular name of the post type
+#. translators: %s: The singular name of the taxonomy
+#: breadcrumb-navxt.php:377 breadcrumb-navxt.php:499
+msgid "%s Template"
+msgstr "%s Шаблон"
+
+#: class.bcn_admin.php:676
+msgid "The hierarchy which the breadcrumb trail will show. Note that the \"Post Parent\" option may require an additional plugin to behave as expected since this is a non-hierarchical post type."
+msgstr "Иерархия, согласно которой будут выведены \"хлебные крошки\". Помните, что при выборе \"Post Parent\" может потребоваться дополнительный плагин,  так это не иерархический тип записей."
+
+#: class.bcn_admin.php:651
+msgid "Post Parent"
+msgstr "Под-страницы"
+
+#: class.bcn_admin.php:652
+msgid "Dates"
+msgstr "Даты"
+
+#: class.bcn_admin.php:549
+msgid "Post Types"
+msgstr "Записи и страницы"
+
+#: class.bcn_admin.php:549
+msgid "The settings for all post types (Posts, Pages, and Custom Post Types) are located under this tab."
+msgstr "Настройки для всех типов записей (записи, страницы, записи произвольного типа)."
+
+#: class.bcn_admin.php:541
+msgid "The template for the main site home breadcrumb, used only in multisite environments and when the breadcrumb is not linked."
+msgstr "Шаблон ссылки на главный сайт (используется только при включенном режиме мультисайта  и только, когда ссылка на главный сайт некликабельна)."
+
+#: breadcrumb-navxt.php:325
+msgid "Main Site Home Template (Unlinked)"
+msgstr "Шаблон ссылки на главный сайт (некликабельная)."
+
+#: class.bcn_admin.php:535
+msgid "The template for the main site home breadcrumb, used only in multisite environments."
+msgstr "Шаблон ссылки на главный сайт (используется только при включенном режиме мультисайта)."
+
+#: breadcrumb-navxt.php:321
+msgid "Main Site Home Template"
+msgstr "Шаблон ссылки на главный сайт"
+
+#: class.bcn_admin.php:527
+msgid "Place the main site home breadcrumb in the trail in an multisite setup."
+msgstr "Поместить ссылку на главный сайт в путь (при включенном режиме мультисайта)."
+
+#: breadcrumb-navxt.php:317
+msgid "Main Site Breadcrumb"
+msgstr "Ссылка на главный сайт"
+
+#: class.bcn_admin.php:522
+msgid "Mainsite Breadcrumb"
+msgstr "Ссылка на главный сайт"
+
+#: class.bcn_admin.php:515
+msgid "Place the blog breadcrumb in the trail."
+msgstr "Поместить ссылку на блог в путь."
+
+#: breadcrumb-navxt.php:341 class.bcn_admin.php:510
+msgid "Blog Breadcrumb"
+msgstr "Ссылка на блог"
+
+#: class.bcn_admin.php:505
+msgid "The template for the home breadcrumb, used when the breadcrumb is not linked."
+msgstr "Шаблон ссылки для главной страницы блога (когда ссылка на главную некликабельна)."
+
+#: breadcrumb-navxt.php:337
+msgid "Home Template (Unlinked)"
+msgstr "Шаблон ссылки на главную (некликабельная)"
+
+#: class.bcn_admin.php:499
+msgid "The template for the home breadcrumb."
+msgstr "Шаблон ссылки для главной страницы блога."
+
+#: breadcrumb-navxt.php:333
+msgid "Home Template"
+msgstr "Шаблон ссылки на главную"
+
+#: class.bcn_admin.php:491
+msgid "Place the home breadcrumb in the trail."
+msgstr "Поместить ссылку на главную страницу блога в путь."
+
+#: breadcrumb-navxt.php:329 class.bcn_admin.php:486
+msgid "Home Breadcrumb"
+msgstr "Ссылка на главную"
+
+#: class.bcn_admin.php:481
+msgid "The template for paged breadcrumbs."
+msgstr "Шаблон для страниц с постраничной навигацией."
+
+#: class.bcn_admin.php:475
+msgid "Indicates that the user is on a page other than the first of a paginated archive or post."
+msgstr "В текущей позиции будет указан номер страницы, если посетитель находится на странице, образованной постраничной навигацией."
+
+#: class.bcn_admin.php:467
+msgid "Yes"
+msgstr "Да"
+
+#: breadcrumb-navxt.php:355
+msgid "Link Current Item"
+msgstr "Показывать текущую позицию в виде ссылки"
+
+#: class.bcn_admin.php:462
+msgid "Current Item"
+msgstr "Текущая позиция"
+
+#: class.bcn_admin.php:458
+msgid "Placed in between each breadcrumb."
+msgstr "Устанавливается между ссылками."
+
+#: breadcrumb-navxt.php:345
+msgid "Breadcrumb Separator"
+msgstr "Разделитель навигационной цепочки"
+
+#: class.bcn_admin.php:454
+msgid "A collection of settings most likely to be modified are located under this tab."
+msgstr "Основные настройки."
+
+#: class.bcn_admin.php:66
+msgid "Breadcrumb NavXT Settings"
+msgstr "Настройки Breadcrumb NavXT"
+
+#: class.bcn_admin.php:285
+msgid "Go to the guide on trimming breadcrumb title lengths with CSS"
+msgstr "Перейти в руководство по обрезке длины хлебных крошек через CSS"
+
+#: class.bcn_admin.php:269 class.bcn_network_admin.php:188
+msgid "Warning: No BCN_SETTINGS_* define statement found, defaulting to BCN_SETTINGS_USE_LOCAL."
+msgstr "Внимание: не найден аргумент BCN_SETTINGS_*, будут установлены значения по умолчанию BCN_SETTINGS_USE_LOCAL."
+
+#: class.bcn_admin.php:260 class.bcn_admin.php:264
+msgid "Warning: Your network settings may override any settings set in this page."
+msgstr "Внимание: ваши сетевые настройки могут переопределить любые настройки, указанные на этой странице."
+
+#: class.bcn_admin.php:256
+msgid "Warning: Your network settings will override any settings set in this page."
+msgstr "Внимание: ваши сетевые настройки перезапишут любую настройку, указанную на этой странице."
+
+#: class.bcn_admin.php:238 includes/adminKit/class-mtekk_adminkit.php:1159
+msgid "Reset"
+msgstr "Сброс"
+
+#: class.bcn_admin.php:237 includes/adminKit/class-mtekk_adminkit.php:1158
+msgid "Export"
+msgstr "Экспорт"
+
+#: class.bcn_admin.php:236 includes/adminKit/class-mtekk_adminkit.php:1157
+msgid "Import"
+msgstr "Импорт"
+
+#: class.bcn_admin.php:213
+msgid "Import/Export/Reset"
+msgstr "Импорт/Экспорт/Сброс"
+
+#: class.bcn_admin.php:207
+msgid "Styling"
+msgstr "Стиль"
+
+#: class.bcn_admin.php:195
+msgid "Using the code from the Quick Start section above, the following CSS can be used as base for styling your breadcrumb trail."
+msgstr "Следующий CSS-код может быть использован для оформления стиля пути."
+
+#: class.bcn_admin.php:192
+msgid "Quick Start"
+msgstr "Быстрый старт"
+
+#: class.bcn_admin.php:183
+msgid "Breadcrumb trail in list form"
+msgstr "Путь в формате list"
+
+#: class.bcn_admin.php:177
+msgid "Breadcrumb trail with separators"
+msgstr "Путь с разделителями"
+
+#: class.bcn_admin.php:176
+msgid "For the settings on this page to take effect, you must either use the included Breadcrumb NavXT widget, or place either of the code sections below into your theme."
+msgstr "Для использования плагина вы должны или использовать соответствующий виджет или поместить указанные примеры кода в нужный файл вашего шаблона."
+
+#: class.bcn_admin.php:173 class.bcn_admin.php:454 class.bcn_admin.php:455
+msgid "General"
+msgstr "Основные"
+
+#: class.bcn_admin.php:167
+msgid "Go to the Breadcrumb NavXT translation project."
+msgstr "Перейти на сайт перевода Breadcrumb NavXT"
+
+#: class.bcn_admin.php:164
+msgid "Go to PayPal to give a donation to Breadcrumb NavXT."
+msgstr "Перейти к сайту PayPal, чтобы сделать пожертвование автору плагина Breadcrumb NavXT."
+
+#: class.bcn_admin.php:166
+msgid "Love Breadcrumb NavXT and want to help development? Consider buying the author a beer."
+msgstr "Любите Breadcrumb NavXT и хотите помочь развитию? Подумайте о том, чтобы угостить автора пивом."
+
+#: class.bcn_admin.php:163
+msgid "Giving Back"
+msgstr "Внести свой вклад"
+
+#: class.bcn_admin.php:160
+msgid "Go to the Breadcrumb NavXT support post for your version."
+msgstr "Сообщить об ошибке плагина Breadcrumb NavXT вашей версии."
+
+#: class.bcn_admin.php:161
+msgid "If you think you have found a bug, please include your WordPress version and details on how to reproduce the bug."
+msgstr "Если вы нашли ошибку в работе плагина, то сообщите о ней автору. Не забудьте указать версию WordPress и ситуацию, при которой можно воспроизвести ошибку."
+
+#: class.bcn_admin.php:158
+msgid "Go to the Breadcrumb NavXT online documentation"
+msgstr "Перейти на сайт с онлайн документацией по плагину Breadcrumb NavXT."
+
+#: class.bcn_admin.php:156
+msgid "Go to the Breadcrumb NavXT tag archive."
+msgstr "Все записи с тегом  'Breadcrumb NavXT'."
+
+#: class.bcn_admin.php:155
+msgid "Resources"
+msgstr "Ресурсы"
+
+#: class.bcn_admin.php:154
+msgid "Tips for the settings are located below select options."
+msgstr "Различные подсказки по работе с плагином."
+
+#: includes/adminKit/class-mtekk_adminkit.php:197
+msgid "Insufficient privileges to proceed."
+msgstr "Недостаточно прав для продолжения."
+
+#. translators: %1$s: User's version of PHP, %2$s: Breadcrmb NavXT minimuum PHP
+#. version
+#: breadcrumb-navxt.php:37 class.bcn_admin.php:27
+#: class.bcn_rest_controller.php:27 options_upgrade.php:27
+msgid "Your PHP version is too old, please upgrade to a newer version. Your version is %1$s, Breadcrumb NavXT requires %2$s"
+msgstr "Ваша версия PHP устарела, пожалуйста обновите ее. У вас версия %1$s, Breadcrumb NavXT требует %2$s"
