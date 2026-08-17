@@ -56,15 +56,26 @@
                     </h4>
                     <?php
                     if (have_rows("footer_contact_info_repeater", "options")):
-                        while (have_rows("footer_contact_info_repeater", "options")) : the_row(); ?>
+                        while (have_rows("footer_contact_info_repeater", "options")) : the_row();
+                            $is_link = get_sub_field("is_link");
+                            if ($is_link) { ?>
 
-                            <a
-                                href="<?php the_sub_field('link'); ?>"
-                                class="btn btn-link w-100 text-start ps-0 pb-3 border-bottom rounded-0">
-                                <i class="fa fa-<?php the_sub_field('icon_name'); ?> me-3"></i>
-                                <?php the_sub_field('text'); ?>
-                            </a>
+                                <a
+                                    href="<?php the_sub_field('link'); ?>"
+                                    class="btn btn-link w-100 text-start ps-0 pb-3 border-bottom rounded-0">
+                                    <i class="fa fa-<?php the_sub_field('icon_name'); ?> me-3"></i>
+                                    <?php the_sub_field('text'); ?>
+                                </a>
 
+                            <?php } else { ?>
+
+                                <div
+                                    class=" w-100 text-start ps-0 pb-3 border-bottom rounded-0">
+                                    <i class="fa fa-<?php the_sub_field('icon_name'); ?> me-3"></i>
+                                    <?php the_sub_field('text'); ?>
+                                </div>
+
+                            <?php } ?>
                     <?php
                         endwhile;
                     else :

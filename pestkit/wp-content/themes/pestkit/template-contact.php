@@ -48,58 +48,70 @@ get_header();
             </div>
         </div>
         <div class="row g-4 wow fadeInUp" data-wow-delay=".3s">
-            <div class="col-xxl-3 col-lg-6 col-md-6 col-sm-12">
-                <div class="d-flex bg-light p-3 rounded contact-btn-link">
-                    <div class="flex-shrink-0 d-flex align-items-center justify-content-center bg-primary rounded-circle p-3 ms-3" style="width: 64px; height: 64px;">
-                        <i class="fa fa-share text-dark"></i>
-                    </div>
-                    <div class="ms-3 contact-link">
-                        <h4 class="text-dark">fallow Us</h4>
-                        <div class="d-flex justify-content-center">
-                            <a class="pe-2" href="#"><i class="fab fa-facebook-f text-dark"></i></a>
-                            <a class="px-2" href="#"><i class="fab fa-twitter text-dark"></i></a>
-                            <a class="px-2" href="#"><i class="fab fa-instagram text-dark"></i></a>
-                            <a class="px-2" href="#"><i class="fab fa-linkedin-in text-dark"></i></a>
-                            <a class="px-2" href="#"><i class="fab fa-youtube text-dark"></i></a>
+            <?php
+            if (have_rows('about_contact_info_repeater')):
+                while (have_rows('about_contact_info_repeater')) : the_row();
+                    $content_type = get_sub_field("content_type") ?>
+
+                    <div class="col-xxl-3 col-lg-6 col-md-6 col-sm-12">
+                        <div class="d-flex bg-light p-3 rounded contact-btn-link">
+                            <div class="flex-shrink-0 d-flex align-items-center justify-content-center bg-primary rounded-circle p-3 ms-3" style="width: 64px; height: 64px;">
+                                <i class="<?php the_sub_field('icon_class'); ?> text-dark"></i>
+                            </div>
+                            <div class="ms-3 contact-link">
+                                <h4 class="text-dark">
+                                    <?php the_sub_field('title'); ?>
+                                </h4>
+
+                                <?php if ($content_type === "social_links") { ?>
+
+                                    <div class="d-flex justify-content-center">
+                                        <?php
+                                        if (have_rows('social_links_repeater')):
+                                            while (have_rows('social_links_repeater')) : the_row(); ?>
+
+                                                <a class="pe-2" href="<?php echo get_sub_field('link') ?>">
+                                                    <i class="fab fa-<?php echo get_sub_field('social') ?> text-dark"></i>
+                                                </a>
+
+                                        <?php
+                                            endwhile;
+                                        else :
+                                            echo "Ошибка. Поля не найдены";
+                                        endif;
+                                        ?>
+
+                                    </div>
+
+                                    <?php } else if ($content_type === "text_info") {
+                                    $is_link = get_sub_field("is_link");
+                                    if ($is_link) { ?>
+
+                                        <a
+                                            href="<?php the_sub_field('link'); ?>">
+                                            <h5 class="text-dark d-inline fs-6">
+                                                <?php the_sub_field('text'); ?>
+                                            </h5>
+                                        </a>
+
+                                    <?php } else { ?>
+
+                                        <h5 class="text-dark d-inline fs-6">
+                                            <?php the_sub_field('text'); ?>
+                                        </h5>
+
+                                    <?php } ?>
+
+                                <?php } ?>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-xxl-3 col-lg-6 col-md-6 col-sm-12">
-                <div class="d-flex bg-light p-3 rounded contact-btn-link">
-                    <div class="d-flex align-items-center justify-content-center bg-primary rounded-circle p-3 ms-3" style="width: 64px; height: 64px;">
-                        <i class="fas fa-map-marker-alt text-dark"></i>
-                    </div>
-                    <div class="ms-3 contact-link">
-                        <h4 class="text-dark">Address</h4>
-                        <a href="#">
-                            <h5 class="text-dark d-inline fs-6">123 Street, CA, USA</h5>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xxl-3 col-lg-6 col-md-6 col-sm-12">
-                <div class="d-flex bg-light p-3 rounded contact-btn-link">
-                    <div class="d-flex align-items-center justify-content-center bg-primary rounded-circle p-3 ms-3" style="width: 64px; height: 64px;">
-                        <i class="fa fa-phone text-dark"></i>
-                    </div>
-                    <div class="ms-3 contact-link">
-                        <h4 class="text-dark">Call Us</h4>
-                        <a class="h5 text-dark fs-6" href="tel:+0123456789">+012 3456 7890</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xxl-3 col-lg-6 col-md-6 col-sm-12">
-                <div class="d-flex bg-light p-3 rounded contact-btn-link">
-                    <div class="d-flex align-items-center justify-content-center bg-primary rounded-circle p-3 ms-3" style="width: 64px; height: 64px;">
-                        <i class="fa fa-envelope text-dark"></i>
-                    </div>
-                    <div class="ms-3 contact-link">
-                        <h4 class="text-dark">Email Us</h4>
-                        <a class="h5 text-dark fs-6" href="#">info@example.com</a>
-                    </div>
-                </div>
-            </div>
+            <?php
+                endwhile;
+            else :
+                echo "Ошибка. Поля не найдены";
+            endif;
+            ?>
         </div>
     </div>
 </div>
