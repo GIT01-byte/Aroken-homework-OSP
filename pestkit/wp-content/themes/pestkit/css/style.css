@@ -527,6 +527,64 @@
     position: relative;
 }
 
+/* 1. ВЫРАВНИВАНИЕ КАРТОЧЕК: Растягиваем все слайды карусели до одинаковой высоты */
+.blog-carousel .owl-stage {
+    display: flex;
+}
+
+.blog-carousel .owl-item {
+    display: flex;
+}
+
+/* Сама карточка становится flex-контейнером */
+.blog-item {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* Занимает всю ширину слайда */
+    height: 100%;
+    /* Растягивается по максимальной высоте в ряду */
+    background: #ffffff;
+}
+
+/* 2. ВЫРАВНИВАНИЕ КОНТЕНТА: Заставляем текстовый блок занять всё свободное место */
+.blog-item .rounded-bottom.bg-light {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    /* Толкает плашку с кнопками в самый низ */
+}
+
+/* Блок с заголовком и текстом */
+.blog-item .px-4.pb-0 {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    /* Расширяется, компенсируя разницу в длине текста */
+}
+
+/* Фиксируем минимальную высоту заголовка под две строки, чтобы текст под ними был ровным */
+.blog-item h4 {
+    margin-top: 0;
+    min-height: 2.8em;
+    line-height: 1.4;
+}
+
+/* Выравниваем абзац описания */
+.blog-item .px-4.pb-0 p {
+    margin-bottom: 20px;
+    flex-grow: 1;
+    /* Если текста мало, он заполняет пустоту, выравнивая нижний край */
+}
+
+/* Футер с кнопками жестко прижимается к низу карточки */
+.blog-item .blog-btn {
+    margin-top: auto;
+    width: 100%;
+}
+
+
+/* --- Навигация карусели (Оригинальные стили) --- */
 
 .blog-carousel .owl-nav .owl-prev {
     position: absolute;

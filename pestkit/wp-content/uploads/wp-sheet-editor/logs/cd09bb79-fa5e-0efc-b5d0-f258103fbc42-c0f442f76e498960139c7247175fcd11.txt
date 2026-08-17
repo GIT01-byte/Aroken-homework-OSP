@@ -1,0 +1,24 @@
+2026-08-17 13:33:03.247440 (UTC) - Saving row with index: 1.
+
+2026-08-17 13:33:03.251533 (UTC) - Saving image successful: http://pestkit/wp-content/uploads/2026/08/blog-3-1.jpg?wpId=334 - Image imported to the wp media library
+
+2026-08-17 13:33:03.272584 (UTC) - Saving row with index: 1 has completed
+
+2026-08-17 13:33:03.273227 (UTC) - Saving row with index: 2.
+
+2026-08-17 13:33:03.275182 (UTC) - Saving image successful: http://pestkit/wp-content/uploads/2026/08/blog-2-1.jpg?wpId=333 - Image imported to the wp media library
+
+2026-08-17 13:33:03.287828 (UTC) - Saving row with index: 2 has completed
+
+2026-08-17 13:33:03.291785 (UTC) - Saving row with index: 3.
+
+2026-08-17 13:33:03.294059 (UTC) - Saving image successful: http://pestkit/wp-content/uploads/2026/08/blog-1-1.jpg?wpId=332 - Image imported to the wp media library
+
+2026-08-17 13:33:03.308413 (UTC) - Saving row with index: 3 has completed
+
+2026-08-17 13:33:03.310194 (UTC) - Saving row with index: 4.
+
+2026-08-17 13:33:03.312417 (UTC) - Saving image successful: http://pestkit/wp-content/uploads/2026/08/blog-4-1.jpg?wpId=335 - Image imported to the wp media library
+
+2026-08-17 13:33:03.323832 (UTC) - Saving row with index: 4 has completed
+

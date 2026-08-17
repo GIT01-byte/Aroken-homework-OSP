@@ -11,7 +11,7 @@ get_header();
             <?php
             $categories = get_the_category();
             foreach ($categories as $cat) {
-                echo '<span class="badge bg-warning text-dark px-3 py-2 me-2 text-uppercase fw-bold" style="font-size:0.75rem;">' . esc_html($cat->name) . '</span>';
+                echo '<span class="badge bg-warning text-dark px-3 py-2 me-2 text-uppercase fw-bold" style="font-size:0.875rem;">' . esc_html($cat->name) . '</span>';
             }
             ?>
         </div>
@@ -27,7 +27,7 @@ get_header();
         <?php endif; ?>
 
         <!-- Post Metadata -->
-        <div class="d-flex justify-content-center align-items-center text-white-50 flex-wrap" style="gap: 20px; font-size: 0.9rem;">
+        <div class="d-flex justify-content-center align-items-center text-white-50 flex-wrap" style="gap: 20px; font-size: 0.95rem;">
             <span>
                 <i class="fa fa-user text-warning me-2"></i>
                 <?php
@@ -113,10 +113,9 @@ get_header();
 
 
 <!-- Comments Section -->
-<section class="comments-section bg-white pb-5">
+<section class="comments-section bg-white pb-5 #comments">
     <div class="container">
         <div class="row">
-            <!-- Ограничиваем ширину комментариев до 8 колонок (точно так же, как и контент статьи) -->
             <?php
             if (comments_open() || get_comments_number()) {
                 comments_template();
@@ -163,10 +162,16 @@ get_header();
                                     </div>
                                 </div>
                                 <!-- Card Text Content -->
-                                <div class="col-sm-7 p-4 d-flex flex-column justify-content-between bg-white">
-                                    <div>
-                                        <div class="text-muted small mb-2">
-                                            <i class="fa fa-calendar text-warning me-2"></i><?php echo get_the_date(); ?>
+                                <div class="col-sm-7 d-flex flex-column justify-content-between bg-white">
+                                    <div class="p-4">
+                                        <div class="text-muted mb-2 d-flex align-items-center justify-content-between">
+                                            <div class="d-flex align-items-center gap-2">
+                                                <img src="<?php echo get_avatar_url(get_the_author_meta('ID'), 'size=140'); ?>" class="rounded-circle" style="width: 32px; height: 32px; object-fit: cover;">
+                                                <span class="fw-semibold text-secondary"><?php the_author() ?></span>
+                                            </div>
+                                            <span class="text-dark"><i class="fas fa-calendar-alt me-2"></i>
+                                                <?php echo get_the_date() ?>
+                                            </span>
                                         </div>
                                         <h5 class="fw-bold mb-2">
                                             <a href="<?php the_permalink() ?>" class="text-decoration-none text-dark hover-warning" style="transition: color 0.2s;">
@@ -177,14 +182,14 @@ get_header();
                                             <?php echo wp_trim_words(get_the_excerpt(), 12, '...'); ?>
                                         </p>
                                     </div>
-                                    <!-- Card Meta: Author and Action Button -->
-                                    <div class="mt-3 pt-3 border-top border-light-subtle d-flex align-items-center justify-content-between">
-                                        <div class="d-flex align-items-center gap-2">
-                                            <img src="<?php echo get_avatar_url(get_the_author_meta('ID'), 'size=40'); ?>" class="rounded-circle" style="width: 24px; height: 24px; object-fit: cover;">
-                                            <span class="small fw-semibold text-secondary"><?php the_author() ?></span>
-                                        </div>
-                                        <a href="<?php the_permalink() ?>" class="btn btn-link text-warning p-0 fw-bold text-decoration-none small">
-                                            Read More <i class="fa fa-arrow-right small ms-1"></i>
+                                    <div class="p-4 py-1 d-flex justify-content-between bg-primary blog-btn">
+                                        <a href="<?php the_permalink() ?>" class="btn btn-primary border-0">
+                                            Read More
+                                        </a>
+                                        <a
+                                            href="<?php echo get_permalink() . '#comments' ?>"
+                                            class="my-auto btn-primary border-0"><i class="fa fa-comments me-2"></i>
+                                            <?php echo get_comments_number(); ?> Comments
                                         </a>
                                     </div>
                                 </div>

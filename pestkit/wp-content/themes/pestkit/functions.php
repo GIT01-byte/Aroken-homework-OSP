@@ -284,7 +284,13 @@ function team_widget_shortcode($atts)
 add_shortcode('latest-blog-slider', 'latest_blog_slider_shortcode');
 function latest_blog_slider_shortcode()
 {
-    require(get_template_directory() . '/shortcodes/latest-blog-slider.php');
+    // Включаем буферизацию вывода
+    ob_start();
+
+    get_template_part("shortcodes/latest-blog-slider", null);
+
+    // Возвращаем собранный HTML из буфера
+    return ob_get_clean();
 }
 
 // Шорткод текущего года
@@ -448,3 +454,6 @@ function pestkit_enqueue_feedback_scripts()
     }
 }
 add_action('wp_enqueue_scripts', 'pestkit_enqueue_feedback_scripts');
+
+// Кастомный размер миниатюр блога
+add_image_size('blog-thumb', 400, 312, true);
