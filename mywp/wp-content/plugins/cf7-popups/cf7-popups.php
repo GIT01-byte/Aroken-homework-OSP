@@ -3,7 +3,7 @@
  * Plugin Name: Popups - Submission Messages For Contact Form 7
  * Plugin URI: https://codeworkweb.com/plugins/cf7-popups/
  * Description: Useful plugin to display contact form 7 error messages, success messages in beautiful popups.
- * Version: 1.2.1
+ * Version: 1.2.2
  * Author: Code Work Web
  * Author URI:  https://codeworkweb.com/
  * Text Domain: cf7-popups
@@ -19,7 +19,7 @@ if ( !defined( 'WPINC' ) ) {
 }
 
 define( 'CF7_POPUPS_DATA', 'CF7 Popups' ); ;
-define( 'CF7_POPUPS_VER', '1.2.1' );
+define( 'CF7_POPUPS_VER', '1.2.2' );
 
 define( 'CF7_POPUPS_FILE', __FILE__ );
 define( 'CF7_POPUPS_BASENAME', plugin_basename( CF7_POPUPS_FILE ) );

@@ -1,0 +1,73 @@
+********************************************************************************
+DUPLICATOR-LITE PACKAGE-LOG: 17 Aug, 2026 22:30
+NOTICE: Do NOT post to public sites or forums 
+********************************************************************************
+VERSION:	1.5.16.1
+WORDPRESS:	7.0.4
+PHP INFO:	8.1.9 | SAPI: apache2handler
+SERVER:		Apache 
+PHP TIME LIMIT: (0) no time limit imposed 
+PHP MAX MEMORY: 4294967296 (1536M default) 
+MEMORY STACK: 76MB
+
+********************************************************************************
+DATABASE:
+********************************************************************************
+BUILD MODE:   MYSQLDUMP
+MYSQLTIMEOUT: 5000
+MYSQLDUMP:    Is Supported
+SQL CREATED: 20260810_pestkit_v_1_0_9cdd78c6655347ed3077_20260817222942_database.sql
+SQL FILE SIZE: 1.77MB (1853356)
+SQL FILE TIME: 2026-08-17 22:30:36
+SQL RUNTIME: 5.63 sec.
+
+********************************************************************************
+ARCHIVE (ZIP):
+********************************************************************************
+ARCHIVE DIR:  C:/OSPanel/domains/pestkit
+ARCHIVE FILE: 20260810_pestkit_v_1_0_9cdd78c6655347ed3077_20260817222942_archive.zip
+FILTERS: *ON*
+DIRS:
+	C:/OSPanel/domains/pestkit/БЭКАПЫ/1
+FILES:
+	not set
+EXTS:  not set
+----------------------------------------
+COMPRESSING
+SIZE:	189.5MB
+STATS:	Dirs 1,503 | Files 9,346
+SQL ADDED: 20260810_pestkit_v_1_0_9cdd78c6655347ed3077_20260817222942_database.sql
+ZipArchive Object
+(
+    [lastId] => 10848
+    [status] => 0
+    [statusSys] => 0
+    [numFiles] => 10849
+    [filename] => C:\OSPanel\domains\pestkit\wp-content\backups-dup-lite\tmp\20260810_pestkit_v_1_0_9cdd78c6655347ed3077_20260817222942_archive.zip
+    [comment] => 
+)
+
+FILE ADDED TO ZIP: 10848
+COMPRESSION RESULT: '1'
+COMPRESSED SIZE: 63.23MB
+ARCHIVE RUNTIME: 41.65 sec.
+MEMORY STACK: 80MB
+building installer
+ARCHIVE CONSISTENCY TEST: PASS
+
+********************************************************************************
+INTEGRITY CHECKS:
+********************************************************************************
+SQL FILE: 1.77MB
+INSTALLER FILE: 73.5KB
+ARCHIVE FILE: 65.17MB 
+EXPECTED FILE/DIRECTORY COUNT: 10,849
+ACTUAL FILE/DIRECTORY COUNT: 10,848
+ARCHIVE CONSISTENCY TEST: Pass
+
+********************************************************************************
+RECORD ID:[3]
+TOTAL PROCESS RUNTIME: 50.92 sec.
+PEAK PHP MEMORY USED: 82MB
+DONE PROCESSING => 20260810_pestkit_v_1_0 17 Aug, 2026 22:31
+

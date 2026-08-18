@@ -4,8 +4,8 @@ Creator's website link: https://codeworkweb.com/plugins/cf7-popups/
 Tags: cf7, contact form 7, contact form, contact form 7 addon, popup messages
 Requires at least: 5.6
 Requires PHP: 7.4
-Tested up to: 6.8.2
-Stable tag: 1.2.1
+Tested up to: 7.0.4
+Stable tag: 1.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -46,6 +46,9 @@ Please disable all plugins and check if it is working properly. Then you can ena
 
 
 == Changelog ==
+
+= 1.2.2 =
+* Tested with latest version of WordPress.
 
 = 1.2.1 =
 * Minor bugs fixed

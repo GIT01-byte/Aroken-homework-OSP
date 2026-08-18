@@ -38,7 +38,7 @@
                                     <div class="text-center">
                                         <div class="p-4 bg-dark rounded d-flex" style="align-items: center; justify-content: center;">
                                             <i
-                                                class="fas <?php the_sub_field("icon_class") ?> 
+                                                class="<?php the_sub_field("icon_class") ?> 
                                                 fa-4x text-primary">
                                             </i>
                                         </div>

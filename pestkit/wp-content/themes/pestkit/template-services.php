@@ -6,7 +6,16 @@ get_header();
 <!-- Page Header Start -->
 <div
     class="container-fluid page-header py-5"
-    style="background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url(<?php echo get_field("breadcrumbs_bg_image", "options") ?>) 
+    <?php
+    $default_bg = get_field("breadcrumbs_bg_image", "options");
+    $thumbnail_bg = get_the_post_thumbnail_url(get_the_ID(), 'full');
+    if (!empty($thumbnail_bg)) {
+        $bg_img = $thumbnail_bg;
+    } else {
+        $bg_img = $default_bg;
+    }
+    ?>
+    style="background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url(<?php echo $bg_img ?>) 
         center center no-repeat; background-size: cover;">
     <div class="container text-center py-5">
         <h1 class="display-2 text-white mb-4 animated slideInDown">

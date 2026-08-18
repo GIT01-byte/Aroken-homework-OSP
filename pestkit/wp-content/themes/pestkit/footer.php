@@ -63,7 +63,7 @@
                                 <a
                                     href="<?php the_sub_field('link'); ?>"
                                     class="btn btn-link w-100 text-start ps-0 pb-3 border-bottom rounded-0">
-                                    <i class="fa fa-<?php the_sub_field('icon_name'); ?> me-3"></i>
+                                    <i class="<?php the_sub_field('icon_class'); ?> me-3"></i>
                                     <?php the_sub_field('text'); ?>
                                 </a>
 
@@ -71,7 +71,7 @@
 
                                 <div
                                     class=" w-100 text-start ps-0 pb-3 border-bottom rounded-0">
-                                    <i class="fa fa-<?php the_sub_field('icon_name'); ?> me-3"></i>
+                                    <i class="<?php the_sub_field('icon_class'); ?> me-3"></i>
                                     <?php the_sub_field('text'); ?>
                                 </div>
 

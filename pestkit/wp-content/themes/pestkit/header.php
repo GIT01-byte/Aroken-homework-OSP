@@ -36,7 +36,7 @@
 
                                 <span
                                     class="me-4 text-secondary">
-                                    <i class="fas fa-<?php the_sub_field("icon_name") ?> me-2 text-dark"></i>
+                                    <i class="<?php the_sub_field("icon_class") ?> me-2 text-dark"></i>
                                     <?php the_sub_field("text") ?>
                                 </span>
 
@@ -45,7 +45,7 @@
                                 <a
                                     href="<?php the_sub_field("link") ?>"
                                     class="me-4 text-secondary">
-                                    <i class="fas fa-<?php the_sub_field("icon_name") ?> me-2 text-dark"></i>
+                                    <i class="<?php the_sub_field("icon_class") ?> me-2 text-dark"></i>
                                     <?php the_sub_field("text") ?>
                                 </a>
 

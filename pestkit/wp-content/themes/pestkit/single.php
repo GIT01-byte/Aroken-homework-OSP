@@ -143,11 +143,12 @@ get_header();
             // Set up query for 2 random posts, excluding the current post
             $args = array(
                 'posts_per_page' => 2,
-                'post_type'      => 'post',
+                'post_type'      => "post",
                 'orderby'        => "rand",
                 'post__not_in'   => array(get_the_ID())
             );
             $query = new WP_Query($args);
+            $parent_ID = get_the_ID();
 
             if ($query->have_posts()) :
                 while ($query->have_posts()) : $query->the_post(); ?>
@@ -183,8 +184,9 @@ get_header();
                                         </p>
                                     </div>
                                     <div class="p-4 py-1 d-flex justify-content-between bg-primary blog-btn">
-                                        <a href="<?php the_permalink() ?>" class="btn btn-primary border-0">
-                                            Read More
+                                        <a
+                                            href="<?php the_permalink() ?>" class="btn btn-primary border-0">
+                                            <?php the_field("blog_recommended_btn_text", $parent_ID) ?>
                                         </a>
                                         <a
                                             href="<?php echo get_permalink() . '#comments' ?>"
@@ -202,7 +204,9 @@ get_header();
                 <div class="col-12">
                     <div class="p-4 text-center rounded-3 bg-white border border-dashed text-muted">
                         <i class="fa fa-folder-open-o display-6 mb-2"></i>
-                        <p class="mb-0">No recommended articles found on this topic yet.</p>
+                        <p class="mb-0">
+                            <?php the_field("blog_no_post_text") ?>
+                        </p>
                     </div>
                 </div>
             <?php endif; ?>
